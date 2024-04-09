@@ -15,14 +15,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textColor="@color/black"
+            android:textSize="40sp"
             android:text="너의 입시를"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="50sp"
             android:text="응원해"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
             android:src="@drawable/img_megaphone"/>
         <TextView
             android:layout_width="wrap_content"
