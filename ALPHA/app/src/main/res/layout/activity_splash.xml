@@ -24,14 +24,20 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:textSize="50sp"
+            android:textColor="#545AF6"
             android:text="응원해"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:src="@drawable/img_megaphone"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="20dp"
             android:text="전지적 고3 시점"/>
     </LinearLayout>
 
@@ -41,29 +47,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="78dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textColor="#757575"
             android:text="LOADING"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="7dp"
+            android:src="@drawable/ic_dot"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="8dp"
-            android:src="@drawable/icon_dot"/>
+            android:src="@drawable/ic_dot"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/icon_dot"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_dot"/>
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_dot"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
