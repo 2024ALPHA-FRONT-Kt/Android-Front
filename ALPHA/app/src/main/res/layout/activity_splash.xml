@@ -37,7 +37,7 @@
             android:layout_marginTop="35dp"
             android:textColor="@color/black"
             android:fontFamily="@font/nanumsquareroundextrabold"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:text="전지적 고3 시점"/>
     </LinearLayout>
 
