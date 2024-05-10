@@ -200,14 +200,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/disc_character"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_disc_character"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/disc_next_page"
         android:layout_width="match_parent"
