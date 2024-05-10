@@ -24,7 +24,7 @@
             android:src="@drawable/ic_disc_back" />
 
         <TextView
-            android:id="@+id/disc_test_page_test_start"
+            android:id="@+id/disc_test_page_test_start_text"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:fontFamily="@font/nanumsquareroundextrabold"
@@ -201,7 +201,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/disc_character"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_disc_character"

@@ -8,7 +8,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/disc_test_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="top"
@@ -24,7 +24,7 @@
             android:src="@drawable/ic_disc_back" />
 
         <TextView
-            android:id="@+id/disc_test_page_test_start"
+            android:id="@+id/disc_test_page_test_start_text"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:fontFamily="@font/nanumsquareroundextrabold"
@@ -34,13 +34,13 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/disc_progress_bar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/disc_test_top" />
 
 
     <LinearLayout
@@ -49,13 +49,13 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/disc_question_1"
+            android:id="@+id/disc_question_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -67,14 +67,14 @@
             app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
 
         <LinearLayout
-            android:id="@+id/disc_group_1"
+            android:id="@+id/disc_group_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_question_1">
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_3">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="250dp"
@@ -122,7 +122,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/disc_question_2"
+            android:id="@+id/disc_question_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -130,8 +130,7 @@
             android:text="4. 다른 사람에게 나는 _(하)다."
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/disc_group_1" />
+            app:layout_constraintTop_toBottomOf="@+id/disc_group_3" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -140,7 +139,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_question_2">
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_4">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="250dp"
@@ -186,19 +185,42 @@
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
         </LinearLayout>
-
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/disc_speech_bubble_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_disc_speech_bubble_1"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintEnd_toStartOf="@+id/disc_character"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="-10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquareroundbold"
+        android:gravity="center"
+        android:layout_marginBottom="14dp"
+        android:text="솔직한 답변이 중요해!"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/disc_speech_bubble_1"
+        app:layout_constraintEnd_toEndOf="@+id/disc_speech_bubble_1"
+        app:layout_constraintStart_toStartOf="@+id/disc_speech_bubble_1"
+        app:layout_constraintTop_toTopOf="@+id/disc_speech_bubble_1"/>
+
+    <ImageView
+        android:id="@+id/disc_character"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_disc_character"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/disc_next_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#E2E7FF"
