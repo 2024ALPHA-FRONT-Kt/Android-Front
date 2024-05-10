@@ -162,7 +162,7 @@
                 android:paddingLeft="15dp"
                 android:text="웃는 엄마, 밝은 아빠 알고 보니 양보 운전"
                 android:textAlignment="textStart"
-                android:textSize="13.5sp" />
+                android:textSize="11.5sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="250dp"
@@ -173,7 +173,7 @@
                 android:paddingLeft="15dp"
                 android:text="조금씩 양보하면 좁은 길도 넓어진다"
                 android:textAlignment="textStart"
-                android:textSize="15sp" />
+                android:textSize="12.5sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="250dp"
@@ -184,7 +184,7 @@
                 android:paddingLeft="15dp"
                 android:text="졸음 운전 앞 차, 경적 울려 사고 예방"
                 android:textAlignment="textStart"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
         </LinearLayout>
 
     </LinearLayout>

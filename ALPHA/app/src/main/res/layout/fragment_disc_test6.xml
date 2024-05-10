@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/nanumsquareroundbold"
-                android:text="11. 평소 내 목소리는 _ 톤이다."
+                android:text="11. 평소 내 목소리는 _한 톤이야"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +125,7 @@
                 android:paddingLeft="15dp"
                 android:text="냉정하고 감정을 억제하는 가늘고 낮은"
                 android:textAlignment="textStart"
-                android:textSize="13.5sp" />
+                android:textSize="12sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/nanumsquareroundbold"
-                android:text="12. 내 제스처는 대부분 _해!"
+                android:text="12. 내 제스처는 대부분 _해"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -268,7 +268,7 @@
                     android:background="@drawable/disc_choice_button"
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
-                    android:text="편한 체육복"
+                    android:text="편한 체육복 "
                     android:textAlignment="textStart"
                     android:textSize="13.5sp" />
 

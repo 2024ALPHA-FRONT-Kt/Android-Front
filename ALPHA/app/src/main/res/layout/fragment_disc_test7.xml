@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:text="14. 평소 내 태도는 _해"
+            android:text="14. 평소 나의 태도는 _해"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +149,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="빠르다"
+                android:text="빠른 편이야"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -160,18 +160,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="열정적이다"
-                android:textAlignment="textStart"
-                android:textSize="13.5sp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="안정적이다"
+                android:text="열정! 열정! 열정!"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -182,7 +171,18 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="조절하며 계획적이다"
+                android:text="안정적이야"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="계획적으로 조절하고 있어"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
         </LinearLayout>

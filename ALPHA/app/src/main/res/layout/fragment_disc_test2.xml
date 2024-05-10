@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:text="3. 나는 _한 경향이 있다!"
+            android:text="3. 나는 _하는 경향이 있어"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +105,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="팀, 조직을 중시하는"
+                android:text="팀과 조직을 중시하는"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -116,7 +116,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="과정, 세부 사항을 중시하는"
+                android:text="과정과 세부 사항을 중시하는"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:text="4. 다른 사람에게 나는 _(하)다."
+            android:text="4. 나는 타인에게 _해"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/disc_group_3" />
@@ -148,7 +148,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="시원시원"
+                android:text="시원시원해!"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -159,7 +159,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="친절하고 싹싹"
+                android:text="친절하고 싹싹해 ㅎㅎ"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -170,7 +170,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="조용하지만 착실"
+                android:text="조용하지만 착실해"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -181,7 +181,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="객관적이고 때로는 차갑"
+                android:text="객관적이고 때로는 차가워"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
         </LinearLayout>

@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:text="7. 나는 타인에게 _(하)는 경향이 있어!"
+            android:text="7. 나는 타인에게 _하는 경향이 있어"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="무언가를 잘 지시"
+                android:text="무언가를 잘 지시하는"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -94,7 +94,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="영향을 미치"
+                android:text="영향을 미치는"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -105,7 +105,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="이끌려 다니"
+                android:text="이끌려 다니는"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
@@ -116,7 +116,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="가치, 질로 평가"
+                android:text="가치와 질로 평가하는"
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
         </LinearLayout>
