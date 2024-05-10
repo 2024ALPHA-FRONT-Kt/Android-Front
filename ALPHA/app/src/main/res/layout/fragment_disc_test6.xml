@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/disc_test_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_disc_back" />
+
+        <TextView
+            android:id="@+id/disc_test_page_test_start_text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:paddingTop="13dp"
+            android:text="테스트 시작"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/disc_progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/disc_test_top" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/disc_question_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:text="11. 평소 내 목소리는 _한 톤이야"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
+
+            <LinearLayout
+                android:id="@+id/disc_group_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/disc_question_11">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="감정적, 지시적, 힘 있고 짧고 높은"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="감정적, 열정적, 가늘고 높은"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="감정이 적게 개입된 굵고 낮은"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="냉정하고 감정을 억제하는 가늘고 낮은"
+                android:textAlignment="textStart"
+                android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/disc_question_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:text="12. 내 제스처는 대부분 _해"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
+
+            <LinearLayout
+                android:id="@+id/disc_group_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/disc_question_12">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="강하고 민첩"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="매우 친절"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="반응이 조금 느린 것 같기도"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="차분하고 신중"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/disc_question_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:text="13. 나는 _한 스타일의 옷을 좋아해"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
+
+            <LinearLayout
+                android:id="@+id/disc_group_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/disc_question_11">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="정장과 같이 차려 입는"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="캐주얼하지만 멋은 낸"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="편한 체육복 "
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_button"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:text="아무거나 상관없이"
+                    android:textAlignment="textStart"
+                    android:textSize="13.5sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E2E7FF"
+        android:text="다음 페이지..."
+        android:textColor="#6369F8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

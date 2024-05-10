@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/disc_test_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_disc_back" />
+
+        <TextView
+            android:id="@+id/disc_test_page_test_start_text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:paddingTop="13dp"
+            android:text="테스트 시작"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/disc_progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/disc_test_top" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/disc_question_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nanumsquareroundbold"
+            android:text="7. 나는 타인에게 _하는 경향이 있어"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
+
+        <LinearLayout
+            android:id="@+id/disc_group_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_7">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="무언가를 잘 지시하는"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="영향을 미치는"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="이끌려 다니는"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="가치와 질로 평가하는"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/disc_question_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/nanumsquareroundbold"
+            android:text="8. 내가 축구 선수가 된다면..."
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/disc_test_top"
+            app:layout_constraintTop_toBottomOf="@+id/disc_group_7" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_8">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="골을 넣는 공격수!"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="공격적인 수비수!"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="수비적인 수비수!"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/disc_choice_button"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:paddingLeft="15dp"
+                android:text="골을 막는 골키퍼!"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/disc_speech_bubble_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_disc_speech_bubble_1"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintEnd_toStartOf="@+id/disc_character"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="-10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquareroundbold"
+        android:gravity="center"
+        android:layout_marginBottom="14dp"
+        android:text="너 자신을 떠올려 봐!"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/disc_speech_bubble_1"
+        app:layout_constraintEnd_toEndOf="@+id/disc_speech_bubble_1"
+        app:layout_constraintStart_toStartOf="@+id/disc_speech_bubble_1"
+        app:layout_constraintTop_toTopOf="@+id/disc_speech_bubble_1"/>
+
+    <ImageView
+        android:id="@+id/disc_character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_disc_character"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/disc_next_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E2E7FF"
+        android:text="다음 페이지..."
+        android:textColor="#6369F8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
