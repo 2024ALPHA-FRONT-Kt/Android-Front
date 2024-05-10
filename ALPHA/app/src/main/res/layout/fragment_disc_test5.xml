@@ -67,7 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
 
         <LinearLayout
-            android:id="@+id/disc_group_9"
+            android:id="@+id/disc_group_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -122,7 +122,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/disc_question_10"
+            android:id="@+id/disc_question_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -131,7 +131,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/disc_test_top"
-            app:layout_constraintTop_toBottomOf="@+id/disc_group_9" />
+            app:layout_constraintTop_toBottomOf="@+id/disc_group_14" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_question_10">
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_15">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="250dp"
