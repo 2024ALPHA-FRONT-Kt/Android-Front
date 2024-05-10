@@ -8,7 +8,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/disc_character"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/disc_test_page_test_start"
+        android:id="@+id/disc_test_page_test_start_text"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:fontFamily="@font/nanumsquareroundextrabold"
@@ -27,42 +27,50 @@
         android:textSize="20sp"
 
         android:layout_marginTop="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/disc_character"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/disc_character"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_disc_result_top_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="30dp"
-        android:gravity="center">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:text="완료!"
-            android:fontFamily="@font/nanumsquareroundbold"
-            android:textSize="17sp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/disc_complete_button"
-            android:textColor="#081F5C"
             android:elevation="20dp"
-            android:layout_marginBottom="20dp"/>
+            android:fontFamily="@font/nanumsquareroundbold"
+            android:text="완료!"
+            android:textColor="#081F5C"
+            android:textSize="17sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:text="결과 공유하기"
-            android:fontFamily="@font/nanumsquareroundbold"
-            android:textSize="17sp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/disc_share_button"
-            android:textColor="@color/white"
             android:elevation="20dp"
-            android:layout_marginBottom="20dp"/>
+            android:fontFamily="@font/nanumsquareroundbold"
+            android:text="결과 공유하기"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
 
     </LinearLayout>
 
