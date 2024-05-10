@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_disc_back" />
+            android:src="@drawable/ic_disc_start_page_back" />
 
         <TextView
             android:id="@+id/disc_test_page_test_start_text"
@@ -110,13 +110,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/disc_recten_img"
         app:layout_constraintEnd_toEndOf="@+id/disc_recten_img"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
-        app:layout_constraintTop_toBottomOf="@+id/disc_computer_img" />
+        app:layout_constraintTop_toBottomOf="@+id/disc_computer_img"
+        android:layout_marginBottom="5dp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@drawable/disc_next_page_round_button"
         android:text="테스트 하러 가기"
+        android:fontFamily="@font/nanumsquareroundextrabold"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/disc_recten_img"
         app:layout_constraintEnd_toEndOf="@+id/disc_recten_img"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
