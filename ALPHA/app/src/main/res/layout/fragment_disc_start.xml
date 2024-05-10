@@ -20,7 +20,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_disc_start_page_back" />
+            android:src="@drawable/ic_disc_back"
+            android:id="@+id/disc_start_page_back"/>
 
         <TextView
             android:id="@+id/disc_test_page_test_start_text"
@@ -114,6 +115,7 @@
         android:layout_marginBottom="5dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/disc_test_start_button"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@drawable/disc_next_page_round_button"
