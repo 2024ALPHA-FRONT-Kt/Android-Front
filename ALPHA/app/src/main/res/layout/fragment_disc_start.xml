@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <LinearLayout
+        android:id="@+id/disc_test_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_disc_back" />
+
+        <TextView
+            android:id="@+id/disc_test_page_test_start_text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:paddingTop="13dp"
+            android:text="컨텐츠"
+            android:textSize="20sp" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/disc_recten_img"
         android:layout_width="wrap_content"
