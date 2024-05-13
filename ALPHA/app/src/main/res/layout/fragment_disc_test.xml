@@ -105,7 +105,7 @@
                 android:background="@drawable/disc_choice_button"
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:paddingLeft="15dp"
-                android:text="사교적이고 감정 표현을 잘해 >.<"
+                android:text="사교적이고 감정 표현을 잘해 >."
                 android:textAlignment="textStart"
                 android:textSize="15sp" />
 
