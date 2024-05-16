@@ -76,49 +76,122 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/disc_question_9">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="항상 바쁜"
-                android:textAlignment="textStart"
-                android:textSize="15sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="다른 사람과의 교류에 많이 쓰이는"
-                android:textAlignment="textStart"
-                android:textSize="15sp" />
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="항상 바쁜"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="시간은 중요하지만 부담은 없어!"
-                android:textAlignment="textStart"
-                android:textSize="15sp" />
+                <EditText
+                    android:id="@+id/disc_q9_a1"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="중요하고, 잘 활용할 줄 알아"
-                android:textAlignment="textStart"
-                android:textSize="15sp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="다른 사람과의 교류에 많이 쓰이는"
+                    android:gravity="center_vertical"
+                    android:textSize="13.8sp" />
+
+                <EditText
+                    android:id="@+id/disc_q9_a2"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="시간은 중요하지만 부담은 없어!"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/disc_q9_a3"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="중요하고, 잘 활용할 줄 알아"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/disc_q9_a4"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center"/>
+
+            </FrameLayout>
+
         </LinearLayout>
 
         <TextView
@@ -142,49 +215,122 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/disc_question_15">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="무단 횡단은 저승길..."
-                android:textAlignment="textStart"
-                android:textSize="15sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="웃는 엄마, 밝은 아빠 알고 보니 양보 운전"
-                android:textAlignment="textStart"
-                android:textSize="11.5sp" />
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="무단 횡단은 저승길..."
+                    android:gravity="center_vertical"
+                    android:textSize="15sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="조금씩 양보하면 좁은 길도 넓어진다"
-                android:textAlignment="textStart"
-                android:textSize="12.5sp" />
+                <EditText
+                    android:id="@+id/disc_q10_a1"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/disc_choice_button"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:paddingLeft="15dp"
-                android:text="졸음 운전 앞 차, 경적 울려 사고 예방"
-                android:textAlignment="textStart"
-                android:textSize="13sp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="웃는 엄마, 밝은 아빠 알고 보니 양보 운전"
+                    android:gravity="center_vertical"
+                    android:textSize="11.5sp" />
+
+                <EditText
+                    android:id="@+id/disc_q10_a2"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="조금씩 양보하면 좁은 길도 넓어진다"
+                    android:gravity="center_vertical"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/disc_q10_a3"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="졸음운전 앞 차, 경적 울려 사고 예방"
+                    android:gravity="center_vertical"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/disc_q10_a4"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center"/>
+
+            </FrameLayout>
+
         </LinearLayout>
 
     </LinearLayout>
