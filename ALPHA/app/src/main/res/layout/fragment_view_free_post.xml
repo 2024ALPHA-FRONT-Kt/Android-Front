@@ -3,15 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:src="@drawable/ic_back"
         app:layout_constraintBottom_toBottomOf="@+id/view_free_post_title"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="15dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:layout_marginTop="20dp"
@@ -38,6 +39,142 @@
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:text="게시판"
             android:textSize="22sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/free_community_banner_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_free_post_title">
+
+        <ImageView
+            android:id="@+id/free_community_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/view_free_post_banner" />
+
+        <TextView
+            android:id="@+id/free_community_banner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1차 수시 모집"
+            android:fontFamily="@font/nanumsquareroundbold"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            android:id="@+id/free_community_banner_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2023.09.18 ~ 2023.10.13"
+            android:fontFamily="@font/nanumsquareroundbold"
+            android:textSize="8sp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/white"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/free_community_banner_group"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquareroundlarge"
+            android:text="게시판 > 자유게시판"
+            android:textStyle="bold"
+            android:textSize="12sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/free_post_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자유게시판 게시글 제목"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:textSize="18sp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/view_free_post_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_view_post_menu" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/view_free_post_user_id"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquareroundlarge"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#2446F6"
+            android:text="국민대학교 userid" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_view_posts_eye"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23,445"
+                android:textSize="10sp"
+                android:fontFamily="@font/nanumsquareroundlarge"
+                android:textStyle="bold"
+                android:textColor="#999FAA"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="3dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#ACACAC" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:paddingStart="2.5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="본문 내용\n본문내용\n본문내용\n본문내용\n본문내용\n본문내용\n본문내용"
+            android:fontFamily="@font/nanumsquareroundlarge"
+            android:textStyle="bold"
+            android:textSize="12sp" />
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
