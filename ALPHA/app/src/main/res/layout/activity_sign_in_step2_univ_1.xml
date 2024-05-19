@@ -76,7 +76,7 @@
                     android:textColor="@color/black"
                     android:layout_marginBottom="8dp"
                     android:textSize="20sp"
-                    android:text="대학 성메일 작성"/>
+                    android:text="대학 이메일 작성"/>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
