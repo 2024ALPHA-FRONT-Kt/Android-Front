@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
     tools:context=".ui.home.HomeFragment">
     <ScrollView
         android:layout_width="match_parent"
@@ -44,14 +42,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:paddingTop="30dp"
+                android:layout_marginTop="20dp"
+                android:background="#FFFEDF"
                 android:gravity="center"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/img_main_center_title"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/img_main_community" />
             </LinearLayout>
+
 
 
         </LinearLayout>
