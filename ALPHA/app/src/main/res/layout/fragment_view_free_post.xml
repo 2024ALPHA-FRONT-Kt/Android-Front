@@ -58,7 +58,7 @@
             android:orientation="vertical" >
 
             <FrameLayout
-                android:id="@+id/free_community_banner_group"
+                android:id="@+id/viewfree_community_list_banner_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -105,7 +105,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/free_community_banner_group"
+                app:layout_constraintTop_toBottomOf="@+id/viewfree_community_list_banner_group"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp">
 
