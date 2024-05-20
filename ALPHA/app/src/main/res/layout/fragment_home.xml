@@ -5,18 +5,130 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
-
-    <TextView
-        android:id="@+id/text_home"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/main_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/main_right_img"
+                    android:src="@drawable/img_main_title"/>
+                <ImageView
+                    android:id="@+id/main_right_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/main_title"
+                    android:src="@drawable/img_main_right"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp"
+                android:layout_marginTop="20dp"
+                android:background="#FFFEDF"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_main_center_title"/>
+                <ImageView
+                    android:layout_width="230dp"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/img_main_disc" />
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#FFE471"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/img_main_txt_test_dday"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/img_main_txt_words"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_maiin_dday"
+                android:layout_gravity="center"
+                android:layout_marginBottom="100dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquareroundextrabold"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_main_dday_title"
+                    android:layout_marginBottom="10dp"
+                    android:text="9월 모의고사"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumsquareroundextrabold"
+                        android:textSize="30sp"
+                        android:textColor="#0057FF"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/bg_main_dday_num"
+                        android:text="3"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumsquareroundextrabold"
+                        android:textSize="30sp"
+                        android:textColor="#0057FF"
+                        android:background="@drawable/bg_main_dday_num"
+                        android:text="6"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumsquareroundextrabold"
+                        android:textSize="30sp"
+                        android:textColor="#0057FF"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/bg_main_dday_num"
+                        android:text="5"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

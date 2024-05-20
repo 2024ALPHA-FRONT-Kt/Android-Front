@@ -12,15 +12,9 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_mypage"
         android:name="com.android.myapplication.ui.mypage.MyPageFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_mypage"
         tools:layout="@layout/fragment_mypage" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.android.myapplication.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 
 </navigation>
