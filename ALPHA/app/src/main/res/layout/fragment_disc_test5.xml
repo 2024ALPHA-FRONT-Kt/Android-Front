@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_disc_back" />
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/disc_test_page_test_start_text"

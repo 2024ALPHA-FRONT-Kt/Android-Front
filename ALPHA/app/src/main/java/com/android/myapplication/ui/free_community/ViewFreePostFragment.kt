@@ -1,4 +1,4 @@
-package com.android.myapplication.ui.disc
+package com.android.myapplication.ui.free_community
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.myapplication.R
 
-class DiscTest2Fragment : Fragment() {
+class ViewFreePostFragment : Fragment() {
 
     companion object {
-        fun newInstance() = DiscTest2Fragment()
+        fun newInstance() = ViewFreePostFragment()
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -24,6 +23,6 @@ class DiscTest2Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_disc_test2, container, false)
+        return inflater.inflate(R.layout.fragment_view_free_post, container, false)
     }
 }
