@@ -14,8 +14,6 @@ class DiscResultFragment : Fragment() {
         fun newInstance() = DiscResultFragment()
     }
 
-    private val viewModel: DiscResultViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

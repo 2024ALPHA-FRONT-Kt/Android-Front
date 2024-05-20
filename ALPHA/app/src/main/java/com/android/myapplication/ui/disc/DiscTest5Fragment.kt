@@ -14,8 +14,6 @@ class DiscTest5Fragment : Fragment() {
         fun newInstance() = DiscTest5Fragment()
     }
 
-    private val viewModel: DiscTest5ViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

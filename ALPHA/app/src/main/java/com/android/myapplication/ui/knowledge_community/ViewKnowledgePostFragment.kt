@@ -14,8 +14,6 @@ class ViewKnowledgePostFragment : Fragment() {
         fun newInstance() = ViewKnowledgePostFragment()
     }
 
-    private val viewModel: ViewKnowledgePostViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
