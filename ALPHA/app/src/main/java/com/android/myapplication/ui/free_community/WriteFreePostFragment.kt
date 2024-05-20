@@ -13,9 +13,6 @@ class WriteFreePostFragment : Fragment() {
     companion object {
         fun newInstance() = WriteFreePostFragment()
     }
-
-    private val viewModel: WriteFreePostViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

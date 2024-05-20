@@ -1,4 +1,4 @@
-package com.example.xptmxmeksid
+package com.android.myapplication.ui.free_community
 
 import android.os.Bundle
 import android.view.LayoutInflater

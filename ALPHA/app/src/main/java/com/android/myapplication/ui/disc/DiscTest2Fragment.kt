@@ -14,8 +14,6 @@ class DiscTest2Fragment : Fragment() {
         fun newInstance() = DiscTest2Fragment()
     }
 
-    private val viewModel: DiscTest2ViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
