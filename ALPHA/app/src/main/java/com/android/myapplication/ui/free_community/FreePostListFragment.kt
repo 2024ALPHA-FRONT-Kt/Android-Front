@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
-import com.android.myapplication.ui.free_community.FreeList
+import com.android.myapplication.ui.free_community.FreePosts
 
 class FreePostListFragment : Fragment() {
 
@@ -22,10 +22,10 @@ class FreePostListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val list = ArrayList<FreeList>()
-        list.add(FreeList("제목 1", "내용 1"))
-        list.add(FreeList("제목 2", "내용 2"))
-        list.add(FreeList("제목 3", "내용 3"))
+        val list = ArrayList<FreePosts>()
+        list.add(FreePosts("제목 1", "내용 1"))
+        list.add(FreePosts("제목 2", "내용 2"))
+        list.add(FreePosts("제목 3", "내용 3"))
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.free_list_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
