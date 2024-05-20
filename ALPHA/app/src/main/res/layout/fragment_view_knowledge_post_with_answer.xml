@@ -6,17 +6,17 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/view_knowledge_post_back_button"
+        android:id="@+id/write_knowledge_post_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="@+id/view_knowledge_post_title_top"
+        app:layout_constraintBottom_toBottomOf="@+id/view_knowledge_post_title"
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:layout_marginTop="20dp"
-        android:id="@+id/view_knowledge_post_title_top"
+        android:id="@+id/view_knowledge_post_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -44,14 +44,14 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_knowledge_post_title_top">
+        app:layout_constraintTop_toBottomOf="@+id/view_knowledge_post_title">
 
         <LinearLayout
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
@@ -63,7 +63,7 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view_knowledge_post_title_top">
+                app:layout_constraintTop_toBottomOf="@+id/view_knowledge_post_title">
 
                 <ImageView
                     android:id="@+id/knowledge_community_banner"
@@ -123,7 +123,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/view_knowledge_post_title"
+                        android:id="@+id/view_knowledge_post_with_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -140,7 +140,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/view_knowledge_post_user_id"
+                    android:id="@+id/view_knowledge_post_with_user_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -190,10 +190,10 @@
                     android:background="#ACACAC" />
 
                 <TextView
-                    android:id="@+id/view_knowledge_post_content"
+                    android:id="@+id/view_knowledge_post_with_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="100dp"
                     android:fontFamily="@font/nanumsquareroundlarge"
                     android:lineSpacingExtra="5sp"
@@ -207,30 +207,66 @@
                     android:layout_marginBottom="10dp"
                     android:background="#ACACAC" />
 
-                <EditText
-                    android:id="@+id/view_knowledge_post_entering_answer"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/knowledge_post_answer_background"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_knowledge_post_answer" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="선배님의 답변"
+                        android:fontFamily="@font/nanumsquareroundextrabold"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/view_knowledge_post_with_sch_of_answer"
+                        android:layout_marginTop="7.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#4F6BFC"
+                        android:text="국민대학교"
+                        android:fontFamily="@font/nanumsquareroundbold" />
+
+                    <TextView
+                        android:id="@+id/view_knowledge_post_with_dpt_of_answer"
+                        android:layout_marginTop="7.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#4F6BFC"
+                        android:text="에스파학과"
+                        android:layout_marginStart="7dp"
+                        android:fontFamily="@font/nanumsquareroundbold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/view_knowledge_post_with_answer_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="100dp"
                     android:fontFamily="@font/nanumsquareroundlarge"
-                    android:gravity="start"
-                    android:hint="구체적인 답변은 학생들에게 도움이 될 수 있어요."
-                    android:paddingStart="10dp"
-                    android:paddingTop="10dp"
-                    android:textSize="12sp"
+                    android:lineSpacingExtra="5sp"
+                    android:text="Ah Body bang Make it feel too right 휩쓸린 에너지 It's so special 잔인한 Queen 이며 Scene 이자 종결 이토록 거대한 내 안의 Explosion 내 모든 세포 별로부터 만들어져 (Under my control Ah) 질문은 계속돼 Ah Oh Ay 우린 어디서 왔나 Oh Ay 느껴 내 안에선 Su su su Supernova Nova Can't stop hyperstellar 원초 그걸 찾아 Bring the light of a dying star 불러낸 내 우주를 봐 봐 Supernova 보이지 않는 힘으로 네게 손 내밀어 볼까 가능한 모든 가능성 무한 속의 너를 만나 It's about to bang bang Don't forget my name Su su su Supernova 사건은 다가와 Ah Oh Ay 거세게 커져가 Ah Oh Ay 질문은 계속돼 Ah Oh Ay 우린 어디서 왔나 Oh Ay 사건은 다가와 Ah Oh Ay 거세게 커져가 Ah Oh Ay Tell me, tell me, tell me Oh Ay 우린 어디서 왔나 Oh Ay 우린 어디서 왔나 Oh Ay Nova Can't stop hyperstellar 원초 그걸 찾아 Bring the lig"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/_view_knowledge_post_answer_enter_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="70dp"
-                    android:background="@drawable/knowledge_post_answering_button"
-                    android:fontFamily="@font/nanumsquareroundextrabold"
-                    android:text="답변하기"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
             </LinearLayout>
 
         </LinearLayout>
