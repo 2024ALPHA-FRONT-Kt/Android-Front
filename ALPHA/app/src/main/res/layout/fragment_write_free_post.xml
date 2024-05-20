@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/free_post_title"
+            android:id="@+id/entering_free_post_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:fontFamily="@font/nanumsquareroundbold"
@@ -80,7 +80,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/free_post_body"
+            android:id="@+id/entering_free_post_body"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_marginTop="12dp"
