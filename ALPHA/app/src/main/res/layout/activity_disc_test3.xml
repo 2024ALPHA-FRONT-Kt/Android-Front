@@ -104,7 +104,8 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"/>
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -160,7 +161,8 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"/>
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -188,7 +190,8 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"/>
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -241,7 +244,8 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"/>
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -269,7 +273,8 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"/>
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -297,7 +302,8 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"/>
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -325,7 +331,8 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"/>
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:inputType="number"/>
             </FrameLayout>
 
         </LinearLayout>

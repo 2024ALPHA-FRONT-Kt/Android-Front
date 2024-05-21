@@ -16,5 +16,10 @@ class DiscActivity : AppCompatActivity() {
             val intent = Intent(this, DiscTestActivity::class.java)
             startActivity(intent)
         }
+
+        findViewById<ImageView>(R.id.disc_start_page_back).setOnClickListener {
+            val intent = // todo
+            startActivity(intent)
+        }
     }
 }

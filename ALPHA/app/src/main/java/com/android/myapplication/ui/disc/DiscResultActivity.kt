@@ -29,6 +29,11 @@ class DiscResultActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        findViewById<Button>(R.id.disc_result_page_complete_button).setOnClickListener {
+            val intent = // todo
+            startActivity(intent)
+        }
+
         val shareButton: Button = findViewById(R.id.disc_result_page_share_button)
         shareButton.setOnClickListener {
             val screenshot = takeScreenshot()
