@@ -28,7 +28,7 @@ class CardAdapter(var cardImage: ArrayList<Int>) :
 
         holder.cards.setOnClickListener{
             if (position == 2){
-                val intent = Intent(holder.itemView?.context,DiscActivity::class.java)
+                val intent = Intent(holder.itemView.context,DiscActivity::class.java)
                 ContextCompat.startActivity(holder.itemView.context,intent,null)
             }
         }
