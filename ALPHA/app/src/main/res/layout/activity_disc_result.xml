@@ -6,7 +6,8 @@
     android:id="@+id/disc_t_result_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.disc.DiscResultActivity">
+    tools:context=".ui.disc.DiscResultActivity"
+    android:background="@color/white">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -34,7 +35,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="40dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/ic_disc_test_result_speech_bubble" />
+                android:src="@drawable/disc_result_big_speech_bubble" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,7 +55,8 @@
                     android:textSize="30sp"
                     android:layout_marginTop="110dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textColor="#000000"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -71,7 +73,8 @@
                         android:layout_weight="1"
                         android:gravity="start"
                         android:layout_marginStart="25dp"
-                        android:layout_marginTop="30dp"/>
+                        android:layout_marginTop="30dp"
+                        android:textColor="#000000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -82,7 +85,8 @@
                         android:layout_weight="1"
                         android:gravity="start"
                         android:layout_marginStart="25dp"
-                        android:layout_marginTop="30dp"/>
+                        android:layout_marginTop="30dp"
+                        android:textColor="#000000"/>
 
                 </LinearLayout>
 
@@ -101,7 +105,8 @@
                         android:textSize="15sp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:layout_marginStart="25dp"/>
+                        android:layout_marginStart="25dp"
+                        android:textColor="#000000"/>
 
                     <TextView
                         android:id="@+id/disc_result_characteristics"
@@ -112,7 +117,8 @@
                         android:textSize="15sp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:layout_marginStart="25dp"/>
+                        android:layout_marginStart="25dp"
+                        android:textColor="#000000"/>
 
                 </LinearLayout>
 
@@ -131,7 +137,8 @@
                         android:layout_weight="1"
                         android:gravity="start"
                         android:layout_marginStart="25dp"
-                        android:layout_marginTop="30dp"/>
+                        android:layout_marginTop="30dp"
+                        android:textColor="#000000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -142,7 +149,8 @@
                         android:layout_weight="1"
                         android:gravity="start"
                         android:layout_marginStart="25dp"
-                        android:layout_marginTop="30dp"/>
+                        android:layout_marginTop="30dp"
+                        android:textColor="#000000"/>
 
                 </LinearLayout>
 
@@ -161,7 +169,8 @@
                         android:textSize="15sp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:layout_marginStart="25dp"/>
+                        android:layout_marginStart="25dp"
+                        android:textColor="#000000"/>
 
                     <TextView
                         android:id="@+id/disc_result_recommended_occupation"
@@ -172,7 +181,8 @@
                         android:textSize="15sp"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:layout_marginStart="25dp" />
+                        android:layout_marginStart="25dp"
+                        android:textColor="#000000"/>
 
                 </LinearLayout>
 
@@ -205,12 +215,13 @@
                 android:fontFamily="@font/nanumsquareroundbold"
                 android:text="우리가 너의 행동 유형을\n분석해 봤으니 잘 읽어 봐!"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textColor="#000000" />
 
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/disc_character"
+            android:id="@+id/disc_test_result_page_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="15dp"
@@ -220,14 +231,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/disc_test_result_page_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:text="테스트 결과"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#000000"/>
     </FrameLayout>
 
     <TextView
@@ -236,13 +247,14 @@
         android:text="0명과 결과가 같아요!"
         android:textSize="13sp"
         android:fontFamily="@font/nanumsquareroundbold"
-        app:layout_constraintBottom_toTopOf="@+id/disc_result_button"
+        app:layout_constraintBottom_toTopOf="@+id/disc_result_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="60dp"/>
+        android:layout_marginBottom="60dp"
+        android:textColor="#000000"/>
 
     <LinearLayout
-        android:id="@+id/disc_result_button"
+        android:id="@+id/disc_result_buttons"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:gravity="center"
@@ -252,6 +264,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/disc_result_page_complete_button"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
@@ -264,6 +277,7 @@
             android:textSize="17sp" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/disc_result_page_share_button"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
@@ -274,7 +288,6 @@
             android:text="결과 공유하기"
             android:textColor="@color/white"
             android:textSize="17sp" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
