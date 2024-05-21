@@ -2,8 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".ui.disc.DiscTest3Activity"
+    android:id="@+id/disc_t_page_3">
 
     <LinearLayout
         android:id="@+id/disc_test_top"
@@ -17,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/disc_test_back_button_3"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_back" />
@@ -47,7 +51,7 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -98,8 +102,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -127,8 +130,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -156,8 +158,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -185,8 +186,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -237,8 +237,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -266,8 +265,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -295,8 +293,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -324,9 +321,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
-
+                    android:fontFamily="@font/nanumsquareroundbold"/>
             </FrameLayout>
 
         </LinearLayout>
@@ -338,7 +333,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_disc_speech_bubble_1"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_3"
         app:layout_constraintEnd_toStartOf="@+id/disc_character"
         android:layout_marginBottom="70dp"
         android:layout_marginEnd="-10dp"/>
@@ -362,11 +357,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_disc_character"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_3"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/disc_next_page"
+        android:id="@+id/disc_next_page_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#E2E7FF"

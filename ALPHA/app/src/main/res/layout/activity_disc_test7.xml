@@ -2,8 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/disc_t_page_7"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".ui.disc.DiscTest7Activity">
 
     <LinearLayout
         android:id="@+id/disc_test_top"
@@ -17,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/disc_test_back_button_7"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_back" />
@@ -47,32 +51,32 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/disc_question_7"
+            android:id="@+id/disc_question_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:text="7. 나는 타인에게 _하는 경향이 있어"
+            android:text="14. 평소 나의 태도는 _해"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
 
         <LinearLayout
-            android:id="@+id/disc_group_7"
+            android:id="@+id/disc_group_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_question_7">
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_14">
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -86,20 +90,19 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="무언가를 잘 지시하는"
+                    android:text="권위적이며 위엄 있어"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q7_a1"
+                    android:id="@+id/disc_q14_a1"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -115,20 +118,19 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="영향을 미치는"
+                    android:text="매력적, 사교적, 외향적이야!"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q7_a2"
+                    android:id="@+id/disc_q14_a2"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -144,20 +146,19 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="이끌려 다니는"
+                    android:text="주변 사람들을 잘 따라"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q7_a3"
+                    android:id="@+id/disc_q14_a3"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -173,36 +174,35 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="가치와 질로 평가하는"
+                    android:text="객관적인 판단으로 말을 아껴"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q7_a4"
+                    android:id="@+id/disc_q14_a4"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/disc_question_8"
+            android:id="@+id/disc_question_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:text="8. 내가 축구 선수가 된다면..."
+            android:text="15. 내 삶의 페이스는..."
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/disc_test_top"
-            app:layout_constraintTop_toBottomOf="@+id/disc_group_7" />
+            app:layout_constraintTop_toBottomOf="@+id/disc_group_14" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -211,7 +211,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_question_8">
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_15">
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -225,20 +225,19 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="골을 넣는 공격수!"
+                    android:text="빠른 편이야"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q8_a1"
+                    android:id="@+id/disc_q15_a1"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -254,20 +253,19 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="공격적인 수비수!"
+                    android:text="열정! 열정! 열정적이야!"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q8_a2"
+                    android:id="@+id/disc_q15_a2"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -283,21 +281,19 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="수비적인 수비수!"
+                    android:text="안정적이야"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q8_a3"
+                    android:id="@+id/disc_q15_a3"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
-
+                    android:fontFamily="@font/nanumsquareroundbold"/>
             </FrameLayout>
 
             <FrameLayout
@@ -312,20 +308,19 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="골을 막는 골키퍼!"
+                    android:text="계획적으로 조절하고 있어"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q8_a4"
+                    android:id="@+id/disc_q15_a4"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:fontFamily="@font/nanumsquareroundbold"/>
 
             </FrameLayout>
 
@@ -334,14 +329,14 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/disc_speech_bubble_1"
+        android:id="@+id/disc_speech_bubble_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_disc_speech_bubble_1"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        android:src="@drawable/ic_disc_speech_bubble_2"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_7"
         app:layout_constraintEnd_toStartOf="@+id/disc_character"
-        android:layout_marginBottom="70dp"
-        android:layout_marginEnd="-10dp"/>
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -349,24 +344,24 @@
         android:fontFamily="@font/nanumsquareroundbold"
         android:gravity="center"
         android:layout_marginBottom="14dp"
-        android:text="너 자신을 떠올려 봐!"
+        android:text="너 자신에 대하여\n충분히 생각하는 시간이었으면 좋겠어...\n결과 꼭 확인해 봐!"
         android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/disc_speech_bubble_1"
-        app:layout_constraintEnd_toEndOf="@+id/disc_speech_bubble_1"
-        app:layout_constraintStart_toStartOf="@+id/disc_speech_bubble_1"
-        app:layout_constraintTop_toTopOf="@+id/disc_speech_bubble_1"/>
+        android:textSize="11.5sp"
+        app:layout_constraintBottom_toBottomOf="@+id/disc_speech_bubble_2"
+        app:layout_constraintEnd_toEndOf="@+id/disc_speech_bubble_2"
+        app:layout_constraintStart_toStartOf="@+id/disc_speech_bubble_2"
+        app:layout_constraintTop_toTopOf="@+id/disc_speech_bubble_2"/>
 
     <ImageView
         android:id="@+id/disc_character"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_disc_character"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_7"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/disc_next_page"
+        android:id="@+id/disc_next_page_7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#E2E7FF"

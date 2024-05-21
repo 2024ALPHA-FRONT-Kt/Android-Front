@@ -29,6 +29,7 @@
             android:layout_height="40dp"
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:paddingTop="13dp"
+            android:textColor="@color/black"
             android:text="컨텐츠"
             android:textSize="20sp" />
     </LinearLayout>
