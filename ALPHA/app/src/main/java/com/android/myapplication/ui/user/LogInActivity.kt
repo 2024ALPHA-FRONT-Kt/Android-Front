@@ -3,6 +3,7 @@ package com.android.myapplication.ui.user
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.MainActivity
 import com.android.myapplication.R
@@ -19,6 +20,7 @@ import org.json.JSONTokener
 
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLogInBinding
+    private var waitTime:Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
@@ -65,6 +67,7 @@ class LogInActivity : AppCompatActivity() {
             // 화면 전환
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
