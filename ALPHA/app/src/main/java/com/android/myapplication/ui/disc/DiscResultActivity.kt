@@ -11,12 +11,12 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.R
-import com.android.myapplication.ui.disc.DiscActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 class DiscResultActivity : AppCompatActivity() {
 

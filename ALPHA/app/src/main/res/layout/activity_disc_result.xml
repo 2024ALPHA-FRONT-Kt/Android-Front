@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/disc_t_result_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_disc_result"
     tools:context=".ui.disc.DiscResultActivity"
     android:background="@color/white">
 
     <FrameLayout
+        android:id="@+id/dwn_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
