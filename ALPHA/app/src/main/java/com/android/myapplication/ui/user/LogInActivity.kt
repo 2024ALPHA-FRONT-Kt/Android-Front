@@ -32,6 +32,7 @@ class LogInActivity : AppCompatActivity() {
         // api 연결
         val apiService = RetrofitClient.apiservice
         val gson = Gson()
+        var loginBool = 0
 
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -51,6 +52,8 @@ class LogInActivity : AppCompatActivity() {
                     // 받은 토큰 저장
                     App.prefs.addToken("accessToken", data["accessToken"].toString()) // access
                     App.prefs.addToken("refreshToken", data["refreshToken"].toString()) // refresh
+                    Log.e("token",data["accessToken"].toString())
+                    loginBool = 1
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){
                         if (e.code() == 404){
@@ -66,9 +69,14 @@ class LogInActivity : AppCompatActivity() {
                 }
             }
             // 화면 전환
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (loginBool ==1 ){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(applicationContext,"아이디와 비밀번호를 확인해주세요",Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 }
