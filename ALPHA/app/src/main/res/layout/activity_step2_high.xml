@@ -6,7 +6,7 @@
     android:layout_marginEnd="30dp"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Step2HighActivity">
+    tools:context=".ui.user.Step2HighActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
