@@ -32,7 +32,8 @@
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:paddingTop="13dp"
             android:text="테스트 시작"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#000000"/>
     </LinearLayout>
 
     <ProgressBar
@@ -73,7 +74,8 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
+                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text"
+                android:textColor="#000000"/>
 
             <LinearLayout
                 android:id="@+id/disc_group_14"
@@ -220,7 +222,8 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
+                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text"
+                android:textColor="#000000"/>
 
             <LinearLayout
                 android:id="@+id/disc_group_12"
@@ -365,7 +368,8 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
+                app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text"
+                android:textColor="#000000"/>
 
             <LinearLayout
                 android:id="@+id/disc_group_13"

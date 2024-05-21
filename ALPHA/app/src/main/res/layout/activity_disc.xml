@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/disc_start">
+    android:id="@+id/disc_start"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.disc.DiscActivity">
 
     <LinearLayout
         android:id="@+id/disc_test_top"
@@ -52,6 +53,7 @@
         android:layout_marginTop="35dp"
         android:fontFamily="@font/nanumsquareroundbold"
         android:text="성격과 행동 유형으로 알아보는"
+        android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
         app:layout_constraintTop_toTopOf="@+id/disc_recten_img" />
@@ -78,6 +80,7 @@
         android:fontFamily="@font/nanumsquareroundbold"
         android:text="#DISC-T #학과추천"
         android:textSize="13sp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
         app:layout_constraintTop_toBottomOf="@+id/disc_title_text" />
 
@@ -87,7 +90,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/nanumsquareroundlarge"
+        android:fontFamily="@font/nanumsquareroundbold"
+        android:textColor="#898989"
         android:text="신뢰도 높은 행동 유형 테스트인 DISC-T를 통해\n나의 행동 유형을 파악하고 나에게 적합한 과를 찾아보자! "
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
@@ -103,17 +107,41 @@
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
         app:layout_constraintTop_toTopOf="@+id/disc_recten_img" />
 
-    <TextView
-        android:id="@+id/disc_participate_text"
+    <LinearLayout
+        android:id="@+id/disc_participate_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="현재 0명이 참여했어요."
-        android:fontFamily="@font/nanumsquareroundbold"
         app:layout_constraintBottom_toBottomOf="@+id/disc_recten_img"
         app:layout_constraintEnd_toEndOf="@+id/disc_recten_img"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
         app:layout_constraintTop_toBottomOf="@+id/disc_computer_img"
-        android:layout_marginBottom="5dp"/>
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3B3B3B"
+            android:text="현재"
+            android:fontFamily="@font/nanumsquareroundbold"/>
+
+        <TextView
+            android:id="@+id/disc_participate_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00000"
+            android:textColor="#4F6BFC"
+            android:fontFamily="@font/nanumsquareroundbold"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="명이 참여했어요."
+            android:textColor="#3B3B3B"
+            android:fontFamily="@font/nanumsquareroundbold"
+            android:layout_marginStart="5dp"/>
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/disc_test_start_button"
@@ -127,6 +155,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/disc_recten_img"
         app:layout_constraintEnd_toEndOf="@+id/disc_recten_img"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
-        app:layout_constraintTop_toBottomOf="@+id/disc_participate_text" />
+        app:layout_constraintTop_toBottomOf="@+id/disc_participate_group" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

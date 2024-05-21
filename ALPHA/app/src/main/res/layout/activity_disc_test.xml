@@ -26,6 +26,7 @@
             android:src="@drawable/ic_back" />
 
         <TextView
+            android:textColor="#000000"
             android:id="@+id/disc_test_page_test_start_text"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -45,11 +46,13 @@
         app:layout_constraintTop_toBottomOf="@+id/disc_test_top" />
 
     <TextView
+        android:lineSpacingExtra="1dp"
+        android:textColor="#AAAAAA"
         android:id="@+id/disc_explanation_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/nanumsquareroundlarge"
+        android:fontFamily="@font/nanumsquareroundbold"
         android:text="1 ~ 4 범위 내 숫자를 입력해 주세요.\n자신과 가까운 문항일수록 큰 숫자를,\n자신과 멀다고 생각하는 문항이라면 작은 숫자를 입력해 주세요.\n솔직한 답변은 정확한 결과를 가져올 수 있습니다."
         android:textAlignment="center"
         android:textSize="13sp"
@@ -69,6 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text">
 
         <TextView
+            android:textColor="#000000"
             android:id="@+id/disc_question_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -205,6 +209,7 @@
         </LinearLayout>
 
         <TextView
+            android:textColor="#000000"
             android:id="@+id/disc_question_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
