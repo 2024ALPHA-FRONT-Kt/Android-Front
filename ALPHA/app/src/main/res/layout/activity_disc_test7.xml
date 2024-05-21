@@ -2,8 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/disc_t_page_7"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".ui.disc.DiscTest7Activity">
 
     <LinearLayout
         android:id="@+id/disc_test_top"
@@ -17,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/disc_test_back_button_7"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_back" />
@@ -28,62 +32,54 @@
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:paddingTop="13dp"
             android:text="테스트 시작"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#000000" />
     </LinearLayout>
 
     <ProgressBar
         android:id="@+id/disc_progress_bar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/disc_test_top" />
 
-    <TextView
-        android:id="@+id/disc_explanation_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/nanumsquareroundlarge"
-        android:text="1 ~ 4 범위 내 숫자를 입력해 주세요.\n자신과 가까운 문항일수록 큰 숫자를,\n자신과 멀다고 생각하는 문항이라면 작은 숫자를 입력해 주세요.\n솔직한 답변은 정확한 결과를 가져올 수 있습니다."
-        android:textAlignment="center"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/disc_progress_bar" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/disc_question_1"
+            android:id="@+id/disc_question_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:text="1. 나의 성격은..."
+            android:text="14. 평소 나의 태도는 _해"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text"
+            android:textColor="#000000" />
 
         <LinearLayout
-            android:id="@+id/disc_group_1"
+            android:id="@+id/disc_group_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_question_1">
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_14">
+
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -96,12 +92,12 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="명령적이고 주도적이야!"
+                    android:text="권위적이며 위엄 있어"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q1_a1"
+                    android:id="@+id/disc_q14_a1"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
@@ -109,7 +105,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -125,42 +121,12 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="사교적이고 감정 표현을 잘해 >.0"
-                    android:gravity="center_vertical"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/disc_q1_a2"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
-
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="250dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/disc_choice_text_box"
-                    android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="태평스럽고 여유로워~"
+                    android:text="매력적, 사교적, 외향적이야!"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q1_a3"
+                    android:id="@+id/disc_q14_a2"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
@@ -168,8 +134,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
-
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -185,12 +150,12 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="사뭇 진지하고 세심해"
+                    android:text="주변 사람들을 잘 따라"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q1_a4"
+                    android:id="@+id/disc_q14_a3"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
@@ -198,23 +163,53 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
-
+                    android:inputType="number"/>
 
             </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/disc_choice_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/black"
+                    android:text="객관적인 판단으로 말을 아껴"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/disc_q14_a4"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:background="@drawable/disc_edit_text_box"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:inputType="number"/>
+
+            </FrameLayout>
+
         </LinearLayout>
 
         <TextView
-            android:id="@+id/disc_question_2"
+            android:id="@+id/disc_question_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:text="2. 나는 _에 둘러싸인 환경을 좋아해"
+            android:text="15. 내 삶의 페이스는..."
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/disc_test_top"
-            app:layout_constraintTop_toBottomOf="@+id/disc_group_1" />
+            app:layout_constraintTop_toBottomOf="@+id/disc_group_14"
+            android:textColor="#000000" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -223,7 +218,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_question_2">
+            app:layout_constraintTop_toBottomOf="@+id/disc_question_15">
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -237,12 +232,12 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="개인적인 성취 및 보상"
+                    android:text="빠른 편이야"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q2_a1"
+                    android:id="@+id/disc_q15_a1"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
@@ -250,7 +245,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -266,12 +261,12 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="좋아하는 사람"
+                    android:text="열정! 열정! 열정적이야!"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q2_a2"
+                    android:id="@+id/disc_q15_a2"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
@@ -279,7 +274,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -295,12 +290,12 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="내가 아끼는 물건들"
+                    android:text="안정적이야"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q2_a3"
+                    android:id="@+id/disc_q15_a3"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
@@ -308,8 +303,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
-
+                    android:inputType="number"/>
             </FrameLayout>
 
             <FrameLayout
@@ -324,12 +318,12 @@
                     android:fontFamily="@font/nanumsquareroundbold"
                     android:paddingLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="질서가 정립된 조직"
+                    android:text="계획적으로 조절하고 있어"
                     android:gravity="center_vertical"
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/disc_q2_a4"
+                    android:id="@+id/disc_q15_a4"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:background="@drawable/disc_edit_text_box"
@@ -337,7 +331,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -345,8 +339,40 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/disc_speech_bubble_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_disc_speech_bubble_2"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_7"
+        app:layout_constraintEnd_toStartOf="@+id/disc_character"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquareroundbold"
+        android:gravity="center"
+        android:layout_marginBottom="14dp"
+        android:text="너 자신에 대하여\n충분히 생각하는 시간이었으면 좋겠어...\n결과 꼭 확인해 봐!"
+        android:textColor="@color/white"
+        android:textSize="11.5sp"
+        app:layout_constraintBottom_toBottomOf="@+id/disc_speech_bubble_2"
+        app:layout_constraintEnd_toEndOf="@+id/disc_speech_bubble_2"
+        app:layout_constraintStart_toStartOf="@+id/disc_speech_bubble_2"
+        app:layout_constraintTop_toTopOf="@+id/disc_speech_bubble_2"/>
+
+    <ImageView
+        android:id="@+id/disc_character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_disc_character"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_7"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/disc_next_page"
+        android:id="@+id/disc_next_page_7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#E2E7FF"

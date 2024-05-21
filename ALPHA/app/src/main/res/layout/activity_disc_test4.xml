@@ -2,8 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/disc_t_page_4"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".ui.disc.DiscTest4Activity">
 
     <LinearLayout
         android:id="@+id/disc_test_top"
@@ -17,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/disc_test_back_button_4"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_back" />
@@ -28,7 +32,8 @@
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:paddingTop="13dp"
             android:text="테스트 시작"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#000000" />
     </LinearLayout>
 
     <ProgressBar
@@ -47,7 +52,7 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -62,7 +67,8 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
+            app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text"
+            android:textColor="#000000" />
 
         <LinearLayout
             android:id="@+id/disc_group_7"
@@ -99,7 +105,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -128,7 +134,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -157,7 +163,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -186,7 +192,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -202,7 +208,8 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/disc_test_top"
-            app:layout_constraintTop_toBottomOf="@+id/disc_group_7" />
+            app:layout_constraintTop_toBottomOf="@+id/disc_group_7"
+            android:textColor="#000000" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -238,7 +245,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -267,7 +274,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -296,8 +303,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
-
+                    android:inputType="number"/>
             </FrameLayout>
 
             <FrameLayout
@@ -325,7 +331,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:textAlignment="center"/>
+                    android:inputType="number"/>
 
             </FrameLayout>
 
@@ -338,7 +344,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_disc_speech_bubble_1"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_4"
         app:layout_constraintEnd_toStartOf="@+id/disc_character"
         android:layout_marginBottom="70dp"
         android:layout_marginEnd="-10dp"/>
@@ -362,11 +368,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_disc_character"
-        app:layout_constraintBottom_toTopOf="@+id/disc_next_page"
+        app:layout_constraintBottom_toTopOf="@+id/disc_next_page_4"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/disc_next_page"
+        android:id="@+id/disc_next_page_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#E2E7FF"
