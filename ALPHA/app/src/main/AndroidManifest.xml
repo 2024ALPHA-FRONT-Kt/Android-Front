@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ui.user.EditHighActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.EditUnivActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.user.Step3Activity"
             android:exported="false" />
         <activity
@@ -27,7 +33,7 @@
         <activity
             android:name=".ui.user.Step1Activity"
             android:exported="false" />
-         <activity
+        <activity
             android:name=".ui.user.LogInActivity"
             android:exported="false" />
         <activity

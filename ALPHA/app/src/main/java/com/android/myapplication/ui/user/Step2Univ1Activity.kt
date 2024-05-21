@@ -10,7 +10,7 @@ import com.android.myapplication.R
 class Step2Univ1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_step2_univ1)
+        supportActionBar?.hide()
     }
 }

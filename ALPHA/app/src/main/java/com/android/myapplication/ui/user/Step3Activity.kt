@@ -10,8 +10,8 @@ import com.android.myapplication.R
 class Step3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_step3)
+        supportActionBar?.hide()
 
     }
 }
