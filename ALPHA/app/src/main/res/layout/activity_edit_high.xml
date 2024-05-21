@@ -5,7 +5,9 @@
     android:paddingStart="25dp"
     android:paddingEnd="25dp"
     android:background="#F5F5F5"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.user.EditHighActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
