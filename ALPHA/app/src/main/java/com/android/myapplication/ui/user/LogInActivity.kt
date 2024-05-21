@@ -1,10 +1,12 @@
 package com.android.myapplication.ui.user
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
@@ -21,6 +23,7 @@ import org.json.JSONTokener
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLogInBinding
     private var waitTime:Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
@@ -28,8 +31,6 @@ class LogInActivity : AppCompatActivity() {
 
         // api 연결
         val apiService = RetrofitClient.apiservice
-        var globalAccessToken:String = ""
-        var globalRefreshToken:String = ""
         val gson = Gson()
 
         binding = ActivityLogInBinding.inflate(layoutInflater)
@@ -48,8 +49,8 @@ class LogInActivity : AppCompatActivity() {
                     Log.e("Response", responseData.toString())
                     val data = gson.fromJson(responseData.data.toString(),JsonObject::class.java)
                     // 받은 토큰 저장
-                    globalAccessToken = data["accessToken"].toString()
-                    globalRefreshToken = data["refreshToken"].toString()
+                    App.prefs.addToken("accessToken", data["accessToken"].toString()) // access
+                    App.prefs.addToken("refreshToken", data["refreshToken"].toString()) // refresh
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){
                         if (e.code() == 404){
