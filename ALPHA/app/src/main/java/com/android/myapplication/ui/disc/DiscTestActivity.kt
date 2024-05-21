@@ -66,24 +66,24 @@ class DiscTestActivity : AppCompatActivity() {
             val text = editText.text.toString()
 
             if (text.isEmpty()) {
-                Toast.makeText(this, "모든 문항에 숫자를 입력해 주세요", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "모든 문항에 숫자를 입력해 주세요!", Toast.LENGTH_LONG).show()
                 return false
             }
 
             val value = text.toIntOrNull()
             if (value == null || value !in 1..4) {
-                Toast.makeText(this, "1~4 범위 내의 숫자를 입력해 주세요", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "1~4 범위 내의 숫자를 입력해 주세요!", Toast.LENGTH_LONG).show()
                 return false
             }
 
             if (editTextId in listOf(R.id.disc_q1_a1, R.id.disc_q1_a2, R.id.disc_q1_a3, R.id.disc_q1_a4)) {
                 if (!q1Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
                     return false
                 }
             } else if (editTextId in listOf(R.id.disc_q2_a1, R.id.disc_q2_a2, R.id.disc_q2_a3, R.id.disc_q2_a4)) {
                 if (!q2Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
                     return false
                 }
             }
