@@ -22,7 +22,6 @@ import org.json.JSONTokener
 
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLogInBinding
-    private var waitTime:Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +49,8 @@ class LogInActivity : AppCompatActivity() {
                     Log.e("Response", responseData.toString())
                     val data = gson.fromJson(responseData.data.toString(),JsonObject::class.java)
                     // 받은 토큰 저장
-                    App.prefs.addToken("accessToken", data["accessToken"].toString()) // access
-                    App.prefs.addToken("refreshToken", data["refreshToken"].toString()) // refresh
+                    App.prefs.addItem("accessToken", data["accessToken"].toString()) // access
+                    App.prefs.addItem("refreshToken", data["refreshToken"].toString()) // refresh
                     Log.e("token",data["accessToken"].toString())
                     loginBool = 1 // 로그인 성공 여부 적용
                     IntentAct(loginBool) // 화면 전환

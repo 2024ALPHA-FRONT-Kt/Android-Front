@@ -97,7 +97,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
-                        android:hint="이선준"/>
+                        android:hint="변경할 이름을 입력해 주세요"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -118,6 +118,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:textColor="@color/black"
                         android:hint="abcd1234@naver.com"/>
                 </LinearLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -187,6 +188,7 @@
                             android:background="@drawable/edittext_shadow"
                             android:fontFamily="@font/nanumsquareroundbold"
                             android:textSize="18sp"
+                            android:textColor="@color/black"
                             android:hint="24세"/>
                     </LinearLayout>
 
@@ -210,7 +212,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
-                        android:hint="감자탕 대학교"/>
+                        android:hint="변경할 재학 대학을 입력해 주세요"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -230,7 +232,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
-                        android:hint="감자탕 조리학과"/>
+                        android:hint="변경할 재학 학과를 입력해 주세요"/>
                 </LinearLayout>
 
             </LinearLayout>
