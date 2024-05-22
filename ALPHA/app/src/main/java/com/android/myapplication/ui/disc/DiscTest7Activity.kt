@@ -7,6 +7,7 @@ import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.R
@@ -15,6 +16,7 @@ class DiscTest7Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disc_test7)
+        supportActionBar?.hide()
 
         setEditTextInputType()
 
@@ -29,6 +31,9 @@ class DiscTest7Activity : AppCompatActivity() {
             val intent = Intent(this, DiscTest6Activity::class.java)
             startActivity(intent)
         }
+
+        val progressBar = findViewById<ProgressBar>(R.id.disc_progress_bar)
+        progressBar.updateDiscProBar(10)
     }
 
     private fun setEditTextInputType() {

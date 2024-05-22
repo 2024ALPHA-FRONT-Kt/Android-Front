@@ -36,15 +36,12 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="40dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/disc_result_big_speech_bubble" />
+                android:src="@drawable/disc_result_big_speech_bubble"
+                android:elevation="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@+id/disc_result_big_speech_bubble"
-                android:layout_alignBottom="@+id/disc_result_big_speech_bubble"
-                android:layout_alignEnd="@+id/disc_result_big_speech_bubble"
-                android:layout_alignStart="@+id/disc_result_big_speech_bubble"
                 android:orientation="vertical">
 
                 <TextView
@@ -202,7 +199,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="65dp"
                 android:layout_marginEnd="15dp"
-                android:src="@drawable/ic_disc_test_result_speech_bubbles" />
+                android:src="@drawable/disc_result_speech_bubbles" />
 
             <TextView
                 android:layout_width="wrap_content"

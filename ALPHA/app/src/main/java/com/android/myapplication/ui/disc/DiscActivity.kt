@@ -11,6 +11,7 @@ class DiscActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disc)
+        supportActionBar?.hide()
 
         findViewById<Button>(R.id.disc_test_start_button).setOnClickListener {
             val intent = Intent(this, DiscTestActivity::class.java)

@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:orientation="horizontal"
-        android:paddingStart="15dp"
-        android:paddingTop="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,14 +23,16 @@
             android:id="@+id/disc_test_back_button_7"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
             android:src="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/disc_test_page_test_start_text"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:fontFamily="@font/nanumsquareroundextrabold"
-            android:paddingTop="13dp"
             android:text="테스트 시작"
             android:textSize="20sp"
             android:textColor="#000000" />
@@ -43,7 +45,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/disc_test_top" />
+        app:layout_constraintTop_toBottomOf="@+id/disc_test_top"
+        android:max="70"/>
 
 
     <LinearLayout
