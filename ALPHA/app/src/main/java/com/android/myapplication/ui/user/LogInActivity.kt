@@ -34,12 +34,12 @@ class LogInActivity : AppCompatActivity() {
         val gson = Gson()
         var loginBool = 0
 
+        // 바인딩
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 로그인 기능
         binding.loginBtn.setOnClickListener{
-
             //  서버에 로그인 요청
             val userId = binding.userId.text.toString()
             val userPw = binding.userPw.text.toString()
@@ -53,7 +53,8 @@ class LogInActivity : AppCompatActivity() {
                     App.prefs.addToken("accessToken", data["accessToken"].toString()) // access
                     App.prefs.addToken("refreshToken", data["refreshToken"].toString()) // refresh
                     Log.e("token",data["accessToken"].toString())
-                    loginBool = 1
+                    loginBool = 1 // 로그인 성공 여부 적용
+                    IntentAct(loginBool) // 화면 전환
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){
                         if (e.code() == 404){
@@ -68,15 +69,15 @@ class LogInActivity : AppCompatActivity() {
                     }
                 }
             }
-            // 화면 전환
-            if (loginBool ==1 ){
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                Toast.makeText(applicationContext,"아이디와 비밀번호를 확인해주세요",Toast.LENGTH_SHORT).show()
-            }
-
+        }
+    }
+    fun IntentAct (loginBool:Int){ // 화면전환
+        if (loginBool ==1 ){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            Toast.makeText(applicationContext,"아이디와 비밀번호를 확인해주세요",Toast.LENGTH_SHORT).show()
         }
     }
 }

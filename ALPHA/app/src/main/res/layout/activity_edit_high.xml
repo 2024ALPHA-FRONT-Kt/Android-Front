@@ -97,6 +97,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:inputType="text"
                         android:hint="이선준"/>
                 </LinearLayout>
                 <LinearLayout
@@ -210,6 +211,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:inputType="text"
                         android:hint="감자탕 대학교"/>
                 </LinearLayout>
                 <LinearLayout
@@ -230,6 +232,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:inputType="text"
                         android:hint="감자탕 조리학과"/>
                 </LinearLayout>
 

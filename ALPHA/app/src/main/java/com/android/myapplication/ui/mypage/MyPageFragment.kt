@@ -24,10 +24,6 @@ class MyPageFragment : Fragment() {
 
     private var _binding: FragmentMypageBinding? = null
     private val binding get() = _binding!!
-    var userName = ""
-    var userSchool = ""
-    var userDepart = ""
-    var userPoint = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,12 +41,6 @@ class MyPageFragment : Fragment() {
             }
         }
 
-        var userName = ""
-        var userSchool = ""
-        var userDepart = ""
-        var userPoint = ""
-
-
         // api 연결
         val apiService = RetrofitClient.apiservice
         val gson = Gson()
@@ -67,15 +57,17 @@ class MyPageFragment : Fragment() {
                 Log.e("Response", responseData.toString())
                 val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
 
-//                userName = data["name"].toString()
-//                userSchool = data["univ"].toString()
-//                userDepart = data["department"].toString()
-//                userPoint = data["point"].toString()
+                val name = data["name"].toString().replace("\"", "")
+                val school = data["univ"].toString().replace("\"", "")
+                val depart = data["department"].toString().replace("\"", "")
+                val point = data["point"].toString().replace("\"", "")
 
-                binding.userName.text = data["name"].toString().replace("\"", "")
-                binding.userSchool.text = data["univ"].toString().replace("\"", "")
-                binding.userDepart.text = data["department"].toString().replace("\"", "")
-                binding.userPoint.text = data["point"].toString().replace("\"", "")
+                binding.root.post {
+                    binding.userName.text = name
+                    binding.userSchool.text = school
+                    binding.userDepart.text = depart
+                    binding.userPoint.text = point
+                }
 
                 // 응답 데이터를 사용하여 작업 수행
             } catch (e: Exception) {
@@ -93,7 +85,6 @@ class MyPageFragment : Fragment() {
                 }
             }
         }
-
         return root
     }
 
