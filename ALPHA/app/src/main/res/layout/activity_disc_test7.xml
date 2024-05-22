@@ -46,8 +46,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/disc_test_top"
-        android:progress="10"
-        android:max="80"/>
+        android:progress="70"
+        android:max="80"
+        android:progressTint="#4F6BFC"/>
 
 
     <LinearLayout

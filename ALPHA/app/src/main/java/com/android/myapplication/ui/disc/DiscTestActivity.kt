@@ -15,9 +15,6 @@ class DiscTestActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDiscTestBinding
     private var discScore = DiscScore()
 
-    // 진행 상태를 저장하는 변수
-    private var progressValue: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDiscTestBinding.inflate(layoutInflater)
@@ -49,9 +46,6 @@ class DiscTestActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-
-        val progressBar = binding.discProgressBar
-        progressBar.updateDiscProBar(10)
     }
 
     private fun setEditTextInputType() {
@@ -101,14 +95,28 @@ class DiscTestActivity : AppCompatActivity() {
                 binding.discQ1A4, binding.discQ2A4 -> discScore.CScore += value
             }
 
-            if (editText in listOf(binding.discQ1A1, binding.discQ1A2, binding.discQ1A3, binding.discQ1A4)) {
+            if (editText in listOf(
+                    binding.discQ1A1,
+                    binding.discQ1A2,
+                    binding.discQ1A3,
+                    binding.discQ1A4
+                )
+            ) {
                 if (!q1Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG)
+                        .show()
                     return false
                 }
-            } else if (editText in listOf(binding.discQ2A1, binding.discQ2A2, binding.discQ2A3, binding.discQ2A4)) {
+            } else if (editText in listOf(
+                    binding.discQ2A1,
+                    binding.discQ2A2,
+                    binding.discQ2A3,
+                    binding.discQ2A4
+                )
+            ) {
                 if (!q2Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG)
+                        .show()
                     return false
                 }
             }
@@ -116,8 +124,4 @@ class DiscTestActivity : AppCompatActivity() {
 
         return true
     }
-}
-
-fun ProgressBar.updateDiscProBar(step: Int) {
-    progress += step
 }

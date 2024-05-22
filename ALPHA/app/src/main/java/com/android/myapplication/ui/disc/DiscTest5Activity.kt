@@ -46,9 +46,6 @@ class DiscTest5Activity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-
-        val progressBar = binding.discProgressBar
-        progressBar.updateDiscProBar(10)
     }
 
     private fun setEditTextInputType() {

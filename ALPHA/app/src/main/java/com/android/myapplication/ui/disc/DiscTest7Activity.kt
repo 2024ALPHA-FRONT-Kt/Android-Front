@@ -48,9 +48,6 @@ class DiscTest7Activity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val progressBar = binding.discProgressBar
-        progressBar.updateDiscProBar(10)
-
         Log.d("DiscTestActivity", "DScore: ${discScore.DScore}")
         Log.d("DiscTestActivity", "IScore: ${discScore.IScore}")
         Log.d("DiscTestActivity", "SScore: ${discScore.SScore}")
