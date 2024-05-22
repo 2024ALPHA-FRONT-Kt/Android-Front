@@ -36,11 +36,6 @@ class HomeFragment : Fragment() {
         dday.adapter = DdayAdapter(getDdayItems())
         dday.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-
-
-
-
-
         return root
     }
     private fun getDdayItems(): ArrayList<Int> {

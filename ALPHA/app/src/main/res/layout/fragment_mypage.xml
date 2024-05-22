@@ -49,12 +49,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/userName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumsquareroundextrabold"
-                        android:textSize="25sp"
+                        android:textSize="23sp"
                         android:textColor="@color/black"
-                        android:text="이선준"/>
+                        android:text=""/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -65,6 +66,7 @@
                         android:textColor="@color/black"
                         android:text="INFO"/>
                     <TextView
+                        android:id="@+id/userSchool"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -72,8 +74,9 @@
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="13sp"
                         android:textColor="@color/black"
-                        android:text="사파고등학교/3학년"/>
+                        android:text=""/>
                     <TextView
+                        android:id="@+id/userDepart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -81,7 +84,7 @@
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="13sp"
                         android:textColor="@color/black"
-                        android:text="국민대학교/ 경영학과"/>
+                        android:text=""/>
                 </LinearLayout>
             </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -114,13 +117,14 @@
                         android:layout_marginEnd="10dp"
                         android:text="포인트"/>
                     <TextView
+                        android:id="@+id/userPoint"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="15sp"
                         android:textColor="@color/black"
                         android:layout_marginEnd="10dp"
-                        android:text="5000"/>
+                        android:text="0.0"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

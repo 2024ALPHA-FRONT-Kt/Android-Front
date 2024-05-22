@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/edittext_shadow"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:hint="password를 입력하세요."/>
     </LinearLayout>
 

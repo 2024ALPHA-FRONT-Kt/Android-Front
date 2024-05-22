@@ -12,4 +12,8 @@ import retrofit2.http.Query
 interface ApiService {
     @GET("/login")
     suspend fun login(@Query("loginId") loginId: String, @Query("password") password: String): ResponseObject
+
+    @GET("/user")
+    suspend fun myPage(@Header("Authorization") Authorization: String): ResponseObject
+
 }

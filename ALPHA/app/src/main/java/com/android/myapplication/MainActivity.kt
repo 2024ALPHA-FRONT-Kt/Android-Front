@@ -2,6 +2,7 @@ package com.android.myapplication
 
 import android.os.Bundle
 import android.view.Window
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -13,6 +14,7 @@ import com.android.myapplication.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var waitTime:Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,5 +32,15 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onBackPressed() {
+        if ( waitTime + 3000 > System.currentTimeMillis()){
+            super.onBackPressed()
+            finish()
+        } else {
+            Toast.makeText(applicationContext,"뒤로가기를 한번 더 누르면 종료합니다",Toast.LENGTH_SHORT).show()
+        }
+        waitTime = System.currentTimeMillis()
     }
 }
