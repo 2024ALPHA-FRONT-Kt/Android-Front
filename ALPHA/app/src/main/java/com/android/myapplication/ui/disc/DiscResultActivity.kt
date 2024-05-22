@@ -23,6 +23,7 @@ class DiscResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disc_result)
+        supportActionBar?.hide()
 
         findViewById<ImageView>(R.id.disc_test_result_page_back).setOnClickListener {
             val intent = Intent(this, DiscActivity::class.java)

@@ -7,14 +7,17 @@ import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.R
 
 class DiscTest5Activity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disc_test5)
+        supportActionBar?.hide()
 
         findViewById<Button>(R.id.disc_next_page_5).setOnClickListener {
             if (validateInputs()) {
@@ -27,6 +30,9 @@ class DiscTest5Activity : AppCompatActivity() {
             val intent = Intent(this, DiscTest4Activity::class.java)
             startActivity(intent)
         }
+
+        val progressBar = findViewById<ProgressBar>(R.id.disc_progress_bar)
+        progressBar.updateDiscProBar(10)
 
         setEditTextInputType()
     }
@@ -68,16 +74,23 @@ class DiscTest5Activity : AppCompatActivity() {
                 return false
             }
 
-            if (editTextId in listOf(R.id.disc_q9_a1, R.id.disc_q9_a2, R.id.disc_q9_a3, R.id.disc_q9_a4)) {
-                if (!q9Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
-                    return false
+            val invalidEditTextMessage = when (editTextId) {
+                in listOf(R.id.disc_q9_a1, R.id.disc_q9_a2, R.id.disc_q9_a3, R.id.disc_q9_a4) -> {
+                    if (!q9Values.remove(value)) {
+                        "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!"
+                    } else null
                 }
-            } else if (editTextId in listOf(R.id.disc_q10_a1, R.id.disc_q10_a2, R.id.disc_q10_a3, R.id.disc_q10_a4)) {
-                if (!q10Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
-                    return false
+                in listOf(R.id.disc_q10_a1, R.id.disc_q10_a2, R.id.disc_q10_a3, R.id.disc_q10_a4) -> {
+                    if (!q10Values.remove(value)) {
+                        "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!"
+                    } else null
                 }
+                else -> null
+            }
+
+            if (invalidEditTextMessage != null) {
+                Toast.makeText(this, invalidEditTextMessage, Toast.LENGTH_LONG).show()
+                return false
             }
         }
 
