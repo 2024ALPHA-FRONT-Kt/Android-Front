@@ -43,6 +43,30 @@
             android:name=".ui.disc.DiscActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.disc.DiscResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disc.DiscTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disc.DiscTest2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disc.DiscTest3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disc.DiscTest4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disc.DiscTest5Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disc.DiscTest6Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.disc.DiscTest7Activity"
+            android:exported="false" />
+        <activity
             android:name=".ui.user.LogInActivity"
             android:exported="true"
             android:label="@string/app_name">
