@@ -4,62 +4,86 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputType
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.myapplication.R
+import com.android.myapplication.databinding.ActivityDiscTest7Binding
 
 class DiscTest7Activity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDiscTest7Binding
+    private lateinit var discScore: DiscScore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_disc_test7)
+        binding = ActivityDiscTest7Binding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide()
+
+        discScore = intent.getParcelableExtra("DISC_SCORE") ?: DiscScore()
 
         setEditTextInputType()
 
-        findViewById<Button>(R.id.disc_next_page_7).setOnClickListener {
+        binding.discNextPage7.setOnClickListener {
             if (validateInputs()) {
-                val intent = Intent(this, DiscResultActivity::class.java)
+                val intent = Intent(this, DiscResultActivity::class.java).apply {
+                    putExtra("DISC_SCORE", discScore)
+                }
                 startActivity(intent)
             }
         }
 
-        findViewById<ImageView>(R.id.disc_test_back_button_7).setOnClickListener {
-            val intent = Intent(this, DiscTest6Activity::class.java)
+        binding.discTestBackButton7.setOnClickListener {
+            binding.discQ14A1.text.clear()
+            binding.discQ14A2.text.clear()
+            binding.discQ14A3.text.clear()
+            binding.discQ14A4.text.clear()
+            binding.discQ15A1.text.clear()
+            binding.discQ15A2.text.clear()
+            binding.discQ15A3.text.clear()
+            binding.discQ15A4.text.clear()
+            val intent = Intent(this, DiscTest6Activity::class.java).apply {
+                putExtra("DISC_SCORE", discScore)
+            }
             startActivity(intent)
         }
 
-        val progressBar = findViewById<ProgressBar>(R.id.disc_progress_bar)
+        val progressBar = binding.discProgressBar
         progressBar.updateDiscProBar(10)
+
+        Log.d("DiscTestActivity", "DScore: ${discScore.DScore}")
+        Log.d("DiscTestActivity", "IScore: ${discScore.IScore}")
+        Log.d("DiscTestActivity", "SScore: ${discScore.SScore}")
+        Log.d("DiscTestActivity", "CScore: ${discScore.CScore}")
     }
 
     private fun setEditTextInputType() {
         val editTexts = listOf(
-            R.id.disc_q14_a1, R.id.disc_q14_a2, R.id.disc_q14_a3, R.id.disc_q14_a4,
-            R.id.disc_q15_a1, R.id.disc_q15_a2, R.id.disc_q15_a3, R.id.disc_q15_a4
+            binding.discQ14A1, binding.discQ14A2, binding.discQ14A3, binding.discQ14A4,
+            binding.discQ15A1, binding.discQ15A2, binding.discQ15A3, binding.discQ15A4
         )
 
-        for (editTextId in editTexts) {
-            val editText = findViewById<EditText>(editTextId)
+        for (editText in editTexts) {
             editText.inputType = InputType.TYPE_CLASS_NUMBER
             editText.filters = arrayOf(InputFilter.LengthFilter(1))
         }
     }
 
     private fun validateInputs(): Boolean {
-        val q14Values = mutableSetOf(1, 2, 3, 4)
-        val q15Values = mutableSetOf(1, 2, 3, 4)
+        val q14Values = mutableSetOf<Int>()
+        val q15Values = mutableSetOf<Int>()
+
+        for (i in 1..4) {
+            q14Values.add(i)
+            q15Values.add(i)
+        }
 
         val editTexts = listOf(
-            R.id.disc_q14_a1, R.id.disc_q14_a2, R.id.disc_q14_a3, R.id.disc_q14_a4,
-            R.id.disc_q15_a1, R.id.disc_q15_a2, R.id.disc_q15_a3, R.id.disc_q15_a4
+            binding.discQ14A1, binding.discQ14A2, binding.discQ14A3, binding.discQ14A4,
+            binding.discQ15A1, binding.discQ15A2, binding.discQ15A3, binding.discQ15A4
         )
 
-        for (editTextId in editTexts) {
-            val editText = findViewById<EditText>(editTextId)
+        for (editText in editTexts) {
             val text = editText.text.toString()
 
             if (text.isEmpty()) {
@@ -73,18 +97,26 @@ class DiscTest7Activity : AppCompatActivity() {
                 return false
             }
 
-            when (editTextId) {
-                in listOf(R.id.disc_q14_a1, R.id.disc_q14_a2, R.id.disc_q14_a3, R.id.disc_q14_a4) -> {
-                    if (!q14Values.remove(value)) {
-                        Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
-                        return false
-                    }
+            when (editText) {
+                binding.discQ14A1 -> discScore.DScore += value
+                binding.discQ14A2 -> discScore.IScore += value
+                binding.discQ14A3 -> discScore.SScore += value
+                binding.discQ14A4 -> discScore.CScore += value
+                binding.discQ15A1 -> discScore.DScore += value
+                binding.discQ15A2 -> discScore.IScore += value
+                binding.discQ15A3 -> discScore.SScore += value
+                binding.discQ15A4 -> discScore.CScore += value
+            }
+
+            if (editText in listOf(binding.discQ14A1, binding.discQ14A2, binding.discQ14A3, binding.discQ14A4)) {
+                if (!q14Values.remove(value)) {
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    return false
                 }
-                in listOf(R.id.disc_q15_a1, R.id.disc_q15_a2, R.id.disc_q15_a3, R.id.disc_q15_a4) -> {
-                    if (!q15Values.remove(value)) {
-                        Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
-                        return false
-                    }
+            } else if (editText in listOf(binding.discQ15A1, binding.discQ15A2, binding.discQ15A3, binding.discQ15A4)) {
+                if (!q15Values.remove(value)) {
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    return false
                 }
             }
         }

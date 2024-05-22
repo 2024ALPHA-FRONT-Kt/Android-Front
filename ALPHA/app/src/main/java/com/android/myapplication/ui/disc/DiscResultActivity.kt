@@ -8,6 +8,7 @@ import android.os.Environment
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.R
@@ -30,12 +31,12 @@ class DiscResultActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        findViewById<Button>(R.id.disc_result_page_complete_button).setOnClickListener {
+        findViewById<TextView>(R.id.disc_result_page_complete_button).setOnClickListener {
             val intent = // todo
             startActivity(intent)
         }
 
-        val shareButton: Button = findViewById(R.id.disc_result_page_share_button)
+        val shareButton: TextView = findViewById(R.id.disc_result_page_share_button)
         shareButton.setOnClickListener {
             val screenshot = takeScreenshot()
             val imageUri = saveScreenshot(screenshot)

@@ -1,8 +1,39 @@
 package com.android.myapplication.ui.disc
 
+import android.os.Parcel
+import android.os.Parcelable
+
 data class DiscScore(
-    val DScore : Int,
-    val IScore : Int,
-    val SScore : Int,
-    val CScore : Int
-)
+    var DScore: Int = 0,
+    var IScore: Int = 0,
+    var SScore: Int = 0,
+    var CScore: Int = 0
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(DScore)
+        parcel.writeInt(IScore)
+        parcel.writeInt(SScore)
+        parcel.writeInt(CScore)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<DiscScore> {
+        override fun createFromParcel(parcel: Parcel): DiscScore {
+            return DiscScore(parcel)
+        }
+
+        override fun newArray(size: Int): Array<DiscScore?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
