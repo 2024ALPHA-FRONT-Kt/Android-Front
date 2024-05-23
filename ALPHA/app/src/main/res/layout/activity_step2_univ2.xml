@@ -56,6 +56,7 @@
                         android:textSize="20sp"
                         android:text="이름"/>
                     <EditText
+                        android:id="@+id/new_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
@@ -84,6 +85,7 @@
                             android:textSize="20sp"
                             android:text="성별"/>
                         <RadioGroup
+                            android:id="@+id/radio_group"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
@@ -95,6 +97,7 @@
                                 android:fontFamily="@font/nanumsquareroundbold"
                                 android:text="남자"/>
                             <RadioButton
+                                android:id="@+id/new_man"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView
@@ -104,6 +107,7 @@
                                 android:fontFamily="@font/nanumsquareroundbold"
                                 android:text="여자"/>
                             <RadioButton
+                                android:id="@+id/new_woman"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                         </RadioGroup>
@@ -125,6 +129,7 @@
                             android:textSize="20sp"
                             android:text="나이* (만)"/>
                         <EditText
+                            android:id="@+id/new_age"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_shadow"
@@ -153,6 +158,7 @@
                         android:textAlignment="center"
                         android:orientation="horizontal">
                         <EditText
+                            android:id="@+id/new_id"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/edittext_shadow"
@@ -190,7 +196,8 @@
                         android:layout_marginBottom="8dp"
                         android:textSize="20sp"
                         android:text="비밀번호*"/>
-                    <TextView
+                    <EditText
+                        android:id="@+id/new_pw"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
@@ -211,6 +218,7 @@
                         android:textSize="20sp"
                         android:text="비밀번호 확인*"/>
                     <EditText
+                        android:id="@+id/new_pw_re"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
@@ -231,6 +239,7 @@
                         android:textSize="20sp"
                         android:text="재학학과"/>
                     <EditText
+                        android:id="@+id/new_depart_u"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
@@ -240,7 +249,7 @@
                 </LinearLayout>
             </LinearLayout>
             <TextView
-                android:id="@+id/edit_btn"
+                android:id="@+id/btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
