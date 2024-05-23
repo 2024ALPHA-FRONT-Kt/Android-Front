@@ -63,6 +63,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                 </LinearLayout>
             </LinearLayout>
@@ -98,6 +99,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                     <TextView
                         android:id="@+id/btn_get_passkey"
@@ -144,6 +146,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                     <TextView
                         android:id="@+id/btn_check_passkey"

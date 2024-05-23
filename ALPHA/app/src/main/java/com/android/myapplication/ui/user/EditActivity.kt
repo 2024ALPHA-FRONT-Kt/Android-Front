@@ -56,11 +56,11 @@ class EditActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        val editName = binding.editName.text.toString()
-        val editUniv = binding.editUniv.text.toString()
-        val editDepart = binding.editDepart.text.toString()
 
         binding.btnEditSave.setOnClickListener{
+            val editName = binding.editName.text.toString()
+            val editUniv = binding.editUniv.text.toString()
+            val editDepart = binding.editDepart.text.toString()
             // editText가 비어있는지 확인
             if (editName.trim().isEmpty()){
                 Toast.makeText(applicationContext,"변경하실 이름을 입력해 주세요", Toast.LENGTH_SHORT).show()

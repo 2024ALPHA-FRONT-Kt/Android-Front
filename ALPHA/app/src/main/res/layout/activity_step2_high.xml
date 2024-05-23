@@ -62,6 +62,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                 </LinearLayout>
                 <LinearLayout
@@ -84,6 +85,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                 </LinearLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,6 +159,7 @@
                             android:background="@drawable/edittext_shadow"
                             android:fontFamily="@font/nanumsquareroundbold"
                             android:textSize="18sp"
+                            android:singleLine = "true"
                             android:hint="(세)"/>
                     </LinearLayout>
 
@@ -190,6 +193,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:textSize="18sp"
+                            android:singleLine = "true"
                             android:hint=""/>
                         <TextView
                             android:id="@+id/btn_duplication"
@@ -225,6 +229,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                 </LinearLayout>
                 <LinearLayout
@@ -246,6 +251,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                 </LinearLayout>
                 <LinearLayout
@@ -267,6 +273,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                 </LinearLayout>
                 <LinearLayout
@@ -288,6 +295,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint=""/>
                 </LinearLayout>
             </LinearLayout>
