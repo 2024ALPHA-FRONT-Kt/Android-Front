@@ -32,6 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:layout_marginTop="5dp"
+                android:progress="40"
+                android:max="100"
                 app:layout_constraintTop_toBottomOf="@id/title"/>
             <LinearLayout
                 android:id="@+id/edit_contents"
@@ -55,6 +57,7 @@
                         android:textSize="20sp"
                         android:text="대학교 명 기입"/>
                     <EditText
+                        android:id="@+id/new_univ_u"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
@@ -85,24 +88,25 @@
                     android:textAlignment="center"
                     android:orientation="horizontal">
                     <EditText
+                        android:id="@+id/new_email"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/btn_email_duplication"
+                        app:layout_constraintEnd_toStartOf="@id/btn_get_passkey"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="18sp"
                         android:hint=""/>
                     <TextView
-                        android:id="@+id/btn_email_duplication"
+                        android:id="@+id/btn_get_passkey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="중복확인"
+                        android:text="인증번호 받기"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="12sp"
                         android:textColor="@color/black"
@@ -136,13 +140,13 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/btn_passkey_duplication"
+                        app:layout_constraintEnd_toStartOf="@id/btn_check_passkey"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="18sp"
                         android:hint=""/>
                     <TextView
-                        android:id="@+id/btn_passkey_duplication"
+                        android:id="@+id/btn_check_passkey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -156,7 +160,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
             <TextView
-                android:id="@+id/edit_btn"
+                android:id="@+id/btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
