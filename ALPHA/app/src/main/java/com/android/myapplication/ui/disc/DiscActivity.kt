@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class DiscActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityDiscBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

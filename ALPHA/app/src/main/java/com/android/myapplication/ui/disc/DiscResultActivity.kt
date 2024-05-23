@@ -14,7 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class DiscResultActivity : AppCompatActivity() {
 
@@ -52,13 +51,11 @@ class DiscResultActivity : AppCompatActivity() {
                 val discJob = data["job"].toString().replace("\"", "")
                 val discProsJob = data["prosJob"].toString().replace("\"", "")
 
-                withContext(Dispatchers.Main) {
-                    binding.discType.text = "$discType - $discTypeEn"
-                    binding.discPros.text = discPros
-                    binding.discEx.text = discEx
-                    binding.discJob.text = discJob
-                    binding.discPos.text = discProsJob
-                }
+                binding.discType.text = "$discType - $discTypeEn"
+                binding.discPros.text = discPros
+                binding.discEx.text = discEx
+                binding.discJob.text = discJob
+                binding.discPos.text = discProsJob
                 Log.e("Response", responseData.toString())
 
             } catch (e: Exception) {
