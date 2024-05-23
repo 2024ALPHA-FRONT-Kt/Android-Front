@@ -92,6 +92,5 @@ class EditActivity : AppCompatActivity() {
     fun IntentMain (){ // 화면전환
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish()
     }
 }
