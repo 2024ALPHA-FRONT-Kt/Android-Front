@@ -25,23 +25,28 @@ class Step2HighActivity : AppCompatActivity() {
         val gson = Gson()
 
         val userRole = App.prefs.getItem("userRole","noUserRole")
-        val newName = binding.newName.toString()    // 이름
-        val newEmail = binding.newEmail.toString()  // 이메일
-        val age = binding.newAge.toString()  // 나이
-        var newAge = 0
 
-        // 성별 확인용
-        val newMan = binding.newMan
-        val newWoman = binding.newWoman
-
-        var newGender = "" // 성별
-        val newId = binding.newId.toString() // 아이디
-        val newPw = binding.newPw.toString() // 비밀번호
-        val newPwRe = binding.newPwRe.toString()
-        val newUnivH = binding.newUnivH.toString() // 지망대학
-        val newDepartH = binding.newDepartH.toString() // 지망학과
 
         binding.editBtn.setOnClickListener {
+
+        // data
+            val newName = binding.newName.toString()    // 이름
+            val newEmail = binding.newEmail.toString()  // 이메일
+            val age = binding.newAge.toString()  // 나이
+            var newAge = 0
+
+            // 성별 확인용
+            val newMan = binding.newMan
+            val newWoman = binding.newWoman
+
+            var newGender = "" // 성별
+            val newId = binding.newId.toString() // 아이디
+            val newPw = binding.newPw.toString() // 비밀번호
+            val newPwRe = binding.newPwRe.toString()
+            val newUnivH = binding.newUnivH.toString() // 지망대학
+            val newDepartH = binding.newDepartH.toString() // 지망학과
+        // data
+
             // editText가 비어있는지 확인
             if (newName.trim().isEmpty()){
                 Toast.makeText(applicationContext,"이름을 입력해 주세요", Toast.LENGTH_SHORT).show()
@@ -92,7 +97,6 @@ class Step2HighActivity : AppCompatActivity() {
                     if (e is retrofit2.HttpException){
                         if (e.code() == 400){
                             val errorBody = e.response()?.errorBody()?.string()
-                            val gson = Gson()
                             val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                             Log.e("400에러 아이디 중복으로 인한 실패",errorResponse.toString())
                             Toast.makeText(applicationContext,"중복된 아이디 입니다.", Toast.LENGTH_SHORT).show()
@@ -104,11 +108,6 @@ class Step2HighActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-
-        // 비밀번호 일치 확인
-        if (newPw != newPwRe){
-            Toast.makeText(applicationContext,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 }

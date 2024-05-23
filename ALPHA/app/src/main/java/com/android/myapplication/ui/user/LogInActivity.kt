@@ -31,16 +31,17 @@ class LogInActivity : AppCompatActivity() {
         // api 연결
         val apiService = RetrofitClient.apiservice
         val gson = Gson()
-
-        // 로그인 확인용
         var loginBool = 0
 
-        val userId = binding.userId.text.toString()
-        val userPw = binding.userPw.text.toString()
+        // 바인딩
+        binding = ActivityLogInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 로그인 기능
         binding.loginBtn.setOnClickListener{
             //  서버에 로그인 요청
+            val userId = binding.userId.text.toString()
+            val userPw = binding.userPw.text.toString()
             // editText가 비어있는지 확인
             if (userId.trim().isEmpty()){
                 Toast.makeText(applicationContext,"아이디를 입력해 주세요", Toast.LENGTH_SHORT).show()
