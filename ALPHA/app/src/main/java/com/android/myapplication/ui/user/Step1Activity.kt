@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.R
+import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.databinding.ActivityLogInBinding
 import com.android.myapplication.databinding.ActivityStep1Binding
 import com.android.myapplication.databinding.FragmentHomeBinding
@@ -18,6 +19,9 @@ class Step1Activity : AppCompatActivity() {
         setContentView(R.layout.activity_step1)
         supportActionBar?.hide()
 
+        // 바인딩
+        binding = ActivityStep1Binding.inflate(layoutInflater)
+        setContentView(binding.root)
         // 숫자로 구분
         var univ = 0
 

@@ -9,7 +9,7 @@ import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
-import com.android.myapplication.databinding.ActivityEditUnivBinding
+import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ExceptionDto
 import com.google.gson.Gson
@@ -18,16 +18,16 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class EditActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityEditUnivBinding
+    private lateinit var binding: ActivityEditBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_univ)
+        setContentView(R.layout.activity_edit)
         supportActionBar?.hide()
 
-        // 변경 취소하기 버튼
-        binding.btnEditCancel.setOnClickListener {
-            onBackPressed()
-        }
+        // 바인딩
+        binding = ActivityEditBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 
         // api 연결
         val apiService = RetrofitClient.apiservice
@@ -40,6 +40,7 @@ class EditActivity : AppCompatActivity() {
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
         val userR = App.prefs.getItem("userRole","noUserRole")
 
+
         // 조건에 따른 text 변경
         if (userR == "UNIV"){
             binding.txtEditUniv.text = "재학 대학"
@@ -48,6 +49,11 @@ class EditActivity : AppCompatActivity() {
         } else { // HIGH
             binding.txtEditUniv.text = "희망 대학"
             binding.txtEditDepart.text = "희망 학과"
+        }
+
+        // 변경 취소하기 버튼
+        binding.btnEditCancel.setOnClickListener {
+            onBackPressed()
         }
 
         val editName = binding.editName.text.toString()

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
+import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.databinding.ActivityStep2HighBinding
 import com.android.myapplication.dto.ExceptionDto
 import com.google.gson.Gson
@@ -20,12 +21,16 @@ class Step2HighActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_step2_high)
         supportActionBar?.hide()
+
+        // 바인딩
+        binding = ActivityStep2HighBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         // api 연결
         val apiService = RetrofitClient.apiservice
         val gson = Gson()
 
         val userRole = App.prefs.getItem("userRole","noUserRole")
-
 
         binding.editBtn.setOnClickListener {
 
