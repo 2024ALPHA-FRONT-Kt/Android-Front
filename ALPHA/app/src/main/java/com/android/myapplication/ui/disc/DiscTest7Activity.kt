@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.databinding.ActivityDiscTest7Binding
+import com.android.myapplication.ui.disc.data_class.DiscScore
 
 class DiscTest7Activity : AppCompatActivity() {
 
@@ -26,6 +27,7 @@ class DiscTest7Activity : AppCompatActivity() {
 
         binding.discNextPage7.setOnClickListener {
             if (validateInputs()) {
+                Log.d("DiscTest7Activity", "Passing DISC_SCORE: $discScore") // 로그 추가
                 val intent = Intent(this, DiscResultActivity::class.java).apply {
                     putExtra("DISC_SCORE", discScore)
                 }
@@ -47,11 +49,6 @@ class DiscTest7Activity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-
-        Log.d("DiscTestActivity", "DScore: ${discScore.DScore}")
-        Log.d("DiscTestActivity", "IScore: ${discScore.IScore}")
-        Log.d("DiscTestActivity", "SScore: ${discScore.SScore}")
-        Log.d("DiscTestActivity", "CScore: ${discScore.CScore}")
     }
 
     private fun setEditTextInputType() {

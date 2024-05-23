@@ -7,6 +7,7 @@ import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.databinding.ActivityDiscTest3Binding
+import com.android.myapplication.ui.disc.data_class.DiscScore
 
 class DiscTest3Activity : AppCompatActivity() {
 

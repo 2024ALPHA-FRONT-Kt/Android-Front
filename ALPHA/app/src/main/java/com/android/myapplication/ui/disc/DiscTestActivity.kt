@@ -4,11 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputType
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.myapplication.R
 import com.android.myapplication.databinding.ActivityDiscTestBinding
+import com.android.myapplication.ui.disc.data_class.DiscScore
 
 class DiscTestActivity : AppCompatActivity() {
 

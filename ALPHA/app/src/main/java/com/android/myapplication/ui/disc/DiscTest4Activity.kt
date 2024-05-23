@@ -7,6 +7,7 @@ import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.databinding.ActivityDiscTest4Binding
+import com.android.myapplication.ui.disc.data_class.DiscScore
 
 class DiscTest4Activity : AppCompatActivity() {
 
@@ -111,4 +112,3 @@ class DiscTest4Activity : AppCompatActivity() {
         return true
     }
 }
-

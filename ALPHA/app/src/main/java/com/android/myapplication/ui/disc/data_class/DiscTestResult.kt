@@ -1,4 +1,4 @@
-package com.android.myapplication.ui.disc
+package com.android.myapplication.ui.disc.data_class
 
 
 data class DiscTestResult(
