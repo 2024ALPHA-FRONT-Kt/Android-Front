@@ -36,21 +36,21 @@ class Step2HighActivity : AppCompatActivity() {
         binding.btnNext.setOnClickListener {
 
         // data
-            val newName = binding.newName.toString()    // 이름
-            val newEmail = binding.newEmail.toString()  // 이메일
-            val age = binding.newAge.toString()  // 나이
+            val newName = binding.newName.text.toString()    // 이름
+            val newEmail = binding.newEmail.text.toString()  // 이메일
+            val age = binding.newAge.text.toString()  // 나이
             var newAge = 0
 
             // 성별 확인용
-            val newMan = binding.newMan
-            val newWoman = binding.newWoman
+            val newMan = binding.newMan.id
+            val newWoman = binding.newWoman.id
 
             var newGender = "" // 성별
-            val newId = binding.newId.toString() // 아이디
-            val newPw = binding.newPw.toString() // 비밀번호
-            val newPwRe = binding.newPwRe.toString()
-            val newUnivH = binding.newUnivH.toString() // 지망대학
-            val newDepartH = binding.newDepartH.toString() // 지망학과
+            val newId = binding.newId.text.toString() // 아이디
+            val newPw = binding.newPw.text.toString() // 비밀번호
+            val newPwRe = binding.newPwRe.text.toString()
+            val newUnivH = binding.newUnivH.text.toString() // 지망대학
+            val newDepartH = binding.newDepartH.text.toString() // 지망학과
         // data
 
             // editText가 비어있는지 확인
@@ -83,10 +83,10 @@ class Step2HighActivity : AppCompatActivity() {
             // 성별 확인
             binding.radioGroup.setOnCheckedChangeListener{ group, checkedId ->
                 when(checkedId) {
-                    newMan.id -> newGender = "남자"
-                    newWoman.id -> newGender = "여자"
+                    newMan -> newGender = "남자"
+                    newWoman -> newGender = "여자"
                 }
-                if (checkedId != newMan.id && checkedId != newWoman.id) {
+                if (checkedId != newMan && checkedId != newWoman) {
                     Toast.makeText(applicationContext,"성별을 입력해 주세요", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -94,10 +94,12 @@ class Step2HighActivity : AppCompatActivity() {
             if (newPw != newPwRe){
                 Toast.makeText(applicationContext,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
             }
+            Log.e("보낸거","$userRole $newName $newEmail $newGender $newAge $newId $newPw $newUnivH $newDepartH")
             // 서버에 전송
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     val responseData = apiService.signIn(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivH,newDepartH,null)
+                    Log.e("보낸거","$userRole $newName $newEmail $newGender $newAge $newId $newPw $newUnivH $newDepartH")
                     Log.e("Response", responseData.toString())
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){

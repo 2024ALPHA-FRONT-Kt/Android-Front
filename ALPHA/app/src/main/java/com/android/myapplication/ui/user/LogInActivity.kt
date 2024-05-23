@@ -76,6 +76,11 @@ class LogInActivity : AppCompatActivity() {
                 }
             }
         }
+        // 회원가입
+        binding.btnSignin.setOnClickListener {
+            val intent = Intent(this, Step1Activity::class.java)
+            startActivity(intent)
+        }
     }
     fun IntentAct (loginBool:Int){ // 화면전환
         if (loginBool ==1 ){
