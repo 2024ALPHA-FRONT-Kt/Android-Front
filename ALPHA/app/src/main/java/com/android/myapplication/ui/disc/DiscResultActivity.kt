@@ -44,19 +44,25 @@ class DiscResultActivity : AppCompatActivity() {
             try {
                 val responseData = apiService.postDiscTestResult(token, disc)
                 val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                val discType = data["category"].toString().replace("\"", "")
-                val discTypeEn = data["key"].toString().replace("\"", "")
-                val discPros = data["pros"].toString().replace("\"", "")
-                val discEx = data["ex"].toString().replace("\"", "")
-                val discJob = data["job"].toString().replace("\"", "")
-                val discProsJob = data["prosJob"].toString().replace("\"", "")
+                val realData = data["discCode"].toString()
 
-                binding.discType.text = "$discType - $discTypeEn"
-                binding.discPros.text = discPros
-                binding.discEx.text = discEx
-                binding.discJob.text = discJob
-                binding.discPos.text = discProsJob
+                Log.d("datadatadata", data.toString())
+                Log.d("realrealreal", realData)
+
+//                val discType = realData["category"].toString().replace("\"", "")
+//                val discTypeEn = realData["key"].toString().replace("\"", "")
+//                val discPros = realData["pros"].toString().replace("\"", "")
+//                val discEx = realData["ex"].toString().replace("\"", "")
+//                val discJob = realData["job"].toString().replace("\"", "")
+//                val discProsJob = realData["prosJob"].toString().replace("\"", "")
+//
+//                binding.discType.text = "$discType - $discTypeEn"
+//                binding.discPros.text = discPros
+//                binding.discEx.text = discEx
+//                binding.discJob.text = discJob
+//                binding.discPos.text = discProsJob
                 Log.e("Response", responseData.toString())
+
 
             } catch (e: Exception) {
                 Log.e("Error", e.message.toString())
