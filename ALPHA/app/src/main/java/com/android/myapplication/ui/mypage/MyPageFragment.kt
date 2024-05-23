@@ -47,8 +47,6 @@ class MyPageFragment : Fragment() {
                 Log.e("Response", responseData.toString())
                 val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
 
-                // userRole 저장
-                App.prefs.addItem("userRole",data["userRole"].toString().replace("\"", ""))
                 val name = data["name"].toString().replace("\"", "")
                 val school = data["univ"].toString().replace("\"", "")
                 val depart = data["department"].toString().replace("\"", "")
