@@ -106,15 +106,6 @@ class Step2HighActivity : AppCompatActivity() {
             }
         }
 
-
-        // 성별 확인
-        binding.radioGroup.setOnCheckedChangeListener{ group, checkedId ->
-            when(checkedId) {
-                newMan.id -> newGender = "남자"
-                newWoman.id -> newGender = "여자"
-            }
-        }
-
         // 비밀번호 일치 확인
         if (newPw != newPwRe){
             Toast.makeText(applicationContext,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
