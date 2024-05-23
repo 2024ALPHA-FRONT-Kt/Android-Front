@@ -1,7 +1,5 @@
 package com.android.myapplication.api
 
-import com.android.myapplication.dto.DiscResultResponse
-import com.android.myapplication.dto.DiscUsers
 import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import retrofit2.http.Body
@@ -19,19 +17,19 @@ interface ApiService {
     suspend fun myPage(@Header("Authorization") Authorization: String): ResponseObject
 
     @POST("/DISC")
-    suspend fun saveDiscTestResult(
+    suspend fun postDiscTestResult(
         @Header("Authorization") token: String,
         @Body discTestResult: DiscTestResult
-    ): DiscResultResponse
+    ): ResponseObject
 
     @GET("/DISC")
-    suspend fun getDiscResult(
+    suspend fun getDiscTestResult(
         @Header("Authorization") token: String
-    ): DiscResultResponse
+    ): ResponseObject
 
-    @GET("/DISC_headcount")
+    @GET("/DISC-headcount")
     suspend fun getDiscUsers(
         @Header("Authorization") token: String
-    ) : DiscUsers
+    ) : ResponseObject
 
 }
