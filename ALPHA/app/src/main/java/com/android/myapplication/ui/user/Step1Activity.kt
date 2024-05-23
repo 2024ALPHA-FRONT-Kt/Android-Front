@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.R
 import com.android.myapplication.databinding.ActivityLogInBinding
@@ -28,13 +29,19 @@ class Step1Activity : AppCompatActivity() {
             univ = 1
         }
 
-        if (univ == 1){
-            val intent = Intent(this, Step2Univ1Activity::class.java)
-            startActivity(intent)
-        } else {
-            val intent = Intent(this, Step2HighActivity::class.java)
-            startActivity(intent)
+        // userRole 저장
+        binding.btnNext.setOnClickListener {
+            if (univ == 1){
+                val intent = Intent(this, Step2Univ1Activity::class.java)
+                startActivity(intent)
+                App.prefs.addItem("userRole","UNIV")
+            } else {
+                val intent = Intent(this, Step2HighActivity::class.java)
+                startActivity(intent)
+                App.prefs.addItem("userRole","HIGH")
+            }
         }
+
 
     }
 }

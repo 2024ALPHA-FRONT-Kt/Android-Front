@@ -55,7 +55,7 @@ class EditActivity : AppCompatActivity() {
         val editDepart = binding.editDepart.text.toString()
 
         binding.btnEditSave.setOnClickListener{
-            // editText가 비어있다면
+            // editText가 비어있는지 확인
             if (editName.trim().isEmpty()){
                 Toast.makeText(applicationContext,"변경하실 이름을 입력해 주세요", Toast.LENGTH_SHORT).show()
             }
