@@ -18,12 +18,10 @@ class Step1Activity : AppCompatActivity() {
         supportActionBar?.hide()
 
         // 숫자로 구분
-        var high = 0
         var univ = 0
 
         binding.high.setOnClickListener{
             binding.high.setImageResource(R.drawable.img_sign_in_step1_high)
-            high = 1
         }
         binding.univ.setOnClickListener{
             binding.high.setImageResource(R.drawable.img_sign_in_step1_univ)
