@@ -30,9 +30,10 @@ class Step2HighActivity : AppCompatActivity() {
         val apiService = RetrofitClient.apiservice
         val gson = Gson()
 
-        val userRole = App.prefs.getItem("userRole","noUserRole")
+        val userRole = "HIGH"
 
-        binding.editBtn.setOnClickListener {
+        // 회원가입하기
+        binding.btnNext.setOnClickListener {
 
         // data
             val newName = binding.newName.toString()    // 이름
