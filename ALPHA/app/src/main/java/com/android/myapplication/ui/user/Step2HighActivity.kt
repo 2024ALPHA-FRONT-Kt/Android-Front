@@ -31,6 +31,9 @@ class Step2HighActivity : AppCompatActivity() {
         val gson = Gson()
 
         val userRole = "HIGH"
+        var newGender = "" // 성별
+        val phone = null
+        val image = null
 
         // 회원가입하기
         binding.btnNext.setOnClickListener {
@@ -42,10 +45,10 @@ class Step2HighActivity : AppCompatActivity() {
             var newAge = 0
 
             // 성별 확인용
-            val newMan = binding.newMan.id
-            val newWoman = binding.newWoman.id
+            val newMan = binding.newMan
+            val newWoman = binding.newWoman
 
-            var newGender = "" // 성별
+//            var newGender = "" // 성별
             val newId = binding.newId.text.toString() // 아이디
             val newPw = binding.newPw.text.toString() // 비밀번호
             val newPwRe = binding.newPwRe.text.toString()
@@ -80,36 +83,44 @@ class Step2HighActivity : AppCompatActivity() {
             if (newDepartH.trim().isEmpty()){
                 Toast.makeText(applicationContext,"희망 학과를 입력해 주세요", Toast.LENGTH_SHORT).show()
             }
+
             // 성별 확인
+            if (newMan.isChecked == false && newWoman.isChecked == false) {
+                Toast.makeText(applicationContext,"성별을 입력해 주세요", Toast.LENGTH_SHORT).show()
+            }
+
             binding.radioGroup.setOnCheckedChangeListener{ group, checkedId ->
                 when(checkedId) {
-                    newMan -> newGender = "남자"
-                    newWoman -> newGender = "여자"
+                    newMan.id -> newGender = "남자"
+                    newWoman.id -> newGender = "여자"
                 }
-                if (checkedId != newMan && checkedId != newWoman) {
-                    Toast.makeText(applicationContext,"성별을 입력해 주세요", Toast.LENGTH_SHORT).show()
-                }
+                Log.e("성별",newGender)
             }
+
             // 비밀번호 일치 확인
             if (newPw != newPwRe){
                 Toast.makeText(applicationContext,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
             }
-            Log.e("보낸거","$userRole $newName $newEmail $newGender $newAge $newId $newPw $newUnivH $newDepartH")
+            Log.e("보낸거1","$userRole $newName $newEmail $newGender $newAge $newId $newPw $phone $newUnivH $newDepartH $image")
             // 서버에 전송
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-                    val responseData = apiService.signIn(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivH,newDepartH,null)
-                    Log.e("보낸거","$userRole $newName $newEmail $newGender $newAge $newId $newPw $newUnivH $newDepartH")
+                    Log.e("요청은하니?","$userRole $newName $newEmail $newGender $newAge $newId $newPw $phone $newUnivH $newDepartH $image")
+                    val responseData = apiService.signIn(userRole,newName,newEmail,newGender,newAge,newId,newPw,phone,newUnivH,newDepartH,image)
+                    Log.e("보낸거2","$userRole $newName $newEmail $newGender $newAge $newId $newPw $phone $newUnivH $newDepartH $image")
                     Log.e("Response", responseData.toString())
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){
+                        val errorBody = e.response()?.errorBody()?.string()
+                        val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                         if (e.code() == 400){
-                            val errorBody = e.response()?.errorBody()?.string()
-                            val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
+//                            val errorBody = e.response()?.errorBody()?.string()
+//                            val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                             Log.e("400에러 아이디 중복으로 인한 실패",errorResponse.toString())
                             Toast.makeText(applicationContext,"중복된 아이디 입니다.", Toast.LENGTH_SHORT).show()
                         }else {
-                            Log.e("Error", e.message.toString())
+                            // 서버가 만들어둔 에러처리
+                            Log.e("Error", errorResponse.toString())
                         }
                     } else {
                         Log.e("Error", e.message.toString())
