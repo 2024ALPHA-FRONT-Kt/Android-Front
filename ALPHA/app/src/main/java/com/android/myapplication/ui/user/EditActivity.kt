@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.R
@@ -16,12 +13,11 @@ import com.android.myapplication.databinding.ActivityEditUnivBinding
 import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ExceptionDto
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class EditUnivActivity : AppCompatActivity() {
+class EditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditUnivBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,16 +38,37 @@ class EditUnivActivity : AppCompatActivity() {
 
         // user정보 가져오기
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
+        val userR = App.prefs.getItem("userRole","noUserRole")
 
-        val editName = binding.editName.text
-        val editUniv = binding.editUniv.text
-        val editDepart = binding.editDepart.text
+        // 조건에 따른 text 변경
+        if (userR == "UNIV"){
+            binding.txtEditUniv.text = "재학 대학"
+            binding.txtEditDepart.text = "재학 학과"
 
+        } else { // HIGH
+            binding.txtEditUniv.text = "희망 대학"
+            binding.txtEditDepart.text = "희망 학과"
+        }
+
+        val editName = binding.editName.text.toString()
+        val editUniv = binding.editUniv.text.toString()
+        val editDepart = binding.editDepart.text.toString()
 
         binding.btnEditSave.setOnClickListener{
+            // editText가 비어있다면
+            if (editName.trim().isEmpty()){
+                Toast.makeText(applicationContext,"변경하실 이름을 입력해 주세요", Toast.LENGTH_SHORT).show()
+            }
+            if (editUniv.trim().isEmpty()){
+                Toast.makeText(applicationContext,"변경하실 학교을 입력해 주세요", Toast.LENGTH_SHORT).show()
+            }
+            if (editDepart.trim().isEmpty()){
+                Toast.makeText(applicationContext,"변경하실 학과를 입력해 주세요", Toast.LENGTH_SHORT).show()
+            }
+
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-                    val responseData = apiService.editProfile(token, EditProfile(editName.toString(),editUniv.toString(),editDepart.toString()))
+                    val responseData = apiService.editProfile(token, EditProfile(editName,editUniv,editDepart))
                     Log.e("Response", responseData.toString())
 
                     Toast.makeText(applicationContext,"정보 수정이 완료되었습니다.", Toast.LENGTH_SHORT).show()

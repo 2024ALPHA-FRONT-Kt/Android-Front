@@ -11,8 +11,7 @@ import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.FragmentMypageBinding
 import com.android.myapplication.dto.ExceptionDto
-import com.android.myapplication.ui.user.EditHighActivity
-import com.android.myapplication.ui.user.EditUnivActivity
+import com.android.myapplication.ui.user.EditActivity
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
@@ -55,14 +54,22 @@ class MyPageFragment : Fragment() {
                 val depart = data["department"].toString().replace("\"", "")
                 val point = data["point"].toString().replace("\"", "")
 
-                binding.root.post {
-                    binding.userName.text = name
-                    binding.userSchool.text = school
-                    binding.userDepart.text = depart
-                    binding.userPoint.text = point
+                // 조건에 따른 text 변경
+                if (App.prefs.getItem("userRole","noUserRole") == "HIGH"){
+                    binding.root.post {
+                        binding.userName.text = name
+                        binding.userSchool.text = school
+                        binding.userDepart.text = depart + "희망"
+                        binding.userPoint.text = point
+                    }
+                } else { // userRole = "UNIV"
+                    binding.root.post {
+                        binding.userName.text = name
+                        binding.userSchool.text = school
+                        binding.userDepart.text = depart + "재학"
+                        binding.userPoint.text = point
+                    }
                 }
-
-                // 응답 데이터를 사용하여 작업 수행
             } catch (e: Exception) {
                 if (e is retrofit2.HttpException){
                     if (e.code() == 404){
@@ -82,15 +89,8 @@ class MyPageFragment : Fragment() {
         // 회원정보 변경 이동
         binding.setting.setOnClickListener{
             activity.let {
-                val userR = App.prefs.getItem("userRole","noUserRole")
-                if (userR == "UNIV"){
-                    val intent = Intent(context, EditUnivActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    val intent = Intent(context, EditHighActivity::class.java)
-                    startActivity(intent)
-                }
-
+                val intent = Intent(context, EditActivity::class.java)
+                startActivity(intent)
             }
         }
 

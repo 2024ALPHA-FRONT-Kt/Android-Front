@@ -19,7 +19,7 @@
             android:name=".ui.user.EditHighActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.EditUnivActivity"
+            android:name=".ui.user.EditActivity"
             android:exported="false" />
         <activity
             android:name=".ui.user.Step3Activity"
