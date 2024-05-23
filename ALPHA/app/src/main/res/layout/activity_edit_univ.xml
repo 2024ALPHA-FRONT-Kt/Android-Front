@@ -92,6 +92,7 @@
                         android:textSize="20sp"
                         android:text="이름"/>
                     <EditText
+                        android:id="@+id/edit_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
@@ -207,6 +208,7 @@
                         android:textSize="20sp"
                         android:text="재학 대학"/>
                     <EditText
+                        android:id="@+id/edit_univ"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
@@ -227,6 +229,7 @@
                         android:textSize="20sp"
                         android:text="재학 학과"/>
                     <EditText
+                        android:id="@+id/edit_depart"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
