@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.api.RetrofitClient
@@ -49,9 +50,9 @@ class DiscResultActivity : AppCompatActivity() {
         }
 
         binding.discResultPageShareButton.setOnClickListener {
-            val screenshot = takeScreenshot()
-            val imageUri = saveScreenshot(screenshot)
-            shareImage(imageUri)
+            val screenshot = takeScreenshotOfView(binding.savingResultImg)
+            val imageFile = saveScreenshot(screenshot)
+            shareImage(imageFile)
         }
 
 
@@ -73,10 +74,10 @@ class DiscResultActivity : AppCompatActivity() {
             try {
                 val responseData = apiService.postDiscTestResult(token, disc)
                 val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                val realData = data["discCode"].toString()
+//                val realData = data["discCode"].toString()
 
                 Log.d("datadatadata", data.toString())
-                Log.d("realrealreal", realData)
+//                Log.d("realrealreal", realData)
 
 //                val discType = realData["category"].toString().replace("\"", "")
 //                val discTypeEn = realData["key"].toString().replace("\"", "")
@@ -99,106 +100,38 @@ class DiscResultActivity : AppCompatActivity() {
         }
     }
 
-    private fun takeScreenshot(): Bitmap {
-        val rootView = window.decorView.findViewById<View>(android.R.id.content)
-        val screenshot =
-            Bitmap.createBitmap(rootView.width, rootView.height, Bitmap.Config.ARGB_8888)
+    private fun takeScreenshotOfView(view: View): Bitmap {
+        val screenshot = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(screenshot)
-        rootView.draw(canvas)
+        view.draw(canvas)
         return screenshot
     }
 
     private fun saveScreenshot(screenshot: Bitmap): File {
-        val imagesDir =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val imagesDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val imageFileName = "disc_result_$timestamp.jpg"
-        val image = File(imagesDir, imageFileName)
+        val imageFile = File(imagesDir, imageFileName)
         var outputStream: OutputStream? = null
         try {
-            outputStream = FileOutputStream(image)
+            outputStream = FileOutputStream(imageFile)
             screenshot.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
             Toast.makeText(this, "결과 화면이 저장되었습니다.", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            e.printStackTrace()
         } finally {
             outputStream?.close()
         }
-        return image
+        return imageFile
     }
 
-    private fun shareImage(imageUri: File) {
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.type = "image/*"
-        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri)
-        startActivity(Intent.createChooser(shareIntent, "결과 공유하기"))
+    private fun shareImage(imageFile: File) {
+        val imageUri = FileProvider.getUriForFile(this, "${packageName}.provider", imageFile)
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "image/*"
+            putExtra(Intent.EXTRA_STREAM, imageUri)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        startActivity(Intent.createChooser(shareIntent, "DISC 테스트 결과 공유하기!"))
     }
 }
-//package com.android.myapplication.ui.disc
-//
-//import android.os.Bundle
-//import android.util.Log
-//import androidx.appcompat.app.AppCompatActivity
-//import com.android.myapplication.App
-//import com.android.myapplication.api.RetrofitClient
-//import com.android.myapplication.databinding.ActivityDiscResultBinding
-//import com.android.myapplication.ui.disc.data_class.DiscScore
-//import com.android.myapplication.ui.disc.data_class.DiscTestResult
-//import com.google.gson.Gson
-//import com.google.gson.JsonObject
-//import kotlinx.coroutines.Dispatchers
-//import kotlinx.coroutines.GlobalScope
-//import kotlinx.coroutines.launch
-//import kotlinx.coroutines.withContext
-//import java.lang.Exception
-//
-//class DiscResultActivity : AppCompatActivity() {
-//
-//    private lateinit var binding: ActivityDiscResultBinding
-//    private lateinit var discScore: DiscScore
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        binding = ActivityDiscResultBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//        supportActionBar?.hide()
-//
-//        val apiService = RetrofitClient.apiservice
-//        val gson = Gson()
-//        val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
-//        val token = "Bearer ${globalAccessToken.replace("\"", "")}"
-//
-//        val discScore = intent.getParcelableExtra<DiscScore>("DISC_SCORE") ?: DiscScore()
-//
-//        val disc = DiscTestResult(
-//            dscore = discScore.DScore,
-//            iscore = discScore.IScore,
-//            sscore = discScore.SScore,
-//            cscore = discScore.CScore
-//        )
-//
-//        GlobalScope.launch(Dispatchers.IO) {
-//            try {
-//                val responseData = apiService.postDiscTestResult(token, disc)
-//                val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-//
-//                val discType = data["category"].toString().replace("\"", "")
-//                val discTypeEn = data["key"].toString().replace("\"", "")
-//                val discPros = data["pros"].toString().replace("\"", "")
-//                val discEx = data["ex"].toString().replace("\"", "")
-//                val discJob = data["job"].toString().replace("\"", "")
-//                val discProsJob = data["prosJob"].toString().replace("\"", "")
-//
-//                withContext(Dispatchers.Main) {
-//                    binding.discType.text = "$discType - $discTypeEn"
-//                    binding.discPros.text = discPros
-//                    binding.discEx.text = discEx
-//                    binding.discJob.text = discJob
-//                    binding.discPos.text = discProsJob
-//                }
-//                Log.e("Response", responseData.toString())
-//
-//            } catch (e: Exception) {
-//                Log.e("Error", e.message.toString())
-//            }
-//        }
-//    }
-//}
