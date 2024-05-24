@@ -1,29 +1,35 @@
 package com.android.myapplication.ui.knowledge_community
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.android.myapplication.R
+import androidx.fragment.app.Fragment
+import com.android.myapplication.databinding.FragmentWriteKnowledgePostBinding
 
 class WriteKnowledgePostFragment : Fragment() {
 
+    private var _binding: FragmentWriteKnowledgePostBinding? = null
+    private val binding get() = _binding!!
+
     companion object {
-        fun newInstance() = WriteKnowledgePostFragment()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
+        fun newInstance() = ViewKnowledgePostFragment()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_write_knowledge_post, container, false)
+        _binding = FragmentWriteKnowledgePostBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
