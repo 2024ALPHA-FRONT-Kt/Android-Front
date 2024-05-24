@@ -116,7 +116,7 @@ class DiscResultActivity : AppCompatActivity() {
         try {
             outputStream = FileOutputStream(imageFile)
             screenshot.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-            Toast.makeText(this, "결과 화면이 저장되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "DISC-T 결과를 공유합니다!.", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
@@ -132,6 +132,6 @@ class DiscResultActivity : AppCompatActivity() {
             putExtra(Intent.EXTRA_STREAM, imageUri)
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
-        startActivity(Intent.createChooser(shareIntent, "DISC 테스트 결과 공유하기!"))
+        startActivity(Intent.createChooser(shareIntent, "DISC 테스트 결과 공유하기"))
     }
 }
