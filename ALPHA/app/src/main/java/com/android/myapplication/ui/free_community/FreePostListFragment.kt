@@ -6,17 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.android.myapplication.R
-import com.android.myapplication.ui.free_community.FreePosts
+import com.android.myapplication.databinding.FragmentFreePostListBinding
 
 class FreePostListFragment : Fragment() {
+
+    private var _binding: FragmentFreePostListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_free_post_list, container, false)
+        _binding = FragmentFreePostListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,9 +29,13 @@ class FreePostListFragment : Fragment() {
         list.add(FreePosts("제목 2", "내용 2"))
         list.add(FreePosts("제목 3", "내용 3"))
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.free_list_view)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.freeListView.layoutManager = LinearLayoutManager(context)
         val adapter = FreePostAdapter(list)
-        recyclerView.adapter = adapter
+        binding.freeListView.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

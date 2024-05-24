@@ -5,32 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.android.myapplication.R
+import com.android.myapplication.databinding.FragmentViewFreePostPlusBinding
 
 class ViewFreePostPlusFragment : Fragment() {
+
+    private var _binding: FragmentViewFreePostPlusBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_main, container, false)
+        _binding = FragmentViewFreePostPlusBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val list = ArrayList<FreeComments>()
-        list.add(FreeComments("국민대학교", "uid1", "하"))
-        list.add(FreeComments("국민대학교", "uid2", "하"))
-        list.add(FreeComments("국민대학교", "uid3", "하"))
-        list.add(FreeComments("국민대학교", "uid4", "하"))
-
-        val adapter = FreeCommentAdapter(list)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.free_comment_view)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
