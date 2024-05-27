@@ -76,9 +76,7 @@ class Step2HighActivity : AppCompatActivity() {
                 // 서버에 전송
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
-                        Log.e("요청은하니?","$userRole $newName $newEmail $newGender $newAge $newId $newPw $phone $newUnivH $newDepartH $image")
                         val responseData = apiService.signIn(SignInProfile( userRole,newName,newEmail,newGender,newAge,newId,newPw,phone,newUnivH,newDepartH,image))
-                        Log.e("보낸거2","$userRole $newName $newEmail $newGender $newAge $newId $newPw $phone $newUnivH $newDepartH $image")
                         Log.e("Response", responseData.toString())
                         Toast.makeText(applicationContext,"회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                         intentLogin()
@@ -87,8 +85,6 @@ class Step2HighActivity : AppCompatActivity() {
                             val errorBody = e.response()?.errorBody()?.string()
                             val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                             if (e.code() == 400){
-//                            val errorBody = e.response()?.errorBody()?.string()
-//                            val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                                 Log.e("400에러 아이디 중복으로 인한 실패",errorResponse.toString())
                                 runOnUiThread{ Toast.makeText(applicationContext,"중복된 아이디 입니다.", Toast.LENGTH_SHORT).show() }
                             }else {
