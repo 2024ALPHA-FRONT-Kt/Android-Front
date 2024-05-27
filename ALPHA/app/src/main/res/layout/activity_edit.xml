@@ -98,6 +98,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint="변경할 이름을 입력해 주세요"/>
                 </LinearLayout>
                 <LinearLayout
@@ -141,7 +142,7 @@
                             android:textColor="@color/black"
                             android:layout_marginBottom="8dp"
                             android:textSize="20sp"
-                            android:text="성별"/>
+                            android:text="성별(변경불가)"/>
                         <RadioGroup
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -215,6 +216,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint="변경할 대학을 입력해 주세요"/>
                 </LinearLayout>
                 <LinearLayout
@@ -237,6 +239,7 @@
                         android:background="@drawable/edittext_shadow"
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
+                        android:singleLine = "true"
                         android:hint="변경할 학과를 입력해 주세요"/>
                 </LinearLayout>
 
