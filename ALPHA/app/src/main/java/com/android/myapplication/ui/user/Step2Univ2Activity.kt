@@ -29,6 +29,7 @@ class Step2Univ2Activity : AppCompatActivity() {
         // 바인딩
         binding = ActivityStep2Univ2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
         // api 연결
         val apiService = RetrofitClient.apiservice
         val gson = Gson()
@@ -56,17 +57,14 @@ class Step2Univ2Activity : AppCompatActivity() {
             val newEmail = intent.getStringExtra("email").toString() // 이메일
             val age = binding.newAge.text.toString()  // 나이
             var newAge = 0
-
             val newId = binding.newId.text.toString() // 아이디
             val newPw = binding.newPw.text.toString() // 비밀번호
             val newPwRe = binding.newPwRe.text.toString()
-            val newUnivH = intent.getStringExtra("univ").toString() // 재학대학
-            val newDepartH = binding.newDepartU.text.toString() // 재학학과
-
-            var bool = 0
+            val newUnivU = intent.getStringExtra("univ").toString() // 재학대학
+            val newDepartU = binding.newDepartU.text.toString() // 재학학과
 
             // editText가 비어있는지 확인
-            if (newName.trim().isEmpty() || newEmail.trim().isEmpty() || age.trim().isEmpty() || newId.trim().isEmpty() || newPw.trim().isEmpty() || newPwRe.trim().isEmpty() || newUnivH.trim().isEmpty() || newDepartH.trim().isEmpty()){
+            if (newName.trim().isEmpty() || newEmail.trim().isEmpty() || age.trim().isEmpty() || newId.trim().isEmpty() || newPw.trim().isEmpty() || newPwRe.trim().isEmpty() || newUnivU.trim().isEmpty() || newDepartU.trim().isEmpty()){
                 Toast.makeText(applicationContext,"압력을 완료해 주세요", Toast.LENGTH_SHORT).show()
             } else if (newPw != newPwRe){
                 Toast.makeText(applicationContext,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
@@ -77,10 +75,10 @@ class Step2Univ2Activity : AppCompatActivity() {
                 // 서버에 전송
                 GlobalScope.launch(Dispatchers.IO) {
                     Log.e("ddddd",
-                        SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivH,newDepartH,null).toString()
+                        SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivU,newDepartU,null).toString()
                     )
                     try {
-                        val responseData = apiService.signIn(SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivH,newDepartH,null))
+                        val responseData = apiService.signIn(SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivU,newDepartU,null))
                         Log.e("Response", responseData.toString())
                         intentLogin()
                     } catch (e: Exception) {

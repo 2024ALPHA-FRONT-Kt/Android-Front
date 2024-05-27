@@ -56,40 +56,33 @@ class EditActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-
         binding.btnEditSave.setOnClickListener{
             val editName = binding.editName.text.toString()
             val editUniv = binding.editUniv.text.toString()
             val editDepart = binding.editDepart.text.toString()
             // editText가 비어있는지 확인
-            if (editName.trim().isEmpty()){
-                Toast.makeText(applicationContext,"변경하실 이름을 입력해 주세요", Toast.LENGTH_SHORT).show()
-            }
-            if (editUniv.trim().isEmpty()){
-                Toast.makeText(applicationContext,"변경하실 학교을 입력해 주세요", Toast.LENGTH_SHORT).show()
-            }
-            if (editDepart.trim().isEmpty()){
-                Toast.makeText(applicationContext,"변경하실 학과를 입력해 주세요", Toast.LENGTH_SHORT).show()
-            }
-
-            GlobalScope.launch(Dispatchers.IO) {
-                try {
-                    val responseData = apiService.editProfile(token, EditProfile(editName,editUniv,editDepart,null))
-                    Log.e("Response", responseData.toString())
-                    IntentMain() // 화면 전환
-                } catch (e: Exception) {
-                    if (e is retrofit2.HttpException){
-                        if (e.code() == 404){
-                            val errorBody = e.response()?.errorBody()?.string()
-                            val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
-                            Log.e("404에러: 유저를 찾을 수 없음",errorResponse.toString())
-                        }else {
-                            val errorBody = e.response()?.errorBody()?.string()
-                            val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
-                            Log.e("머시기 에러",errorResponse.toString())
+            if (editName.trim().isEmpty() || editUniv.trim().isEmpty() || editDepart.trim().isEmpty()){
+                Toast.makeText(applicationContext,"입력을 완료해 주세요", Toast.LENGTH_SHORT).show()
+            } else {
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        val responseData = apiService.editProfile(token, EditProfile(editName,editUniv,editDepart,null))
+                        Log.e("Response", responseData.toString())
+                        IntentMain() // 화면 전환
+                    } catch (e: Exception) {
+                        if (e is retrofit2.HttpException){
+                            if (e.code() == 404){
+                                val errorBody = e.response()?.errorBody()?.string()
+                                val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
+                                Log.e("404에러: 유저를 찾을 수 없음",errorResponse.toString())
+                            }else {
+                                val errorBody = e.response()?.errorBody()?.string()
+                                val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
+                                Log.e("머시기 에러",errorResponse.toString())
+                            }
+                        } else {
+                            Log.e("Error", e.message.toString())
                         }
-                    } else {
-                        Log.e("Error", e.message.toString())
                     }
                 }
             }
