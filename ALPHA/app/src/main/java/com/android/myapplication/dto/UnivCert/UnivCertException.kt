@@ -1,4 +1,4 @@
-package com.android.myapplication.dto
+package com.android.myapplication.dto.UnivCert
 
 data class UnivCertException(
     val status : Int,

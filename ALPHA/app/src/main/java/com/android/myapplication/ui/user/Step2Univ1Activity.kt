@@ -5,18 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.android.myapplication.MainActivity
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
-import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.databinding.ActivityStep2Univ1Binding
-import com.android.myapplication.dto.ExceptionDto
-import com.android.myapplication.dto.SignInProfile
-import com.android.myapplication.dto.UnivCertException
+import com.android.myapplication.dto.UnivCert.Certify
+import com.android.myapplication.dto.UnivCert.CertifyCode
+import com.android.myapplication.dto.UnivCert.Check
+import com.android.myapplication.dto.UnivCert.UnivCertException
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -47,11 +43,14 @@ class Step2Univ1Activity : AppCompatActivity() {
             Log.e("newUniv",newUniv)
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-                    val responseData = univService.check(newUniv)
+                    val responseData = univService.check(Check(newUniv))
                     Log.e("대학 확인 성공", responseData.toString())
                     univCheck = true
-                    binding.newUnivU.isEnabled = false
-                    binding.univEmail.visibility = View.VISIBLE
+                    binding.root.post {
+                        Toast.makeText(applicationContext,"대학 확인 완료", Toast.LENGTH_SHORT).show()
+                        binding.newUnivU.isEnabled = false
+                        binding.univEmail.visibility = View.VISIBLE
+                    }
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){
                         if (e.code() == 400){
@@ -76,10 +75,14 @@ class Step2Univ1Activity : AppCompatActivity() {
             val email = binding.newEmail.text.toString()
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-                    val responseData = univService.certify(apiKey,email,univ,univCheck)
+                    val responseData = univService.certify(Certify(apiKey,email,univ,univCheck))
                     Log.e("인증 번호 발송 성공", responseData.toString())
-                    binding.univEmail.isEnabled = false
-                    binding.passkey.visibility = View.VISIBLE
+                    binding.root.post{
+                        Toast.makeText(applicationContext,"인증 번호 발송 성공", Toast.LENGTH_SHORT).show()
+                        binding.univEmail.isEnabled = false
+                        binding.passkey.visibility = View.VISIBLE
+                    }
+
                 } catch (e: Exception) {
                     Log.e("Error", e.message.toString())
                     Toast.makeText(applicationContext,"인증 번호 발송 실패", Toast.LENGTH_LONG).show()
@@ -94,15 +97,17 @@ class Step2Univ1Activity : AppCompatActivity() {
             val code = binding.code.text.toString().toInt()
             GlobalScope.launch(Dispatchers.IO) {
                 try { // 인증잘되면
-                    val responseData = univService.certifyCode(apiKey,email,univ,code)
+                    val responseData = univService.certifyCode(CertifyCode(apiKey,email,univ,code))
                     Log.e("인증 성공", responseData.toString())
-                    Toast.makeText(applicationContext,"인증이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                     valid = 1
-                    binding.passkey.isEnabled = false
+                    binding.root.post{
+                        binding.passkey.isEnabled = false
+                        Toast.makeText(applicationContext,"대학 인증 완료", Toast.LENGTH_SHORT).show()
+                    }
+
                 } catch (e: Exception) {
                     Log.e("Error", e.message.toString())
                     Toast.makeText(applicationContext, "이메일 인증을 다시 해주세요", Toast.LENGTH_SHORT).show()
-
                 }
             }
         }
