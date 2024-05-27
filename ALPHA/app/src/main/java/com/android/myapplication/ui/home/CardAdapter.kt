@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
+import com.android.myapplication.ui.bootcamp.BootCampActivity
 import com.android.myapplication.ui.disc.DiscActivity
 
 class CardAdapter(var cardImage: ArrayList<Int>) :
@@ -29,6 +30,9 @@ class CardAdapter(var cardImage: ArrayList<Int>) :
         holder.cards.setOnClickListener{
             if (position == 0){
                 val intent = Intent(holder.itemView.context,DiscActivity::class.java)
+                ContextCompat.startActivity(holder.itemView.context,intent,null)
+            } else if (position == 2) {
+                val intent = Intent(holder.itemView.context, BootCampActivity::class.java)
                 ContextCompat.startActivity(holder.itemView.context,intent,null)
             }
         }
