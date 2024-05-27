@@ -206,6 +206,7 @@
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
                         android:singleLine = "true"
+                        android:inputType="textPassword"
                         android:hint=""/>
                 </LinearLayout>
                 <LinearLayout
@@ -228,6 +229,7 @@
                         android:fontFamily="@font/nanumsquareroundbold"
                         android:textSize="18sp"
                         android:singleLine = "true"
+                        android:inputType="textPassword"
                         android:hint=""/>
                 </LinearLayout>
                 <LinearLayout

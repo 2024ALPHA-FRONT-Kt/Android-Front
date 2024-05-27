@@ -1,5 +1,6 @@
 package com.android.myapplication.ui.user
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -38,9 +39,9 @@ class Step2Univ2Activity : AppCompatActivity() {
         binding.btnNext.setOnClickListener {
 
             // data
-            val newName = binding.newName.toString()    // 이름
+            val newName = binding.newName.text.toString()    // 이름
             val newEmail = intent.getStringExtra("email").toString() // 이메일
-            val age = binding.newAge.toString()  // 나이
+            val age = binding.newAge.text.toString()  // 나이
             var newAge = 0
 
             // 성별 확인용
@@ -48,11 +49,11 @@ class Step2Univ2Activity : AppCompatActivity() {
             val newWoman = binding.newWoman
 
             var newGender = "" // 성별
-            val newId = binding.newId.toString() // 아이디
-            val newPw = binding.newPw.toString() // 비밀번호
-            val newPwRe = binding.newPwRe.toString()
+            val newId = binding.newId.text.toString() // 아이디
+            val newPw = binding.newPw.text.toString() // 비밀번호
+            val newPwRe = binding.newPwRe.text.toString()
             val newUnivH = intent.getStringExtra("univ").toString() // 재학대학
-            val newDepartH = binding.newDepartU.toString() // 재학학과
+            val newDepartH = binding.newDepartU.text.toString() // 재학학과
             // data
 
             // editText가 비어있는지 확인
@@ -98,9 +99,13 @@ class Step2Univ2Activity : AppCompatActivity() {
             }
             // 서버에 전송
             GlobalScope.launch(Dispatchers.IO) {
+                Log.e("ddddd",
+                    SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivH,newDepartH,null).toString()
+                )
                 try {
                     val responseData = apiService.signIn(SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivH,newDepartH,null))
                     Log.e("Response", responseData.toString())
+                    intentLogin()
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){
                         if (e.code() == 400){
@@ -118,5 +123,9 @@ class Step2Univ2Activity : AppCompatActivity() {
             }
         }
 
+    }
+    private fun intentLogin() {
+        val intent = Intent(this, LogInActivity::class.java)
+        startActivity(intent)
     }
 }

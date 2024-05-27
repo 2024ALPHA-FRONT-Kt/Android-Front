@@ -3,6 +3,7 @@ package com.android.myapplication.api
 import com.android.myapplication.dto.UnivCert.Certify
 import com.android.myapplication.dto.UnivCert.CertifyCode
 import com.android.myapplication.dto.UnivCert.Check
+import com.android.myapplication.dto.UnivCert.Clear
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -20,4 +21,7 @@ interface UnivCertService {
     // 발송된 인증코드 입력해서 서버에 보내기
     @POST("/api/v1/certifycode")
     suspend fun certifyCode ( @Body data : CertifyCode )
+
+    @POST("/api/v1/clear")
+    suspend fun clear ( @Body data: Clear)
 }

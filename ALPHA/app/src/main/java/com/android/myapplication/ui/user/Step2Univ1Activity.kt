@@ -12,6 +12,7 @@ import com.android.myapplication.databinding.ActivityStep2Univ1Binding
 import com.android.myapplication.dto.UnivCert.Certify
 import com.android.myapplication.dto.UnivCert.CertifyCode
 import com.android.myapplication.dto.UnivCert.Check
+import com.android.myapplication.dto.UnivCert.Clear
 import com.android.myapplication.dto.UnivCert.UnivCertException
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +38,17 @@ class Step2Univ1Activity : AppCompatActivity() {
 
         binding.univEmail.visibility = View.INVISIBLE
         binding.passkey.visibility = View.INVISIBLE
+        // 초기화
+        binding.btnClear.setOnClickListener {
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val responseData = univService.clear(Clear(apiKey))
+                    Log.e("clear했음", responseData.toString())
+                } catch (e: Exception) {
+                    Log.e("Error", e.message.toString())
+                }
+            }
+        }
         // 대학확인
         binding.btnGetUnivCheck.setOnClickListener {
             val newUniv = binding.newUnivU.text.toString()
@@ -122,8 +134,6 @@ class Step2Univ1Activity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"이메일 인증이 완료되지 않았습니다.", Toast.LENGTH_SHORT).show()
             }
         }
-
-
 
     }
 }
