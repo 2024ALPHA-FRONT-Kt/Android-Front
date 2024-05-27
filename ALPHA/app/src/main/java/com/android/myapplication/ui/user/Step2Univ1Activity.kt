@@ -127,8 +127,8 @@ class Step2Univ1Activity : AppCompatActivity() {
         binding.btnNext.setOnClickListener {
             if (valid == 1){
                 val intent = Intent(this, Step2Univ2Activity::class.java)
-                intent.putExtra("univ",binding.newUnivU.toString())
-                intent.putExtra("email",binding.newEmail.toString())
+                intent.putExtra("univ",binding.newUnivU.text.toString())
+                intent.putExtra("email",binding.newEmail.text.toString())
                 startActivity(intent)
             } else {
                 Toast.makeText(applicationContext,"이메일 인증이 완료되지 않았습니다.", Toast.LENGTH_SHORT).show()
