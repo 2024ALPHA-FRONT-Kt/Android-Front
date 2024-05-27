@@ -2,6 +2,7 @@ package com.android.myapplication.api
 
 import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ResponseObject
+import com.android.myapplication.dto.SignInProfile
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -16,19 +17,7 @@ interface ApiService {
     suspend fun login(@Query("loginId") loginId: String, @Query("password") password: String): ResponseObject
 
     @POST("/user")
-    suspend fun signIn(
-        @Query("userRole") userRole: String,
-        @Query("name") name: String,
-        @Query("email") email: String,
-        @Query("gender") gender: String,
-        @Query("age") age: Int,
-        @Query("loginId") loginId: String,
-        @Query("password") password: String,
-        @Query("phoneNum") phoneNum: String?,
-        @Query("univ") univ: String,
-        @Query("department") department: String,
-        @Query("image") image: String?,
-    )
+    suspend fun signIn(@Body data: SignInProfile) : ResponseObject
 
     @GET("/user")
     suspend fun myPage(@Header("Authorization") Authorization: String): ResponseObject

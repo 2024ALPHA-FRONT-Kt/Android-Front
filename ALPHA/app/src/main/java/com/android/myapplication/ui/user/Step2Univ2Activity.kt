@@ -12,6 +12,7 @@ import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.databinding.ActivityStep2Univ2Binding
 import com.android.myapplication.dto.ExceptionDto
+import com.android.myapplication.dto.SignInProfile
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -98,7 +99,7 @@ class Step2Univ2Activity : AppCompatActivity() {
             // 서버에 전송
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-                    val responseData = apiService.signIn(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivH,newDepartH,null)
+                    val responseData = apiService.signIn(SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivH,newDepartH,null))
                     Log.e("Response", responseData.toString())
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){

@@ -2,6 +2,8 @@ package com.android.myapplication.ui.user
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +11,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.myapplication.MainActivity
 import com.android.myapplication.R
+import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.databinding.ActivityStep2Univ1Binding
+import com.android.myapplication.dto.ExceptionDto
+import com.android.myapplication.dto.SignInProfile
+import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class Step2Univ1Activity : AppCompatActivity() {
     private lateinit var binding: ActivityStep2Univ1Binding
@@ -18,34 +27,77 @@ class Step2Univ1Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_step2_univ1)
         supportActionBar?.hide()
-        var newUniv = ""
-        var newEmail = ""
 
         // 바인딩
         binding = ActivityStep2Univ1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // api 연결
+        val univService = RetrofitClient.univcertservice
+        val apiKey = "385e29ed-775f-43cb-a41e-24d13abe3516"
+        var univCheck = false
+
+        binding.univEmail.visibility = View.INVISIBLE
+        binding.passkey.visibility = View.INVISIBLE
+        // 대학확인
+        binding.btnGetUnivCheck.setOnClickListener {
+            val newUniv = binding.newUnivU.text.toString()
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val responseData = univService.check(newUniv)
+                    Log.e("대학 확인 성공", responseData.toString())
+                    univCheck = true
+                    binding.newUnivU.isEnabled = false
+                    binding.univEmail.visibility = View.VISIBLE
+                } catch (e: Exception) {
+                    Log.e("Error", e.message.toString())
+                    Toast.makeText(applicationContext,"올바른 대학명인지, 22년 입학생 수 상위 150개 이내에 드는 학교인지 확인해주세요.", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        // 인증번호 발송
         binding.btnGetPasskey.setOnClickListener {
-            newUniv = binding.newUnivU.toString()
-            newEmail = binding.newEmail.toString()
+            val univ = binding.newUnivU.text.toString()
+            val email = binding.newEmail.text.toString()
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val responseData = univService.certify(apiKey,email,univ,univCheck)
+                    Log.e("인증 번호 발송 성공", responseData.toString())
+                    binding.univEmail.isEnabled = false
+                    binding.passkey.visibility = View.VISIBLE
+                } catch (e: Exception) {
+                    Log.e("Error", e.message.toString())
+                    Toast.makeText(applicationContext,"인증 번호 발송 실패", Toast.LENGTH_LONG).show()
+                }
+            }
         }
 
         var valid = 0 // 인증결과
         binding.btnCheckPasskey.setOnClickListener {
-            // 인증잘되면
-            valid = 1
-            binding.newUnivU.isEnabled = false
-            binding.univEmail.isEnabled = false
-            Toast.makeText(applicationContext,"인증이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-            // 안되면
-            Toast.makeText(applicationContext,"이메일 인증을 다시 해주세요", Toast.LENGTH_SHORT).show()
+            val univ = binding.newUnivU.text.toString()
+            val email = binding.newEmail.text.toString()
+            val code = binding.code.text.toString().toInt()
+            GlobalScope.launch(Dispatchers.IO) {
+                try { // 인증잘되면
+                    val responseData = univService.certifyCode(apiKey,email,univ,code)
+                    Log.e("인증 성공", responseData.toString())
+                    Toast.makeText(applicationContext,"인증이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                    valid = 1
+                    binding.passkey.isEnabled = false
+                } catch (e: Exception) {
+                    Log.e("Error", e.message.toString())
+                    Toast.makeText(applicationContext, "이메일 인증을 다시 해주세요", Toast.LENGTH_SHORT).show()
+
+                }
+            }
         }
 
         binding.btnNext.setOnClickListener {
             if (valid == 1){
                 val intent = Intent(this, Step2Univ2Activity::class.java)
-                intent.putExtra("univ",newUniv)
-                intent.putExtra("email",newEmail)
+                intent.putExtra("univ",binding.newUnivU.toString())
+                intent.putExtra("email",binding.newEmail.toString())
                 startActivity(intent)
             } else {
                 Toast.makeText(applicationContext,"이메일 인증이 완료되지 않았습니다.", Toast.LENGTH_SHORT).show()

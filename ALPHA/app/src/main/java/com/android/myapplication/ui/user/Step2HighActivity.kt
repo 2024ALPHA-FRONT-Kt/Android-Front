@@ -10,6 +10,7 @@ import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.databinding.ActivityStep2HighBinding
 import com.android.myapplication.dto.ExceptionDto
+import com.android.myapplication.dto.SignInProfile
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -106,7 +107,7 @@ class Step2HighActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     Log.e("요청은하니?","$userRole $newName $newEmail $newGender $newAge $newId $newPw $phone $newUnivH $newDepartH $image")
-                    val responseData = apiService.signIn(userRole,newName,newEmail,newGender,newAge,newId,newPw,phone,newUnivH,newDepartH,image)
+                    val responseData = apiService.signIn(SignInProfile( userRole,newName,newEmail,newGender,newAge,newId,newPw,phone,newUnivH,newDepartH,image))
                     Log.e("보낸거2","$userRole $newName $newEmail $newGender $newAge $newId $newPw $phone $newUnivH $newDepartH $image")
                     Log.e("Response", responseData.toString())
                 } catch (e: Exception) {

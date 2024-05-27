@@ -74,7 +74,7 @@ class EditActivity : AppCompatActivity() {
 
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-                    val responseData = apiService.editProfile(token, EditProfile(editName,editUniv,editDepart))
+                    val responseData = apiService.editProfile(token, EditProfile(editName,editUniv,editDepart,null))
                     Log.e("Response", responseData.toString())
 
                     Toast.makeText(applicationContext,"정보 수정이 완료되었습니다.", Toast.LENGTH_SHORT).show()

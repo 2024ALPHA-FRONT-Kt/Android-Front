@@ -56,15 +56,37 @@
                         android:layout_marginBottom="8dp"
                         android:textSize="20sp"
                         android:text="대학교 명 기입"/>
-                    <EditText
-                        android:id="@+id/new_univ_u"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edittext_shadow"
-                        android:fontFamily="@font/nanumsquareroundbold"
-                        android:textSize="18sp"
-                        android:singleLine = "true"
-                        android:hint=""/>
+                        android:textAlignment="center"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/new_univU"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext_shadow"
+                            android:fontFamily="@font/nanumsquareroundbold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/btn_get_univ_check"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:textSize="18sp"
+                            android:singleLine = "true"
+                            android:hint=""/>
+                        <TextView
+                            android:id="@+id/btn_get_univ_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:text="대학 확인"
+                            android:fontFamily="@font/nanumsquareroundbold"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:background="@drawable/edittext_shadow" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -137,6 +159,7 @@
                     android:textAlignment="center"
                     android:orientation="horizontal">
                     <EditText
+                        android:id="@+id/code"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_shadow"
