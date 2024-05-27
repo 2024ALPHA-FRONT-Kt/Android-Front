@@ -76,8 +76,6 @@ class EditActivity : AppCompatActivity() {
                 try {
                     val responseData = apiService.editProfile(token, EditProfile(editName,editUniv,editDepart,null))
                     Log.e("Response", responseData.toString())
-
-                    Toast.makeText(applicationContext,"정보 수정이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                     IntentMain() // 화면 전환
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){
@@ -86,7 +84,9 @@ class EditActivity : AppCompatActivity() {
                             val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                             Log.e("404에러: 유저를 찾을 수 없음",errorResponse.toString())
                         }else {
-                            Log.e("Error", e.message.toString())
+                            val errorBody = e.response()?.errorBody()?.string()
+                            val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
+                            Log.e("머시기 에러",errorResponse.toString())
                         }
                     } else {
                         Log.e("Error", e.message.toString())

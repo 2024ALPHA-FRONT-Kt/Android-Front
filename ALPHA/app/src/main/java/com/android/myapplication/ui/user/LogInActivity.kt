@@ -44,10 +44,10 @@ class LogInActivity : AppCompatActivity() {
             val userPw = binding.userPw.text.toString()
             // editText가 비어있는지 확인
             if (userId.trim().isEmpty()){
-                Toast.makeText(applicationContext,"아이디를 입력해 주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "아이디를 입력해 주세요", Toast.LENGTH_SHORT).show()
             }
             if (userPw.trim().isEmpty()){
-                Toast.makeText(applicationContext,"비밀번호를 입력해 주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "비밀번호를 입력해 주세요", Toast.LENGTH_SHORT).show()
             }
             GlobalScope.launch(Dispatchers.IO) {
                 try {
@@ -67,14 +67,14 @@ class LogInActivity : AppCompatActivity() {
                             val errorBody = e.response()?.errorBody()?.string()
                             val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                             Log.e("404에러",errorResponse.toString())
-                            Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show()
+                            runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
                         }else {
                             Log.e("Error", e.message.toString())
-                            Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show()
+                                runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
                         }
                     } else {
                         Log.e("Error", e.message.toString())
-                        Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show()
+                                runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
                     }
                 }
             }
@@ -91,7 +91,7 @@ class LogInActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         } else {
-            Toast.makeText(applicationContext,"아이디와 비밀번호를 확인해주세요",Toast.LENGTH_SHORT).show()
+            runOnUiThread{ Toast.makeText(applicationContext,"아이디와 비밀번호를 확인해주세요",Toast.LENGTH_SHORT).show() }
         }
     }
 }

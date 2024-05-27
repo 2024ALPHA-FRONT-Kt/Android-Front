@@ -57,14 +57,14 @@ class MyPageFragment : Fragment() {
                     binding.root.post {
                         binding.userName.text = name
                         binding.userSchool.text = school
-                        binding.userDepart.text = depart + "희망"
+                        binding.userDepart.text = depart + " 희망"
                         binding.userPoint.text = point
                     }
                 } else { // userRole = "UNIV"
                     binding.root.post {
                         binding.userName.text = name
                         binding.userSchool.text = school
-                        binding.userDepart.text = depart + "재학"
+                        binding.userDepart.text = depart + " 재학"
                         binding.userPoint.text = point
                     }
                 }

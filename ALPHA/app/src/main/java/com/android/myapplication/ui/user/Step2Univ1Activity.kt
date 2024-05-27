@@ -76,7 +76,7 @@ class Step2Univ1Activity : AppCompatActivity() {
                         Log.e("Error", e.message.toString())
                     }
                     Log.e("Error", e.message.toString())
-                    Toast.makeText(applicationContext,"올바른 대학명인지, 22년 입학생 수 상위 150개 이내에 드는 학교인지 확인해주세요.", Toast.LENGTH_LONG).show()
+                    runOnUiThread{ Toast.makeText(applicationContext,"올바른 대학명인지, 22년 입학생 수 상위 150개 이내에 드는 학교인지 확인해주세요.", Toast.LENGTH_LONG).show() }
                 }
             }
         }
@@ -90,14 +90,14 @@ class Step2Univ1Activity : AppCompatActivity() {
                     val responseData = univService.certify(Certify(apiKey,email,univ,univCheck))
                     Log.e("인증 번호 발송 성공", responseData.toString())
                     binding.root.post{
-                        Toast.makeText(applicationContext,"인증 번호 발송 성공", Toast.LENGTH_SHORT).show()
+                        runOnUiThread{ Toast.makeText(applicationContext,"인증 번호 발송 성공", Toast.LENGTH_SHORT).show() }
                         binding.univEmail.isEnabled = false
                         binding.passkey.visibility = View.VISIBLE
                     }
 
                 } catch (e: Exception) {
                     Log.e("Error", e.message.toString())
-                    Toast.makeText(applicationContext,"인증 번호 발송 실패", Toast.LENGTH_LONG).show()
+                    runOnUiThread{ Toast.makeText(applicationContext,"인증 번호 발송 실패", Toast.LENGTH_LONG).show() }
                 }
             }
         }
@@ -114,12 +114,12 @@ class Step2Univ1Activity : AppCompatActivity() {
                     valid = 1
                     binding.root.post{
                         binding.passkey.isEnabled = false
-                        Toast.makeText(applicationContext,"대학 인증 완료", Toast.LENGTH_SHORT).show()
+                        runOnUiThread{ Toast.makeText(applicationContext,"대학 인증 완료", Toast.LENGTH_SHORT).show() }
                     }
 
                 } catch (e: Exception) {
                     Log.e("Error", e.message.toString())
-                    Toast.makeText(applicationContext, "이메일 인증을 다시 해주세요", Toast.LENGTH_SHORT).show()
+                    runOnUiThread{ Toast.makeText(applicationContext, "이메일 인증을 다시 해주세요", Toast.LENGTH_SHORT).show() }
                 }
             }
         }

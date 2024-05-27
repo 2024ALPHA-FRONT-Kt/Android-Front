@@ -112,7 +112,7 @@ class Step2Univ2Activity : AppCompatActivity() {
                             val errorBody = e.response()?.errorBody()?.string()
                             val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                             Log.e("400에러 아이디 중복으로 인한 실패",errorResponse.toString())
-                            Toast.makeText(applicationContext,"중복된 아이디 입니다.", Toast.LENGTH_SHORT).show()
+                            runOnUiThread{ Toast.makeText(applicationContext,"중복된 아이디 입니다.", Toast.LENGTH_SHORT).show() }
                         }else {
                             Log.e("Error", e.message.toString())
                         }
