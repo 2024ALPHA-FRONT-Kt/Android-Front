@@ -1,5 +1,7 @@
 package com.android.myapplication.ui.user
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -110,6 +112,8 @@ class Step2HighActivity : AppCompatActivity() {
                     val responseData = apiService.signIn(SignInProfile( userRole,newName,newEmail,newGender,newAge,newId,newPw,phone,newUnivH,newDepartH,image))
                     Log.e("보낸거2","$userRole $newName $newEmail $newGender $newAge $newId $newPw $phone $newUnivH $newDepartH $image")
                     Log.e("Response", responseData.toString())
+                    Toast.makeText(applicationContext,"회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                    intentLogin()
                 } catch (e: Exception) {
                     if (e is retrofit2.HttpException){
                         val errorBody = e.response()?.errorBody()?.string()
@@ -129,5 +133,10 @@ class Step2HighActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun intentLogin() {
+        val intent = Intent(this, LogInActivity::class.java)
+        startActivity(intent)
     }
 }

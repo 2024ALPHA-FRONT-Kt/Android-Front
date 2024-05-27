@@ -67,11 +67,14 @@ class LogInActivity : AppCompatActivity() {
                             val errorBody = e.response()?.errorBody()?.string()
                             val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
                             Log.e("404에러",errorResponse.toString())
+                            Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show()
                         }else {
                             Log.e("Error", e.message.toString())
+                            Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show()
                         }
                     } else {
                         Log.e("Error", e.message.toString())
+                        Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

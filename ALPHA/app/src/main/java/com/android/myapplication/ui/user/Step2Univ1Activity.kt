@@ -16,6 +16,7 @@ import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.databinding.ActivityStep2Univ1Binding
 import com.android.myapplication.dto.ExceptionDto
 import com.android.myapplication.dto.SignInProfile
+import com.android.myapplication.dto.UnivCertException
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -34,6 +35,7 @@ class Step2Univ1Activity : AppCompatActivity() {
 
         // api 연결
         val univService = RetrofitClient.univcertservice
+        val gson = Gson()
         val apiKey = "385e29ed-775f-43cb-a41e-24d13abe3516"
         var univCheck = false
 
@@ -42,6 +44,7 @@ class Step2Univ1Activity : AppCompatActivity() {
         // 대학확인
         binding.btnGetUnivCheck.setOnClickListener {
             val newUniv = binding.newUnivU.text.toString()
+            Log.e("newUniv",newUniv)
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     val responseData = univService.check(newUniv)
@@ -50,6 +53,17 @@ class Step2Univ1Activity : AppCompatActivity() {
                     binding.newUnivU.isEnabled = false
                     binding.univEmail.visibility = View.VISIBLE
                 } catch (e: Exception) {
+                    if (e is retrofit2.HttpException){
+                        if (e.code() == 400){
+                            val errorBody = e.response()?.errorBody()?.string()
+                            val errorResponse : UnivCertException? = gson.fromJson(errorBody, UnivCertException::class.java)
+                            Log.e("400에러",errorResponse.toString())
+                        }else {
+                            Log.e("Error", e.message.toString())
+                        }
+                    } else {
+                        Log.e("Error", e.message.toString())
+                    }
                     Log.e("Error", e.message.toString())
                     Toast.makeText(applicationContext,"올바른 대학명인지, 22년 입학생 수 상위 150개 이내에 드는 학교인지 확인해주세요.", Toast.LENGTH_LONG).show()
                 }
