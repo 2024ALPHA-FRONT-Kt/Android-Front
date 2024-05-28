@@ -78,7 +78,7 @@ class EditActivity : AppCompatActivity() {
                             }else {
                                 val errorBody = e.response()?.errorBody()?.string()
                                 val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
-                                Log.e("머시기 에러",errorResponse.toString())
+                                Log.e("에러",errorResponse.toString())
                             }
                         } else {
                             Log.e("Error", e.message.toString())

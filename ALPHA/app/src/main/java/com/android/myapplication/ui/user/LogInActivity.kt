@@ -1,6 +1,5 @@
 package com.android.myapplication.ui.user
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,8 +16,6 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.json.JSONObject
-import org.json.JSONTokener
 
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLogInBinding
@@ -58,6 +55,34 @@ class LogInActivity : AppCompatActivity() {
                         Log.e("token",data["accessToken"].toString())
                         loginBool = 1 // 로그인 성공 여부 적용
                         IntentAct(loginBool) // 화면 전환
+                    } catch (e: Exception) {
+                        if (e is retrofit2.HttpException){
+                            if (e.code() == 404){
+                                val errorBody = e.response()?.errorBody()?.string()
+                                val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
+                                Log.e("404에러",errorResponse.toString())
+                                runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
+                            }else {
+                                Log.e("Error", e.message.toString())
+                                runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
+                            }
+                        } else {
+                            Log.e("Error", e.message.toString())
+                            runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
+                        }
+                    }
+                }
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        // token 가져오기
+                        val globalAccessToken: String = App.prefs.getItem("accessToken","no Token")
+                        // user정보 가져오기
+                        val token = "Bearer ${globalAccessToken.replace("\"", "")}"
+                        val responseData = apiService.myPage(token)
+                        Log.e("Response", responseData.toString())
+                        val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                        val userId= data["loginId"].toString().replace("\"", "")
+                        App.prefs.addItem("userId",userId)
                     } catch (e: Exception) {
                         if (e is retrofit2.HttpException){
                             if (e.code() == 404){

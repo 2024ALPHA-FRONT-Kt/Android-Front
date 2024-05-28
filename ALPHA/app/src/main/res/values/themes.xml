@@ -13,4 +13,12 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/nanumsquareroundextrabold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="main_tab" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/nanumsquareroundbold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

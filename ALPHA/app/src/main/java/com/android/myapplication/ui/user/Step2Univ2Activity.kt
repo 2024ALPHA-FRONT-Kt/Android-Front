@@ -74,9 +74,6 @@ class Step2Univ2Activity : AppCompatActivity() {
                 newAge = age.toInt()
                 // 서버에 전송
                 GlobalScope.launch(Dispatchers.IO) {
-                    Log.e("ddddd",
-                        SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivU,newDepartU,null).toString()
-                    )
                     try {
                         val responseData = apiService.signIn(SignInProfile(userRole,newName,newEmail,newGender,newAge,newId,newPw,null,newUnivU,newDepartU,null))
                         Log.e("Response", responseData.toString())
