@@ -28,10 +28,10 @@ class CardAdapter(var cardImage: ArrayList<Int>) :
         holder.cards.setImageResource(cardImage[position])
 
         holder.cards.setOnClickListener{
-            if (position == 0){
+            if (position == 1){
                 val intent = Intent(holder.itemView.context,DiscActivity::class.java)
                 ContextCompat.startActivity(holder.itemView.context,intent,null)
-            } else if (position == 2) {
+            } else if (position == 0) {
                 val intent = Intent(holder.itemView.context, BootCampActivity::class.java)
                 ContextCompat.startActivity(holder.itemView.context,intent,null)
             }
