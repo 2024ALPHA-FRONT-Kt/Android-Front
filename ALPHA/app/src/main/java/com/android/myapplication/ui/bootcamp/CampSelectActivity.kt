@@ -34,6 +34,8 @@ class CampSelectActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 // 강의입장 1
+                val intent = Intent(this, CampClassActivity::class.java)
+                startActivity(intent)
             }
         }
 
