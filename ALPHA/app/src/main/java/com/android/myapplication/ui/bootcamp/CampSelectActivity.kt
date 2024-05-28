@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.R
+import com.android.myapplication.databinding.ActivityCampClassBinding
 import com.android.myapplication.databinding.ActivityCampSelectBinding
 
 class CampSelectActivity : AppCompatActivity() {
@@ -14,21 +15,25 @@ class CampSelectActivity : AppCompatActivity() {
         setContentView(R.layout.activity_camp_select)
         supportActionBar?.hide()
 
+        // 바인딩
+        binding = ActivityCampSelectBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         binding.item1Btn3.setOnClickListener {
             if (binding.item1Btn3.text == "신청하기"){
                 binding.item1Btn1.visibility = View.VISIBLE
                 binding.item1Btn1.text = "상세보기"
-                binding.itme1Btn2.text = "강의입장"
+                binding.item1Btn2.text = "강의입장"
                 binding.item1Btn3.text = "취소하기"
             } else {
                 binding.item1Btn1.visibility = View.INVISIBLE
-                binding.itme1Btn2.text = "상세보기"
+                binding.item1Btn2.text = "상세보기"
                 binding.item1Btn3.text = "신청하기"
             }
         }
 
-        binding.itme1Btn2.setOnClickListener {
-            if (binding.item1Btn3.text == "신청하기"){
+        binding.item1Btn2.setOnClickListener {
+            if (binding.item1Btn2.text == "상세보기"){
                 // 상세보기 1
                 val intent = Intent(this, CampInfo1Activity::class.java)
                 startActivity(intent)

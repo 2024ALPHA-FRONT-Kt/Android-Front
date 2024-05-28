@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
+        app:itemTextAppearanceActive="@style/main_tab"
+        app:itemTextAppearanceInactive="@style/main_tab"
         android:background="?android:attr/windowBackground"
         app:itemIconTint="@drawable/menu_click_color"
         app:itemTextColor="@drawable/menu_click_color"

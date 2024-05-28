@@ -123,7 +123,7 @@
             android:id="@+id/boot_camp_participate_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00000"
+            android:text="00024"
             android:textColor="#4F6BFC"
             android:fontFamily="@font/nanumsquareroundbold"
             android:layout_marginStart="5dp"/>
