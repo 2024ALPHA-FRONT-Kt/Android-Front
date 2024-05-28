@@ -28,6 +28,11 @@ class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>) : Recy
         return ViewHolder(inflatedView)
     }
 
+    fun addPosts(newPosts: List<KnowledgePosts>) {
+        items.addAll(newPosts)
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         private var view: View = v
         private val titleTextView: TextView = view.findViewById(R.id.view_knowledge_posts_title)
