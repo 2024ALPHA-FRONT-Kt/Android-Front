@@ -4,6 +4,7 @@ import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.ui.free_community.data_class.EditingFree
 import com.android.myapplication.ui.free_community.data_class.PostingFree
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -32,10 +33,10 @@ interface ApiService {
     ) : ResponseObject
 
     @POST("/post")
-    suspend fun postingKnowledgePost(
+    suspend fun postingFreePost(
         @Header("Authorization") authorization: String,
         @Body freePost: PostingFree
-    ) : ResponseObject
+    ): ResponseObject
 
     @DELETE("/post")
     suspend fun deleteFree(
