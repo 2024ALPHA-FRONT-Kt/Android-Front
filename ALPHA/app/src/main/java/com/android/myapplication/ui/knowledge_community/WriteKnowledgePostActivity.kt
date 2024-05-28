@@ -1,11 +1,14 @@
 package com.android.myapplication.ui.knowledge_community
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityWriteKnowledgePostBinding
+import com.android.myapplication.ui.disc.DiscActivity
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -19,11 +22,13 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
     private val gson = Gson()
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
+    private val id: String = App.prefs.getItem("userId", "noID")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteKnowledgePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         binding.writingKnowledgePostUpload.setOnClickListener {
             val title = binding.writingKnowledgePostTitle.text.toString()
@@ -41,7 +46,7 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                 }
                 else -> {
                     val postingKnowledge = PostingKnowledge(
-                        id = "", // todo 여기어
+                        id = id,
                         title = title,
                         content = body,
                         image = "null",
@@ -50,9 +55,9 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                     GlobalScope.launch(Dispatchers.IO) {
                         try {
                             val responseData = apiService.postingKnowledgePost(token, postingKnowledge)
-                            // todo 업로드 성공
+                            Log.d("rufrhk!", responseData.toString())
                         } catch (e: Exception) {
-                            // todo 업로드 실패
+                            Log.d("rufrhk!", e.toString())
                         }
                     }
                 }
@@ -60,7 +65,8 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
         }
 
         binding.writingKnowledgePostCancel.setOnClickListener {
-            // todo 취소 버튼 클릭 시
+            val intent = Intent(this, KnowledgePostListActivity::class.java)
+            startActivity(intent)
         }
     }
 }
