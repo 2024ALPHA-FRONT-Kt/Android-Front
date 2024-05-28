@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,6 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.free_community.WriteFreePostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.free_community.ViewFreePostPlusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.free_community.ViewFreePostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.free_community.FreePostListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.free_community.PostListActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.user.EditActivity"
             android:exported="false" />

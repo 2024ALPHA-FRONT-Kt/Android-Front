@@ -1,27 +1,21 @@
 package com.android.myapplication.ui.free_community
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
-import com.android.myapplication.databinding.FragmentFreePostListBinding
-import com.android.myapplication.ui.knowledge_community.KnowledgePosts
-import com.android.myapplication.ui.knowledge_community.KnowledgePostsAdapter
+import com.android.myapplication.databinding.ActivityFreePostListBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FreePostListFragment : Fragment() {
+class FreePostListActivity : AppCompatActivity() {
 
-    private var _binding: FragmentFreePostListBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityFreePostListBinding
     private lateinit var adapter: FreePostAdapter
     private var currentPage = 0
 
@@ -30,18 +24,14 @@ class FreePostListFragment : Fragment() {
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentFreePostListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityFreePostListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        adapter = FreePostAdapter(arrayListOf())
 
-        binding.freeListView.layoutManager = LinearLayoutManager(context)
+        binding.freeListView.layoutManager = LinearLayoutManager(this)
         binding.freeListView.adapter = adapter
 
         binding.freeListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -72,13 +62,8 @@ class FreePostListFragment : Fragment() {
                     adapter.addPosts(newPosts)
                 }
             } catch (e: Exception) {
-                // todo
+                // todo 예외 처리
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
