@@ -14,6 +14,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.json.JSONObject.NULL
 
 class WriteKnowledgePostActivity : AppCompatActivity() {
 
@@ -49,15 +50,14 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                         id = id,
                         title = title,
                         content = body,
-                        image = "null",
+                        image = NULL,
                         postType = "QNA"
                     )
                     GlobalScope.launch(Dispatchers.IO) {
                         try {
                             val responseData = apiService.postingKnowledgePost(token, postingKnowledge)
-                            Log.d("rufrhk!", responseData.toString())
                         } catch (e: Exception) {
-                            Log.d("rufrhk!", e.toString())
+                            Log.d("error", e.toString())
                         }
                     }
                 }
