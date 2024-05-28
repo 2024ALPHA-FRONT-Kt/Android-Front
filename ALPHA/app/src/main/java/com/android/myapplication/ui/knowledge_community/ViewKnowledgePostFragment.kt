@@ -13,7 +13,7 @@ class ViewKnowledgePostFragment : Fragment() {
     private val binding get() = _binding!!
 
     companion object {
-        fun newInstance() = ViewKnowledgePostFragment()
+        fun newInstance(item: KnowledgePosts) = ViewKnowledgePostFragment()
     }
 
     override fun onCreateView(

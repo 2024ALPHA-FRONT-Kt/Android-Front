@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.App
+import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.FragmentKnowledgePostListBinding
 import com.google.gson.Gson
@@ -41,7 +42,13 @@ class KnowledgePostListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val initialList = ArrayList<KnowledgePosts>()
-        adapter = KnowledgePostsAdapter(initialList)
+        adapter = KnowledgePostsAdapter(initialList) { item ->
+            val fragment = ViewKnowledgePostFragment.newInstance(item)
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.navigation_view_knowledge_post, fragment)
+                ?.addToBackStack(null)
+                ?.commit()
+        }
 
         binding.knowledgeListView.layoutManager = LinearLayoutManager(context)
         binding.knowledgeListView.adapter = adapter

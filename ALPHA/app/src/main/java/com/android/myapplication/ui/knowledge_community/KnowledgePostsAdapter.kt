@@ -8,19 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
 
-class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>) : RecyclerView.Adapter<KnowledgePostsAdapter.ViewHolder>() {
+class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>, private val onItemClick: (KnowledgePosts) -> Unit) : RecyclerView.Adapter<KnowledgePostsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        val listener = View.OnClickListener {
-            // todo
-        }
-        holder.apply {
-            bind(listener, item)
-            itemView.tag = item
-        }
+        holder.bind(item)
+        holder.itemView.setOnClickListener { onItemClick(item) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,17 +29,15 @@ class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>) : Recy
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        private var view: View = v
-        private val titleTextView: TextView = view.findViewById(R.id.view_knowledge_posts_title)
-        private val contentTextView: TextView = view.findViewById(R.id.view_knowledge_post_content)
-        private val dateTextView: TextView = view.findViewById(R.id.view_knowledge_post_date)
-        private val answeringButton: ImageView = view.findViewById(R.id.knowledge_answering_button)
+        private val titleTextView: TextView = v.findViewById(R.id.view_knowledge_posts_title)
+        private val contentTextView: TextView = v.findViewById(R.id.view_knowledge_post_content)
+        private val dateTextView: TextView = v.findViewById(R.id.view_knowledge_post_date)
+        private val answeringButton: ImageView = v.findViewById(R.id.knowledge_answering_button)
 
-        fun bind(listener: View.OnClickListener, item: KnowledgePosts) {
+        fun bind(item: KnowledgePosts) {
             titleTextView.text = item.view_knowledge_posts_title
             contentTextView.text = item.view_knowledge_posts_content
             dateTextView.text = item.view_knowledge_posts_date
-            answeringButton.setOnClickListener(listener)
         }
     }
 }
