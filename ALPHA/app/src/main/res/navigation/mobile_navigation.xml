@@ -17,24 +17,4 @@
         android:label="@string/title_mypage"
         tools:layout="@layout/fragment_mypage" />
 
-    <fragment
-        android:id="@+id/navigation_knowledge_post_list"
-        android:name="com.android.myapplication.ui.knowledge_community.KnowledgePostListFragment"
-        tools:layout="@layout/fragment_knowledge_post_list" />
-
-    <fragment
-        android:id="@+id/navigation_view_knowledge_post"
-        android:name="com.android.myapplication.ui.knowledge_community.ViewKnowledgePostFragment"
-        tools:layout="@layout/fragment_view_knowledge_post" />
-
-    <fragment
-        android:id="@+id/navigation_view_knowledge_post_with_answer"
-        android:name="com.android.myapplication.ui.knowledge_community.ViewKnowledgePostWithAnswerFragment"
-        tools:layout="@layout/fragment_view_knowledge_post_with_answer" />
-
-    <fragment
-        android:id="@+id/navigation_write_knowledge_post"
-        android:name="com.android.myapplication.ui.knowledge_community.WriteKnowledgePostFragment"
-        tools:layout="@layout/fragment_write_knowledge_post" />
-
 </navigation>

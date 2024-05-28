@@ -32,7 +32,6 @@ class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>, privat
         private val titleTextView: TextView = v.findViewById(R.id.view_knowledge_posts_title)
         private val contentTextView: TextView = v.findViewById(R.id.view_knowledge_post_content)
         private val dateTextView: TextView = v.findViewById(R.id.view_knowledge_post_date)
-        private val answeringButton: ImageView = v.findViewById(R.id.knowledge_answering_button)
 
         fun bind(item: KnowledgePosts) {
             titleTextView.text = item.view_knowledge_posts_title
