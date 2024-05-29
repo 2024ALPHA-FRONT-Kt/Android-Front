@@ -92,6 +92,13 @@ class MyPageFragment : Fragment() {
             }
         }
 
+        binding.testResult.setOnClickListener {
+            activity.let {
+                val intent = Intent(context, ResActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
         return root
     }
 
