@@ -27,6 +27,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.knowledge_community.KnowledgePostListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.mypage.ResActivity"
             android:exported="false" />
         <provider

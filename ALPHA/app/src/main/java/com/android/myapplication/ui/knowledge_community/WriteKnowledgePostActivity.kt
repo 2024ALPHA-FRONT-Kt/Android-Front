@@ -46,10 +46,10 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                 }
                 else -> {
                     val postingKnowledge = PostingKnowledge(
-                        id = id,
+                        id = null,
                         title = title,
                         content = body,
-                        image = NULL,
+                        image = null,
                         postType = "QNA"
                     )
                     GlobalScope.launch(Dispatchers.IO) {

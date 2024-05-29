@@ -59,6 +59,7 @@ interface ApiService {
     suspend fun knowledgePostDetail(
         @Header("Authorization") authorization: String,
         @Query("id") id: String
+    ): ResponseObject
       
     @POST("/DISC")
     suspend fun postDiscTestResult(

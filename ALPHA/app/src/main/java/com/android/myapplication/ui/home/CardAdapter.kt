@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
 import com.android.myapplication.ui.bootcamp.CampActivity
 import com.android.myapplication.ui.disc.DiscActivity
+import com.android.myapplication.ui.knowledge_community.KnowledgePostListActivity
 
 class CardAdapter(var cardImage: ArrayList<Int>) :
     RecyclerView.Adapter<CardAdapter.PagerViewHolder>() {
@@ -33,6 +34,9 @@ class CardAdapter(var cardImage: ArrayList<Int>) :
                 ContextCompat.startActivity(holder.itemView.context,intent,null)
             } else if (position == 0) {
                 val intent = Intent(holder.itemView.context, CampActivity::class.java)
+                ContextCompat.startActivity(holder.itemView.context,intent,null)
+            } else {
+                val intent = Intent(holder.itemView.context, KnowledgePostListActivity::class.java)
                 ContextCompat.startActivity(holder.itemView.context,intent,null)
             }
         }
