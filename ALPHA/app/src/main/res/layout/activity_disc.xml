@@ -125,7 +125,7 @@
             android:fontFamily="@font/nanumsquareroundbold"/>
 
         <TextView
-            android:id="@+id/disc_participate_text"
+            android:id="@+id/disc_users"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00000"
