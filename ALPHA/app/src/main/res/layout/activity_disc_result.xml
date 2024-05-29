@@ -210,7 +210,7 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/disc_character"
+            android:id="@+id/disc_test_result_page_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="15dp"
@@ -220,7 +220,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/disc_test_result_page_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
