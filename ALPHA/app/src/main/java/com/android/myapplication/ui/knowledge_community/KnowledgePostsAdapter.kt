@@ -1,20 +1,18 @@
 package com.android.myapplication.ui.knowledge_community
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.App
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import com.android.myapplication.ui.knowledge_community.data_class.PostList
+import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
 import kotlinx.coroutines.launch
 
-class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>, private val onItemClick: (KnowledgePosts) -> Unit) : RecyclerView.Adapter<KnowledgePostsAdapter.ViewHolder>() {
+class KnowledgePostsAdapter(private val items: MutableList<PostList>) : RecyclerView.Adapter<KnowledgePostsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = items.size
     val apiService = RetrofitClient.apiservice
@@ -23,12 +21,8 @@ class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>, privat
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.bind(item)
-        holder.itemView.setOnClickListener { onItemClick(item) }
-        GlobalScope.launch(Dispatchers.IO) {
-            val page = 0
-            val postType = "QNA" // 고정값
-            val responseData = apiService.knowLedgeLists(token, postType, page)
-            Log.d("dmd!!", responseData.toString())
+        holder.itemView.setOnClickListener {
+            val postId = item.id
         }
     }
 
@@ -37,7 +31,7 @@ class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>, privat
         return ViewHolder(inflatedView)
     }
 
-    fun addPosts(newPosts: List<KnowledgePosts>) {
+    fun addPosts(newPosts: List<PostList>) {
         items.addAll(newPosts)
         notifyDataSetChanged()
     }
@@ -46,9 +40,9 @@ class KnowledgePostsAdapter(private val items: ArrayList<KnowledgePosts>, privat
         private val titleTextView: TextView = v.findViewById(R.id.view_knowledge_posts_title)
         private val contentTextView: TextView = v.findViewById(R.id.view_knowledge_post_content)
 
-        fun bind(item: KnowledgePosts) {
-            titleTextView.text = item.view_knowledge_posts_title
-            contentTextView.text = item.view_knowledge_posts_content
+        fun bind(item: PostList) {
+            titleTextView.text = item.title
+            contentTextView.text = item.content
         }
     }
 }

@@ -2,12 +2,20 @@ package com.android.myapplication.ui.knowledge_community
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityKnowledgePostListBinding
+import com.android.myapplication.ui.knowledge_community.data_class.PostList
 import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class KnowledgePostListActivity : AppCompatActivity() {
 
@@ -23,54 +31,36 @@ class KnowledgePostListActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val list = ArrayList<KnowledgePosts>()
-        list.add(
-            KnowledgePosts(
-                "저 학교 어떻게 다녀야 할까요?",
-                "저 생기부 작성하려고 하는데 혹시 스포츠 건강재활학광서 어떤 것ㅇㄹ 강조하는지 혹시 꿀팁 주실 수 있나요 ㅠㅠ 주면 감사랑 치킨",
-                "0000-00-00"
-            )
-        )
-        list.add(
-            KnowledgePosts(
-                "저 학교 어떻게 다녀야 할까요?",
-                "저 생기부 작성하려고 하는데 혹시 스포츠 건강재활학광서 어떤 것ㅇㄹ 강조하는지 혹시 꿀팁 주실 수 있나요 ㅠㅠ 주면 감사랑 치킨",
-                "0000-00-00"
-            )
-        )
-        list.add(
-            KnowledgePosts(
-                "저 학교 어떻게 다녀야 할까요?",
-                "저 생기부 작성하려고 하는데 혹시 스포츠 건강재활학광서 어떤 것ㅇㄹ 강조하는지 혹시 꿀팁 주실 수 있나요 ㅠㅠ 주면 감사랑 치킨",
-                "0000-00-00"
-            )
-        )
-        list.add(
-            KnowledgePosts(
-                "저 학교 어떻게 다녀야 할까요?",
-                "저 생기부 작성하려고 하는데 혹시 스포츠 건강재활학광서 어떤 것ㅇㄹ 강조하는지 혹시 꿀팁 주실 수 있나요 ㅠㅠ 주면 감사랑 치킨",
-                "0000-00-00"
-            )
-        )
-        list.add(
-            KnowledgePosts(
-                "저 학교 어떻게 다녀야 할까요?",
-                "저 생기부 작성하려고 하는데 혹시 스포츠 건강재활학광서 어떤 것ㅇㄹ 강조하는지 혹시 꿀팁 주실 수 있나요 ㅠㅠ 주면 감사랑 치킨",
-                "0000-00-00"
-            )
-        )
-
         val recyclerView = binding.knowledgeListView
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = KnowledgePostsAdapter(list) {
-            // todo
-        }
 
         binding.knowledgePostsListWritingButton.setOnClickListener {
             val intent = Intent(this, WriteKnowledgePostActivity::class.java)
             startActivity(intent)
         }
 
-        recyclerView.adapter = adapter
+        GlobalScope.launch(Dispatchers.IO) {
+            val page = 0
+            val postType = "QNA" // 고정값
+            val responseData = apiService.knowLedgeLists(token, postType, page)
+            Log.d("dmd!!", responseData.data.toString())
+            val ddd = gson.fromJson(responseData.data.toString(), JsonArray::class.java)
+
+            val mList: MutableList<PostList> = mutableListOf()
+
+            for (i in ddd){
+                val postObject = i.asJsonObject
+                val id = postObject.get("id").asString
+                val content = postObject.get("content").asString
+                val title = postObject.get("title").asString
+                mList.add(PostList(id,content,title))
+            }
+
+            binding.root.post{
+                recyclerView.adapter = KnowledgePostsAdapter(mList)
+            }
+
+        }
+
     }
 }
