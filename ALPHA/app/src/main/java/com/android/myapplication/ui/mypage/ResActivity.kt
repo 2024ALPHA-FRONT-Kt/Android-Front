@@ -13,11 +13,19 @@ import com.android.myapplication.ui.disc.DiscActivity
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.android.myapplication.App
 import com.android.myapplication.MainActivity
+import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityResBinding
 import com.android.myapplication.databinding.ActivityStep2HighBinding
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -46,12 +54,45 @@ class ResActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // api 연결
+        val apiService = RetrofitClient.apiservice
+        val gson = Gson()
+        val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
+        val token = "Bearer ${globalAccessToken.replace("\"", "")}"
+
         val shareButton: Button = binding.resultPageShareButton
         shareButton.setOnClickListener {
             val screenshot = takeScreenshot()
             val imageUri = saveScreenshot(screenshot)
             shareImage(imageUri)
         }
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val responseData = apiService.getDiscTestResult(token) // API 호출
+                val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                val dd = data["discCode"].toString().replace("\"", "")
+                Log.e("data",data.toString())
+                Log.e("dd",dd)
+
+//                val discType = realData["category"].asString
+//                val discTypeEn = realData["key"].asString
+//                val discPros = realData["pros"].asString
+//                val discEx = realData["ex"].asString
+//                val discJob = realData["job"].asString
+//                val discProsJob = realData["prosJob"].asString
+
+//                binding.discType.text = "$discType - $discTypeEn"
+//                binding.discPros.text = discPros
+//                binding.discEx.text = discEx
+//                binding.discJob.text = discJob
+//                binding.discPos.text = discProsJob
+
+            } catch (e: Exception) {
+                Log.e("Error", e.message.toString()) // 에러 로그
+            }
+        }
+
     }
     private fun takeScreenshot(): Bitmap {
         val rootView = window.decorView.findViewById<View>(android.R.id.content)

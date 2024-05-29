@@ -32,6 +32,12 @@ interface ApiService {
         @Body discTestResult: DiscTestResult
     ): ResponseObject
 
+    @GET("/DISC")
+    suspend fun getDiscTestResult(
+        @Header("Authorization") token: String
+    ): ResponseObject
+
+
     @GET("/DISC-headcount")
     suspend fun getDiscUsers(
         @Header("Authorization") token: String

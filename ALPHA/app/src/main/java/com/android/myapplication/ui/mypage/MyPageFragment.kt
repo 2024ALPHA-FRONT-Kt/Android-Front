@@ -98,7 +98,6 @@ class MyPageFragment : Fragment() {
                 startActivity(intent)
             }
         }
-
         return root
     }
 

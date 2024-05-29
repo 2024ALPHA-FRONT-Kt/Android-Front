@@ -32,7 +32,7 @@ class DiscActivity : AppCompatActivity() {
                 val responseData = apiService.getDiscUsers(token)
                 val discUsers = responseData.data // 이미 int라서 바꿀 수가 없는 것 같은데 우째야 합미까
                 withContext(Dispatchers.Main) {
-                    binding.discUsers.text = discUsers.toString()
+                    binding.discUsers.text = discUsers.toString().substring(0 until -2)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
