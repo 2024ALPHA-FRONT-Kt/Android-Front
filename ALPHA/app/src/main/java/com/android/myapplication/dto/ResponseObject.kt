@@ -1,7 +1,6 @@
 package com.android.myapplication.dto
 
-
 data class ResponseObject(
-    val message : String,
-    val data : Any
+    val message: String,
+    val data: Any
 )

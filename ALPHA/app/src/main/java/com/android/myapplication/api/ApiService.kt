@@ -2,6 +2,7 @@ package com.android.myapplication.api
 
 import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ResponseObject
+import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.android.myapplication.dto.SignInProfile
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -21,10 +22,19 @@ interface ApiService {
 
     @GET("/user")
     suspend fun myPage(@Header("Authorization") Authorization: String): ResponseObject
-
+  
     @PUT("/user")
     suspend fun editProfile(@Header("Authorization") Authorization: String,@Body data: EditProfile): ResponseObject
 
+    @POST("/DISC")
+    suspend fun postDiscTestResult(
+        @Header("Authorization") token: String,
+        @Body discTestResult: DiscTestResult
+    ): ResponseObject
 
+    @GET("/DISC-headcount")
+    suspend fun getDiscUsers(
+        @Header("Authorization") token: String
+    ) : ResponseObject
 
 }

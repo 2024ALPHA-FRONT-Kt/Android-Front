@@ -4,68 +4,78 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputType
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.myapplication.R
+import com.android.myapplication.databinding.ActivityDiscTest3Binding
+import com.android.myapplication.ui.disc.data_class.DiscScore
 
 class DiscTest3Activity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityDiscTest3Binding
+    private lateinit var discScore: DiscScore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_disc_test3)
+        binding = ActivityDiscTest3Binding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide()
+
+        discScore = intent.getParcelableExtra("DISC_SCORE") ?: DiscScore()
 
         setEditTextInputType()
 
-        findViewById<Button>(R.id.disc_next_page_3).setOnClickListener {
+        binding.discNextPage3.setOnClickListener {
             if (validateInputs()) {
-                val intent = Intent(this, DiscTest4Activity::class.java)
+                val intent = Intent(this, DiscTest4Activity::class.java).apply {
+                    putExtra("DISC_SCORE", discScore)
+                }
                 startActivity(intent)
             }
         }
 
-        findViewById<ImageView>(R.id.disc_test_back_button_3).setOnClickListener {
-            val intent = Intent(this, DiscActivity::class.java)
+        binding.discTestBackButton3.setOnClickListener {
+            binding.discQ5A1.text.clear()
+            binding.discQ5A2.text.clear()
+            binding.discQ5A3.text.clear()
+            binding.discQ5A4.text.clear()
+            binding.discQ6A1.text.clear()
+            binding.discQ6A2.text.clear()
+            binding.discQ6A3.text.clear()
+            binding.discQ6A4.text.clear()
+            val intent = Intent(this, DiscTest2Activity::class.java).apply {
+                putExtra("DISC_SCORE", discScore)
+            }
             startActivity(intent)
         }
-
-        val progressBar = findViewById<ProgressBar>(R.id.disc_progress_bar)
-        progressBar.updateDiscProBar(10)
     }
 
     private fun setEditTextInputType() {
         val editTexts = listOf(
-            R.id.disc_q5_a1, R.id.disc_q5_a2, R.id.disc_q5_a3, R.id.disc_q5_a4,
-            R.id.disc_q6_a1, R.id.disc_q6_a2, R.id.disc_q6_a3, R.id.disc_q6_a4
+            binding.discQ5A1, binding.discQ5A2, binding.discQ5A3, binding.discQ5A4,
+            binding.discQ6A1, binding.discQ6A2, binding.discQ6A3, binding.discQ6A4
         )
 
-        for (editTextId in editTexts) {
-            val editText = findViewById<EditText>(editTextId)
+        for (editText in editTexts) {
             editText.inputType = InputType.TYPE_CLASS_NUMBER
             editText.filters = arrayOf(InputFilter.LengthFilter(1))
         }
     }
 
     private fun validateInputs(): Boolean {
-        val q3Values = mutableSetOf<Int>()
-        val q4Values = mutableSetOf<Int>()
+        val q5Values = mutableSetOf<Int>()
+        val q6Values = mutableSetOf<Int>()
 
         for (i in 1..4) {
-            q3Values.add(i)
-            q4Values.add(i)
+            q5Values.add(i)
+            q6Values.add(i)
         }
 
         val editTexts = listOf(
-            R.id.disc_q5_a1, R.id.disc_q5_a2, R.id.disc_q5_a3, R.id.disc_q5_a4,
-            R.id.disc_q6_a1, R.id.disc_q6_a2, R.id.disc_q6_a3, R.id.disc_q6_a4
+            binding.discQ5A1, binding.discQ5A2, binding.discQ5A3, binding.discQ5A4,
+            binding.discQ6A1, binding.discQ6A2, binding.discQ6A3, binding.discQ6A4
         )
 
-        for (editTextId in editTexts) {
-            val editText = findViewById<EditText>(editTextId)
+        for (editText in editTexts) {
             val text = editText.text.toString()
 
             if (text.isEmpty()) {
@@ -79,13 +89,20 @@ class DiscTest3Activity : AppCompatActivity() {
                 return false
             }
 
-            if (editTextId in listOf(R.id.disc_q5_a1, R.id.disc_q5_a2, R.id.disc_q5_a3, R.id.disc_q5_a4)) {
-                if (!q3Values.remove(value)) {
+            when (editText) {
+                binding.discQ5A1, binding.discQ6A1 -> discScore.DScore += value
+                binding.discQ5A2, binding.discQ6A2 -> discScore.IScore += value
+                binding.discQ5A3, binding.discQ6A3 -> discScore.SScore += value
+                binding.discQ5A4, binding.discQ6A4 -> discScore.CScore += value
+            }
+
+            if (editText in listOf(binding.discQ5A1, binding.discQ5A2, binding.discQ5A3, binding.discQ5A4)) {
+                if (!q5Values.remove(value)) {
                     Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
                     return false
                 }
-            } else if (editTextId in listOf(R.id.disc_q6_a1, R.id.disc_q6_a2, R.id.disc_q6_a3, R.id.disc_q6_a4)) {
-                if (!q4Values.remove(value)) {
+            } else if (editText in listOf(binding.discQ6A1, binding.discQ6A2, binding.discQ6A3, binding.discQ6A4)) {
+                if (!q6Values.remove(value)) {
                     Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
                     return false
                 }
