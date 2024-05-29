@@ -38,8 +38,7 @@ class ResActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.pageBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
 
         binding.resultPageCompleteButton.setOnClickListener {
