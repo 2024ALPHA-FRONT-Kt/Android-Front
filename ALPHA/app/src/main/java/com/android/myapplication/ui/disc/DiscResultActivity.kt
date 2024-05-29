@@ -64,7 +64,7 @@ class DiscResultActivity : AppCompatActivity() {
         val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
 
-        discScore = intent.getParcelableExtra("DISC_SCORE") ?: DiscScore() // 전달받은 DiscScore
+        discScore = intent.getParcelableExtra("DISC_SCORE") ?: DiscScore()
 
         val disc = DiscTestResult(
             dscore = discScore.DScore,
@@ -75,31 +75,31 @@ class DiscResultActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                // API 호출 예제
                 val responseData = apiService.postDiscTestResult(token, disc)
+                val input = responseData.data.toString()
+                Log.e("response", input)
+                val cleanedInput = input.trim().removeSurrounding("{", "}")
+                val sp = cleanedInput.split(", discCode=").map { it.trim() }
+                val discC = sp[1]
+                val discCode = parseStringToMap(discC)
+                Log.e("parse", discCode.toString())
 
-                // API 응답 데이터 확인
-                val jsonData = gson.fromJson(responseData.toString(), JsonObject::class.java)
-                Log.e("API Response Data", jsonData.toString())
-                Log.e("API Response Data", jsonData["discCode"].toString())
+                val sameUsers = sp[0]
+                val discType = discCode["category"]
+                val discTypeEn = discCode["key"]
+                val discPros = discCode["pros"]
+                val discEx = discCode["ex"]
+                val discJob = discCode["job"]
 
-//                val realData = data["discCode"].asJsonObject
-//
-//                val discType = realData["category"].asString
-//                val discTypeEn = realData["key"].asString
-//                val discPros = realData["pros"].asString
-//                val discEx = realData["ex"].asString
-//                val discJob = realData["job"].asString
-//                val discProsJob = realData["prosJob"].asString
-//
-//                binding.discType.text = "$discType - $discTypeEn"
-//                binding.discPros.text = discPros
-//                binding.discEx.text = discEx
-//                binding.discJob.text = discJob
-//                binding.discPos.text = discProsJob
-
+                binding.root.post {
+                    binding.discType.text = "$discType - $discTypeEn"
+                    binding.discPros.text = discPros
+                    binding.discEx.text = discEx
+                    binding.discJob.text = discJob
+                    binding.discSameUsers.text = sameUsers.substring(12 until sameUsers.length-2)
+                }
             } catch (e: Exception) {
-                Log.e("Error", e.message.toString()) // 에러 로그
+                Log.e("Error", e.message.toString())
             }
         }
     }
@@ -138,4 +138,22 @@ class DiscResultActivity : AppCompatActivity() {
         }
         startActivity(Intent.createChooser(shareIntent, "DISC 테스트 결과 공유하기"))
     }
+        private fun parseStringToMap(input: String): Map<String, String> {
+            val cleanedInput = input.trim().removeSurrounding("{", "}")
+
+            val entries = cleanedInput.split("(?<=\\w)(,\\s)(?=\\w+=)".toRegex())
+
+            val map = mutableMapOf<String, String>()
+            for (entry in entries) {
+                val keyValue = entry.split("=", limit = 2)
+                if (keyValue.size == 2) {
+                    val key = keyValue[0].trim()
+                    val value = keyValue[1].trim()
+                    map[key] = value
+                }
+            }
+
+            return map
+        }
+
 }

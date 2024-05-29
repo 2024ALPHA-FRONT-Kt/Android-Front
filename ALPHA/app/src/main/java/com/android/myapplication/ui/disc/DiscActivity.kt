@@ -30,9 +30,9 @@ class DiscActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val responseData = apiService.getDiscUsers(token)
-                val discUsers = responseData.data // 이미 int라서 바꿀 수가 없는 것 같은데 우째야 합미까
+                val discUsers = responseData.data.toString()
                 withContext(Dispatchers.Main) {
-                    binding.discUsers.text = discUsers.toString().substring(0 until -2)
+                    binding.discUsers.text = discUsers.toString().substring(0 until discUsers.toString().length-2)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
