@@ -1,9 +1,12 @@
 package com.android.myapplication.ui.home
 
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
@@ -36,6 +39,23 @@ class CardAdapter(var cardImage: ArrayList<Int>) :
             } else if (position == 0) {
                 val intent = Intent(holder.itemView.context, CampActivity::class.java)
                 ContextCompat.startActivity(holder.itemView.context, intent, null)
+            } else {
+                // Dialog만들기
+                val mDialogView = LayoutInflater.from(holder.itemView.context).inflate(R.layout.popup_select_community, null)
+                val mBuilder = AlertDialog.Builder(holder.itemView.context)
+                    .setView(mDialogView)
+                mBuilder.show()
+
+                val free = mDialogView.findViewById<TextView>(R.id.free)
+                free.setOnClickListener {
+                    val intent = Intent(holder.itemView.context, CampActivity::class.java)
+                    ContextCompat.startActivity(holder.itemView.context, intent, null)
+                }
+                val know = mDialogView.findViewById<TextView>(R.id.know)
+                free.setOnClickListener {
+                    val intent = Intent(holder.itemView.context, CampActivity::class.java)
+                    ContextCompat.startActivity(holder.itemView.context, intent, null)
+                }
             }
         }
     }
