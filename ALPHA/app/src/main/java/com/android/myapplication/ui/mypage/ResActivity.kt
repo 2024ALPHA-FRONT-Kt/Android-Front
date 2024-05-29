@@ -71,19 +71,19 @@ class ResActivity : AppCompatActivity() {
                 val discCode = parseStringToMap(discC)
                 Log.e("parse", discCode.toString())
 
+                val sameUsers = sp[0]
                 val discType = discCode["category"]
                 val discTypeEn = discCode["key"]
                 val discPros = discCode["pros"]
                 val discEx = discCode["ex"]
                 val discJob = discCode["job"]
-                val discProsJob = discCode["prosJob"]
 
                 binding.root.post {
                     binding.discType.text = "$discType - $discTypeEn"
                     binding.discPros.text = discPros
                     binding.discEx.text = discEx
                     binding.discJob.text = discJob
-                    binding.discPos.text = discProsJob
+                    binding.discSameUsers.text = sameUsers.substring(12 until sameUsers.length-2)
                 }
 
             } catch (e: Exception) {

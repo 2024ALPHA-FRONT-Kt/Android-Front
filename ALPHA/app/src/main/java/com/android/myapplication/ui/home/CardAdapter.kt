@@ -53,7 +53,7 @@ class CardAdapter(var cardImage: ArrayList<Int>) :
                     ContextCompat.startActivity(holder.itemView.context, intent, null)
                 }
                 val know = mDialogView.findViewById<TextView>(R.id.know)
-                free.setOnClickListener {
+                know.setOnClickListener {
                     val intent = Intent(holder.itemView.context,  KnowledgePostListActivity::class.java)
                     ContextCompat.startActivity(holder.itemView.context, intent, null)
                 }
