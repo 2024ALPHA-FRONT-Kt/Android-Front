@@ -55,13 +55,12 @@ class DiscResultActivity : AppCompatActivity() {
             shareImage(imageFile)
         }
 
-
         val apiService = RetrofitClient.apiservice
         val gson = Gson()
         val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
 
-        val discScore = intent.getParcelableExtra<DiscScore>("DISC_SCORE") ?: DiscScore()
+        discScore = intent.getParcelableExtra("DISC_SCORE") ?: DiscScore() // 전달받은 DiscScore
 
         val disc = DiscTestResult(
             dscore = discScore.DScore,
@@ -72,30 +71,25 @@ class DiscResultActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val responseData = apiService.postDiscTestResult(token, disc)
+                val responseData = apiService.postDiscTestResult(token, disc) // API 호출
                 val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-//                val realData = data["discCode"].toString()
+                val realData = data["discCode"].asJsonObject
 
-                Log.d("datadatadata", data.toString())
-//                Log.d("realrealreal", realData)
+                val discType = realData["category"].asString
+                val discTypeEn = realData["key"].asString
+                val discPros = realData["pros"].asString
+                val discEx = realData["ex"].asString
+                val discJob = realData["job"].asString
+                val discProsJob = realData["prosJob"].asString
 
-//                val discType = realData["category"].toString().replace("\"", "")
-//                val discTypeEn = realData["key"].toString().replace("\"", "")
-//                val discPros = realData["pros"].toString().replace("\"", "")
-//                val discEx = realData["ex"].toString().replace("\"", "")
-//                val discJob = realData["job"].toString().replace("\"", "")
-//                val discProsJob = realData["prosJob"].toString().replace("\"", "")
-//
-//                binding.discType.text = "$discType - $discTypeEn"
-//                binding.discPros.text = discPros
-//                binding.discEx.text = discEx
-//                binding.discJob.text = discJob
-//                binding.discPos.text = discProsJob
-                Log.e("Response", responseData.toString())
-
+                binding.discType.text = "$discType - $discTypeEn"
+                binding.discPros.text = discPros
+                binding.discEx.text = discEx
+                binding.discJob.text = discJob
+                binding.discPos.text = discProsJob
 
             } catch (e: Exception) {
-                Log.e("Error", e.message.toString())
+                Log.e("Error", e.message.toString()) // 에러 로그
             }
         }
     }
