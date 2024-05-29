@@ -6,7 +6,6 @@ import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowle
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.android.myapplication.dto.SignInProfile
-import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
