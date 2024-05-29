@@ -1,11 +1,9 @@
 package com.android.myapplication.ui.bootcamp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.android.myapplication.R
-import com.android.myapplication.databinding.ActivityCampClassBinding
 import com.android.myapplication.databinding.ActivityCampInfo1Binding
 import com.google.android.material.tabs.TabLayoutMediator
 

@@ -35,68 +35,111 @@ class LogInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 로그인 기능
-        binding.loginBtn.setOnClickListener{
+        binding.loginBtn.setOnClickListener {
             //  서버에 로그인 요청
             val userId = binding.userId.text.toString()
             val userPw = binding.userPw.text.toString()
             // editText가 비어있는지 확인
-            if (userId.trim().isEmpty() || userPw.trim().isEmpty()){
+            if (userId.trim().isEmpty() || userPw.trim().isEmpty()) {
                 Toast.makeText(applicationContext, "입력을 완료해 주세요", Toast.LENGTH_SHORT).show()
             } else {
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
-                        val responseData = apiService.login(userId,userPw)
+                        val responseData = apiService.login(userId, userPw)
                         // 응답 데이터를 사용하여 작업 수행
                         Log.e("Response", responseData.toString())
-                        val data = gson.fromJson(responseData.data.toString(),JsonObject::class.java)
+                        val data =
+                            gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                         // 받은 토큰 저장
                         App.prefs.addItem("accessToken", data["accessToken"].toString()) // access
-                        App.prefs.addItem("refreshToken", data["refreshToken"].toString()) // refresh
-                        Log.e("token",data["accessToken"].toString())
+                        App.prefs.addItem(
+                            "refreshToken",
+                            data["refreshToken"].toString()
+                        ) // refresh
+                        Log.e("token", data["accessToken"].toString())
                         loginBool = 1 // 로그인 성공 여부 적용
                         IntentAct(loginBool) // 화면 전환
                     } catch (e: Exception) {
-                        if (e is retrofit2.HttpException){
-                            if (e.code() == 404){
+                        if (e is retrofit2.HttpException) {
+                            if (e.code() == 404) {
                                 val errorBody = e.response()?.errorBody()?.string()
-                                val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
-                                Log.e("404에러",errorResponse.toString())
-                                runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
-                            }else {
+                                val errorResponse: ExceptionDto? =
+                                    gson.fromJson(errorBody, ExceptionDto::class.java)
+                                Log.e("404에러", errorResponse.toString())
+                                runOnUiThread {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "다시 확인해 주세요",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            } else {
                                 Log.e("Error", e.message.toString())
-                                runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
+                                runOnUiThread {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "다시 확인해 주세요",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
                         } else {
                             Log.e("Error", e.message.toString())
-                            runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
+                            runOnUiThread {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "다시 확인해 주세요",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
                 }
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
                         // token 가져오기
-                        val globalAccessToken: String = App.prefs.getItem("accessToken","no Token")
+                        val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
                         // user정보 가져오기
                         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
                         val responseData = apiService.myPage(token)
                         Log.e("Response", responseData.toString())
-                        val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                        val userId= data["loginId"].toString().replace("\"", "")
-                        App.prefs.addItem("userId",userId)
+                        val data =
+                            gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                        val userId = data["loginId"].toString().replace("\"", "")
+                        App.prefs.addItem("userId", userId)
                     } catch (e: Exception) {
-                        if (e is retrofit2.HttpException){
-                            if (e.code() == 404){
+                        if (e is retrofit2.HttpException) {
+                            if (e.code() == 404) {
                                 val errorBody = e.response()?.errorBody()?.string()
-                                val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
-                                Log.e("404에러",errorResponse.toString())
-                                runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
-                            }else {
+                                val errorResponse: ExceptionDto? =
+                                    gson.fromJson(errorBody, ExceptionDto::class.java)
+                                Log.e("404에러", errorResponse.toString())
+                                runOnUiThread {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "다시 확인해 주세요",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            } else {
                                 Log.e("Error", e.message.toString())
-                                runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
+                                runOnUiThread {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "다시 확인해 주세요",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
                         } else {
                             Log.e("Error", e.message.toString())
-                            runOnUiThread{ Toast.makeText(applicationContext,"다시 확인해 주세요", Toast.LENGTH_SHORT).show() }
+                            runOnUiThread {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "다시 확인해 주세요",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
                 }
@@ -108,13 +151,20 @@ class LogInActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    fun IntentAct (loginBool:Int){ // 화면전환
-        if (loginBool ==1 ){
+
+    fun IntentAct(loginBool: Int) { // 화면전환
+        if (loginBool == 1) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         } else {
-            runOnUiThread{ Toast.makeText(applicationContext,"아이디와 비밀번호를 확인해주세요",Toast.LENGTH_SHORT).show() }
+            runOnUiThread {
+                Toast.makeText(
+                    applicationContext,
+                    "아이디와 비밀번호를 확인해주세요",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }

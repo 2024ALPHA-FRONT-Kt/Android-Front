@@ -3,9 +3,9 @@ package com.android.myapplication
 import android.app.Application
 import com.android.myapplication.util.SharedPref
 
-class App: Application() {
+class App : Application() {
     companion object {
-        lateinit var prefs : SharedPref
+        lateinit var prefs: SharedPref
     }
 
     override fun onCreate() {

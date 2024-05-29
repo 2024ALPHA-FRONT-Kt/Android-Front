@@ -1,7 +1,5 @@
 package com.android.myapplication.dto
 
-import retrofit2.http.Query
-
 data class SignInProfile(
     val userRole: String,
     val name: String,

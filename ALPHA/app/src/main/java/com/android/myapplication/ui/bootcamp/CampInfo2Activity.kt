@@ -3,7 +3,6 @@ package com.android.myapplication.ui.bootcamp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.R
-import com.android.myapplication.databinding.ActivityCampClassBinding
 import com.android.myapplication.databinding.ActivityCampInfo2Binding
 
 class CampInfo2Activity : AppCompatActivity() {
