@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityWriteKnowledgePostBinding
-import com.android.myapplication.ui.disc.DiscActivity
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -56,6 +55,8 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                     GlobalScope.launch(Dispatchers.IO) {
                         try {
                             val responseData = apiService.postingKnowledgePost(token, postingKnowledge)
+                            Log.d("fhrmzot", responseData.toString())
+
                         } catch (e: Exception) {
                             Log.d("error", e.toString())
                         }
@@ -67,6 +68,7 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
         binding.writingKnowledgePostCancel.setOnClickListener {
             val intent = Intent(this, KnowledgePostListActivity::class.java)
             startActivity(intent)
+
         }
     }
 }

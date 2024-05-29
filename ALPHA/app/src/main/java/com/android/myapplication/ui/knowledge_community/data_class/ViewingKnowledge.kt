@@ -1,9 +1,10 @@
 package com.android.myapplication.ui.knowledge_community.data_class
 
-data class PostingKnowledge(
-    val id: String,
+data class ViewingKnowledge(
+    val postId: String,
+    val email: String,
+    val univ: String,
     val title: String,
     val content: String,
-    val image: Any,
-    val postType: String
+    val views: Int,
 )
