@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.bootcamp.CampClassActivity">
+    <LinearLayout
+        android:id="@+id/header"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_camp_class"
+        android:paddingStart="15dp"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/camp_class_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            app:tint="@color/white" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:fontFamily="@font/nanumsquareroundextrabold"
+                android:text="국민대학교 체대생과"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/nanumsquareroundextrabold"
+                    android:text="함께하는 숲 걷기"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/img_camp_class_tag"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="15sp"
+            android:textColor="#FFAE64"
+            android:text="강의 입장"/>
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:background="#FFAE64"/>
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/nanumsquareroundextrabold"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:text="강의주소"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquareroundextrabold"
+                android:textSize="15sp"
+                android:textColor="#AAAAAA"
+                android:text="Class link"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#FFAE64"/>
+        <TextView
+            android:id="@+id/link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:text="https://studio.zepeto.me/ko/products/world"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="12sp"
+            android:textColor="#555555"
+            android:text="- 해당 링크를 클릭 시 자동으로 입장 됩니다." />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="12sp"
+            android:textColor="#555555"
+            android:text="- safari 이용 시 원활하지 않을 수 있으니 구글 크롬 이용을 권장드립니다."/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="12sp"
+            android:textColor="#555555"
+            android:text="- 연결이 월활 치 않을 경우 쿠키 내역 삭제 후 재접속 해주시면 됩니다."/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="12sp"
+            android:textColor="#555555"
+            android:text="- 강의 시작 10분전 입장 부탁드립니다!"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="12sp"
+            android:textColor="#555555"
+            android:text="- 평소 궁금했던 질문을 미리 준비해두시면 좋습니다."/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
+            android:textSize="12sp"
+            android:textColor="#555555"
+            android:text="- 마이크는 off/카메라는 선호에 맞게 준비 해주시면 됩니다."/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

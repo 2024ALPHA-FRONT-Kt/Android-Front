@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="30dp"
                 android:layout_marginTop="20dp"
-                android:background="#FFFEDF"
+                android:background="@drawable/img_main_back"
                 android:gravity="center"
                 android:orientation="vertical">
                 <ImageView

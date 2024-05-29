@@ -12,9 +12,6 @@ import com.android.myapplication.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -46,8 +43,8 @@ class HomeFragment : Fragment() {
     private fun getCardImages(): ArrayList<Int> {
         return arrayListOf<Int>(
             R.drawable.img_main_bootcamp,
-            R.drawable.img_main_community,
-            R.drawable.img_main_disc,)
+            R.drawable.img_main_disc,
+            R.drawable.img_main_community)
     }
     override fun onDestroyView() {
         super.onDestroyView()
