@@ -47,8 +47,6 @@ class MyPageFragment : Fragment() {
                 Log.e("Response", responseData.toString())
                 val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
 
-                // userRole 저장
-                App.prefs.addItem("userRole",data["userRole"].toString().replace("\"", ""))
                 val name = data["name"].toString().replace("\"", "")
                 val school = data["univ"].toString().replace("\"", "")
                 val depart = data["department"].toString().replace("\"", "")
@@ -59,14 +57,14 @@ class MyPageFragment : Fragment() {
                     binding.root.post {
                         binding.userName.text = name
                         binding.userSchool.text = school
-                        binding.userDepart.text = depart + "희망"
+                        binding.userDepart.text = depart + " 희망"
                         binding.userPoint.text = point
                     }
                 } else { // userRole = "UNIV"
                     binding.root.post {
                         binding.userName.text = name
                         binding.userSchool.text = school
-                        binding.userDepart.text = depart + "재학"
+                        binding.userDepart.text = depart + " 재학"
                         binding.userPoint.text = point
                     }
                 }
@@ -90,6 +88,13 @@ class MyPageFragment : Fragment() {
         binding.setting.setOnClickListener{
             activity.let {
                 val intent = Intent(context, EditActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        binding.testResult.setOnClickListener {
+            activity.let {
+                val intent = Intent(context, ResActivity::class.java)
                 startActivity(intent)
             }
         }

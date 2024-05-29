@@ -13,4 +13,12 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build().create(ApiService::class.java)
     }
+
+    val univcertservice: UnivCertService by lazy {
+        Retrofit.Builder()
+            .baseUrl("https://univcert.com/") // 실제 엔드포인트 URL로 변경해야 합니다
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .build().create(UnivCertService::class.java)
+    }
 }

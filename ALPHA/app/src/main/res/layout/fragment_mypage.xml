@@ -57,15 +57,6 @@
                         android:textColor="@color/black"
                         android:text=""/>
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/nanumsquareroundbold"
-                        android:textSize="13sp"
-                        android:textColor="@color/black"
-                        android:text="INFO"/>
-                    <TextView
                         android:id="@+id/userSchool"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -27,6 +27,31 @@
             android:exported="false" />
         <activity
             android:name=".ui.knowledge_community.KnowledgePostListActivity"
+            android:name=".ui.mypage.ResActivity"
+            android:exported="false" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+        <activity
+            android:name=".ui.bootcamp.CampClassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.bootcamp.CampInfo2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.bootcamp.CampInfo1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.bootcamp.CampSelectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.bootcamp.CampActivity"
             android:exported="false" />
         <activity
             android:name=".ui.user.EditActivity"
