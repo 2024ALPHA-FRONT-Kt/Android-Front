@@ -37,13 +37,9 @@ class ResActivity : AppCompatActivity() {
         binding = ActivityResBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.pageBack.setOnClickListener {
-            onBackPressed()
-        }
 
         binding.resultPageCompleteButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
 
         // api 연결
