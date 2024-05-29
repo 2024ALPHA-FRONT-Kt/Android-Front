@@ -36,7 +36,7 @@ class MyPageFragment : Fragment() {
         val gson = Gson()
 
         // token 가져오기
-        val globalAccessToken: String = App.prefs.getItem("accessToken","no Token")
+        val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
 
         // user정보 가져오기
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
@@ -53,7 +53,7 @@ class MyPageFragment : Fragment() {
                 val point = data["point"].toString().replace("\"", "")
 
                 // 조건에 따른 text 변경
-                if (App.prefs.getItem("userRole","noUserRole") == "HIGH"){
+                if (App.prefs.getItem("userRole", "noUserRole") == "HIGH") {
                     binding.root.post {
                         binding.userName.text = name
                         binding.userSchool.text = school
@@ -69,13 +69,14 @@ class MyPageFragment : Fragment() {
                     }
                 }
             } catch (e: Exception) {
-                if (e is retrofit2.HttpException){
-                    if (e.code() == 404){
+                if (e is retrofit2.HttpException) {
+                    if (e.code() == 404) {
                         val errorBody = e.response()?.errorBody()?.string()
                         val gson = Gson()
-                        val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
-                        Log.e("404에러",errorResponse.toString())
-                    }else {
+                        val errorResponse: ExceptionDto? =
+                            gson.fromJson(errorBody, ExceptionDto::class.java)
+                        Log.e("404에러", errorResponse.toString())
+                    } else {
                         Log.e("Error", e.message.toString())
                     }
                 } else {
@@ -85,7 +86,7 @@ class MyPageFragment : Fragment() {
         }
 
         // 회원정보 변경 이동
-        binding.setting.setOnClickListener{
+        binding.setting.setOnClickListener {
             activity.let {
                 val intent = Intent(context, EditActivity::class.java)
                 startActivity(intent)
@@ -98,7 +99,6 @@ class MyPageFragment : Fragment() {
                 startActivity(intent)
             }
         }
-
         return root
     }
 

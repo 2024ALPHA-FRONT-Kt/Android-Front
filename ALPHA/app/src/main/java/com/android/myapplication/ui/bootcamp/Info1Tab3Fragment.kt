@@ -1,12 +1,10 @@
 package com.android.myapplication.ui.bootcamp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.android.myapplication.R
-import com.android.myapplication.databinding.FragmentHomeBinding
+import androidx.fragment.app.Fragment
 import com.android.myapplication.databinding.FragmentInfo1Tab3Binding
 
 class Info1Tab3Fragment : Fragment() {
@@ -26,6 +24,7 @@ class Info1Tab3Fragment : Fragment() {
 
         return root
     }
+
     override fun onResume() {
         super.onResume()
         binding.root.requestLayout()

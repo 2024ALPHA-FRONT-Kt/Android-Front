@@ -2,15 +2,10 @@ package com.android.myapplication.ui.user
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
-import com.android.myapplication.MainActivity
 import com.android.myapplication.R
-import com.android.myapplication.databinding.ActivityEditBinding
-import com.android.myapplication.databinding.ActivityLogInBinding
 import com.android.myapplication.databinding.ActivityStep1Binding
-import com.android.myapplication.databinding.FragmentHomeBinding
 
 class Step1Activity : AppCompatActivity() {
     private lateinit var binding: ActivityStep1Binding
@@ -26,8 +21,8 @@ class Step1Activity : AppCompatActivity() {
         var univ = 0
         var high = 0
 
-        binding.high.setOnClickListener{
-            if (high == 0){
+        binding.high.setOnClickListener {
+            if (high == 0) {
                 high = 1
                 univ = 0
                 binding.high.setImageResource(R.drawable.img_sign_in_step1_high)
@@ -37,8 +32,8 @@ class Step1Activity : AppCompatActivity() {
                 high = 0
             }
         }
-        binding.univ.setOnClickListener{
-            if (univ == 0){
+        binding.univ.setOnClickListener {
+            if (univ == 0) {
                 univ = 1
                 high = 0
                 binding.univ.setImageResource(R.drawable.img_sign_in_step1_univ)
@@ -51,14 +46,14 @@ class Step1Activity : AppCompatActivity() {
 
         // userRole 저장
         binding.btnNext.setOnClickListener {
-            if (univ == 1){
+            if (univ == 1) {
                 val intent = Intent(this, Step2Univ1Activity::class.java)
                 startActivity(intent)
-                App.prefs.addItem("userRole","UNIV")
+                App.prefs.addItem("userRole", "UNIV")
             } else {
                 val intent = Intent(this, Step2HighActivity::class.java)
                 startActivity(intent)
-                App.prefs.addItem("userRole","HIGH")
+                App.prefs.addItem("userRole", "HIGH")
             }
         }
 

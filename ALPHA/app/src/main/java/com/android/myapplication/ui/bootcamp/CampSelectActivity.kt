@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.R
-import com.android.myapplication.databinding.ActivityCampClassBinding
 import com.android.myapplication.databinding.ActivityCampSelectBinding
 
 class CampSelectActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class CampSelectActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.item1Btn3.setOnClickListener {
-            if (binding.item1Btn3.text == "신청하기"){
+            if (binding.item1Btn3.text == "신청하기") {
                 binding.item1Btn1.visibility = View.VISIBLE
                 binding.item1Btn1.text = "상세보기"
                 binding.item1Btn2.text = "강의입장"
@@ -33,7 +32,7 @@ class CampSelectActivity : AppCompatActivity() {
         }
 
         binding.item1Btn2.setOnClickListener {
-            if (binding.item1Btn2.text == "상세보기"){
+            if (binding.item1Btn2.text == "상세보기") {
                 // 상세보기 1
                 val intent = Intent(this, CampInfo1Activity::class.java)
                 startActivity(intent)

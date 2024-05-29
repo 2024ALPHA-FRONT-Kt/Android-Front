@@ -2,9 +2,7 @@ package com.android.myapplication
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Window
 import android.widget.Toast
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityMainBinding
 import com.android.myapplication.dto.ExceptionDto
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +21,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var waitTime:Long = 0
+    private var waitTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         val gson = Gson()
 
         // token 가져오기
-        val globalAccessToken: String = App.prefs.getItem("accessToken","no Token")
+        val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
 
         // user정보 가져오기
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
@@ -79,11 +78,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if ( waitTime + 3000 > System.currentTimeMillis()){
+        if (waitTime + 3000 > System.currentTimeMillis()) {
             super.onBackPressed()
             finish()
         } else {
-            Toast.makeText(applicationContext,"뒤로가기를 한번 더 누르면 종료합니다",Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "뒤로가기를 한번 더 누르면 종료합니다", Toast.LENGTH_SHORT).show()
         }
         waitTime = System.currentTimeMillis()
     }

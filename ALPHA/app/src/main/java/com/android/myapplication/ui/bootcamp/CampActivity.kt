@@ -21,7 +21,7 @@ class CampActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding.bootCampStartButton.setOnClickListener{
+        binding.bootCampStartButton.setOnClickListener {
             val intent = Intent(this, CampSelectActivity::class.java)
             startActivity(intent)
         }

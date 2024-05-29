@@ -6,6 +6,7 @@ import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowle
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.android.myapplication.dto.SignInProfile
+import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -19,16 +20,22 @@ import retrofit2.http.QueryMap
 // API 인터페이스 정의
 interface ApiService {
     @GET("/login")
-    suspend fun login(@Query("loginId") loginId: String, @Query("password") password: String): ResponseObject
+    suspend fun login(
+        @Query("loginId") loginId: String,
+        @Query("password") password: String
+    ): ResponseObject
 
     @POST("/user")
-    suspend fun signIn(@Body data: SignInProfile) : ResponseObject
+    suspend fun signIn(@Body data: SignInProfile): ResponseObject
 
     @GET("/user")
     suspend fun myPage(@Header("Authorization") Authorization: String): ResponseObject
-  
+
     @PUT("/user")
-    suspend fun editProfile(@Header("Authorization") Authorization: String,@Body data: EditProfile): ResponseObject
+    suspend fun editProfile(
+        @Header("Authorization") Authorization: String,
+        @Body data: EditProfile
+    ): ResponseObject
 
     @GET("/posts")
     suspend fun knowLedgeLists(
@@ -67,9 +74,15 @@ interface ApiService {
         @Body discTestResult: DiscTestResult
     ): ResponseObject
 
+    @GET("/DISC")
+    suspend fun getDiscTestResult(
+        @Header("Authorization") token: String
+    ): ResponseObject
+
+
     @GET("/DISC-headcount")
     suspend fun getDiscUsers(
         @Header("Authorization") token: String
-    ) : ResponseObject
+    ): ResponseObject
 
 }

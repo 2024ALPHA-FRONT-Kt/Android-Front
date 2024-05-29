@@ -35,17 +35,21 @@ class HomeFragment : Fragment() {
 
         return root
     }
+
     private fun getDdayItems(): ArrayList<Int> {
         return arrayListOf<Int>(
-            0,1,2
+            0, 1, 2
         )
     }
+
     private fun getCardImages(): ArrayList<Int> {
         return arrayListOf<Int>(
             R.drawable.img_main_bootcamp,
             R.drawable.img_main_disc,
-            R.drawable.img_main_community)
+            R.drawable.img_main_community
+        )
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
