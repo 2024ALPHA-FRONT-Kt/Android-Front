@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
 import android.os.Environment
+import android.util.JsonReader
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -14,6 +15,7 @@ import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityDiscResultBinding
+import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.ui.disc.data_class.DiscScore
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.google.gson.Gson
@@ -24,9 +26,11 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.io.StringReader
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+
 
 class DiscResultActivity : AppCompatActivity() {
 
@@ -71,22 +75,28 @@ class DiscResultActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val responseData = apiService.postDiscTestResult(token, disc) // API 호출
-                val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                val realData = data["discCode"].asJsonObject
+                // API 호출 예제
+                val responseData = apiService.postDiscTestResult(token, disc)
 
-                val discType = realData["category"].asString
-                val discTypeEn = realData["key"].asString
-                val discPros = realData["pros"].asString
-                val discEx = realData["ex"].asString
-                val discJob = realData["job"].asString
-                val discProsJob = realData["prosJob"].asString
+                // API 응답 데이터 확인
+                val jsonData = gson.fromJson(responseData.toString(), JsonObject::class.java)
+                Log.e("API Response Data", jsonData.toString())
+                Log.e("API Response Data", jsonData["discCode"].toString())
 
-                binding.discType.text = "$discType - $discTypeEn"
-                binding.discPros.text = discPros
-                binding.discEx.text = discEx
-                binding.discJob.text = discJob
-                binding.discPos.text = discProsJob
+//                val realData = data["discCode"].asJsonObject
+//
+//                val discType = realData["category"].asString
+//                val discTypeEn = realData["key"].asString
+//                val discPros = realData["pros"].asString
+//                val discEx = realData["ex"].asString
+//                val discJob = realData["job"].asString
+//                val discProsJob = realData["prosJob"].asString
+//
+//                binding.discType.text = "$discType - $discTypeEn"
+//                binding.discPros.text = discPros
+//                binding.discEx.text = discEx
+//                binding.discJob.text = discJob
+//                binding.discPos.text = discProsJob
 
             } catch (e: Exception) {
                 Log.e("Error", e.message.toString()) // 에러 로그

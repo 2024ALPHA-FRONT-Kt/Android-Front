@@ -4,6 +4,7 @@ import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.android.myapplication.dto.SignInProfile
+import com.android.myapplication.ui.disc.data_class.DiscTestResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header

@@ -21,6 +21,8 @@ import com.android.myapplication.MainActivity
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityResBinding
 import com.android.myapplication.databinding.ActivityStep2HighBinding
+import com.android.myapplication.ui.disc.data_class.DiscData
+import com.android.myapplication.ui.disc.data_class.DiscTestResponse
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +33,7 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Dictionary
 import java.util.Locale
 
 class ResActivity : AppCompatActivity() {
@@ -70,23 +73,28 @@ class ResActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val responseData = apiService.getDiscTestResult(token) // API 호출
-                val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                val dd = data["discCode"].toString().replace("\"", "")
-                Log.e("data",data.toString())
-                Log.e("dd",dd)
+                val input = responseData.data.toString()
+                Log.e("response",input)
+                val cleanedInput = input.trim().removeSurrounding("{", "}")
+                val sp = cleanedInput.split(", discCode=").map { it.trim() }
+                val discC = sp[1]
+                val discCode = parseStringToMap(discC)
+                Log.e("parse",discCode.toString())
 
-//                val discType = realData["category"].asString
-//                val discTypeEn = realData["key"].asString
-//                val discPros = realData["pros"].asString
-//                val discEx = realData["ex"].asString
-//                val discJob = realData["job"].asString
-//                val discProsJob = realData["prosJob"].asString
+                val discType = discCode["category"]
+                val discTypeEn = discCode["key"]
+                val discPros = discCode["pros"]
+                val discEx = discCode["ex"]
+                val discJob = discCode["job"]
+                val discProsJob = discCode["prosJob"]
 
-//                binding.discType.text = "$discType - $discTypeEn"
-//                binding.discPros.text = discPros
-//                binding.discEx.text = discEx
-//                binding.discJob.text = discJob
-//                binding.discPos.text = discProsJob
+                binding.root.post{
+                    binding.discType.text = "$discType - $discTypeEn"
+                    binding.discPros.text = discPros
+                    binding.discEx.text = discEx
+                    binding.discJob.text = discJob
+                    binding.discPos.text = discProsJob
+                }
 
             } catch (e: Exception) {
                 Log.e("Error", e.message.toString()) // 에러 로그
@@ -123,5 +131,25 @@ class ResActivity : AppCompatActivity() {
         shareIntent.type = "image/*"
         shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri)
         startActivity(Intent.createChooser(shareIntent, "결과 공유하기"))
+    }
+    private fun parseStringToMap(input: String): Map<String, String> {
+        // 문자열 양 끝의 중괄호를 제거하고 공백을 제거합니다.
+        val cleanedInput = input.trim().removeSurrounding("{", "}")
+
+        // 각 항목을 분리합니다.
+        val entries = cleanedInput.split("(?<=\\w)(,\\s)(?=\\w+=)".toRegex())
+
+        // 항목을 key-value 쌍으로 분리하여 Map에 추가합니다.
+        val map = mutableMapOf<String, String>()
+        for (entry in entries) {
+            val keyValue = entry.split("=", limit = 2)
+            if (keyValue.size == 2) {
+                val key = keyValue[0].trim()
+                val value = keyValue[1].trim()
+                map[key] = value
+            }
+        }
+
+        return map
     }
 }

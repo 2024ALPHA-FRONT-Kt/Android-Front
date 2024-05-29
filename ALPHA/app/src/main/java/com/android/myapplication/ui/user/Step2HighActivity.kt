@@ -78,7 +78,7 @@ class Step2HighActivity : AppCompatActivity() {
                     try {
                         val responseData = apiService.signIn(SignInProfile( userRole,newName,newEmail,newGender,newAge,newId,newPw,phone,newUnivH,newDepartH,image))
                         Log.e("Response", responseData.toString())
-                        Toast.makeText(applicationContext,"회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        runOnUiThread{ Toast.makeText(applicationContext,"회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show() }
                         intentLogin()
                     } catch (e: Exception) {
                         if (e is retrofit2.HttpException){
