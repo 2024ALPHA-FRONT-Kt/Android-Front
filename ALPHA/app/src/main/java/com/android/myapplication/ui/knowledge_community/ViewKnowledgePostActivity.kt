@@ -6,13 +6,14 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewKnowledgePostBinding
-import com.android.myapplication.ui.knowledge_community.data_class.ResponseCommentDto
 import com.android.myapplication.ui.knowledge_community.data_class.ViewingKnowledge
+import com.android.myapplication.ui.knowledge_community.data_class.postingKComment
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +44,32 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
+            val id = intent.getStringExtra("itemId").toString()
+            val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
+            val postingKComment = postingKComment(
+                id = id,
+                content = content
+            )
+            Log.d("akwdk", postingKComment.toString())
+
+            if (content.isNotBlank()) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        val responsData = apiService.postingKComment(token, postingKComment)
+                        val intent = Intent(this@ViewKnowledgePostActivity, ViewKnowledgePostWithAnswerActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        Log.d("abcd", responsData.toString())
+                    } catch (e: Exception) {
+                        Log.d("error", e.toString())
+                    }
+                }
+            } else {
+                Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         val isFromWriteActivity = intent.getBooleanExtra("isFromWriteActivity", false)
         if (isFromWriteActivity) {
             GlobalScope.launch(Dispatchers.IO) {
@@ -60,8 +87,6 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                         binding.viewKnowledgePostTitle.text = data.title
                         binding.viewKnowledgePostContent.text = data.content
                         binding.viewKnowledgePostUserId.text = "${data.univ} $userEmail"
-                        binding.knowledgePostViewersCount.text = data.views.toString()
-
                         binding.knowledgePostViewersCount.text = data.views.toString()
 
                         Log.d("dmddo", "UI 업데이트 완료")

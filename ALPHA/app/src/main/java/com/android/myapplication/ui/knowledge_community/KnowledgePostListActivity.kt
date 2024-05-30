@@ -11,8 +11,6 @@ import com.android.myapplication.databinding.ActivityKnowledgePostListBinding
 import com.android.myapplication.ui.knowledge_community.data_class.PostList
 import com.google.gson.Gson
 import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

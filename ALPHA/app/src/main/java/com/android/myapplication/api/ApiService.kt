@@ -2,10 +2,11 @@ package com.android.myapplication.api
 
 import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ResponseObject
+import com.android.myapplication.dto.SignInProfile
+import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowledge
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
-import com.android.myapplication.ui.disc.data_class.DiscTestResult
-import com.android.myapplication.dto.SignInProfile
+import com.android.myapplication.ui.knowledge_community.data_class.postingKComment
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -14,7 +15,6 @@ import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Query
-import retrofit2.http.QueryMap
 
 // API 인터페이스 정의
 interface ApiService {
@@ -70,6 +70,12 @@ interface ApiService {
     @GET("/DISC-headcount")
     suspend fun getDiscUsers(
         @Header("Authorization") token: String
+    ) : ResponseObject
+
+    @POST("/comment")
+    suspend fun postingKComment(
+        @Header("Authorization") token: String,
+        @Body postKComment: postingKComment
     ) : ResponseObject
 
 }
