@@ -5,22 +5,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.android.myapplication.App
 import com.android.myapplication.R
-import com.android.myapplication.ui.free_community.FreePosts
-import com.android.myapplication.ui.knowledge_community.KnowledgePosts
+import com.android.myapplication.api.RetrofitClient
+import com.android.myapplication.ui.free_community.data_class.PostList
 
-class FreePostAdapter(private val items: ArrayList<FreePosts>) : RecyclerView.Adapter<FreePostAdapter.ViewHolder>() {
+class FreePostAdapter(private val items: MutableList<PostList>) : RecyclerView.Adapter<FreePostAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = items.size
-
+    val apiService = RetrofitClient.apiservice
+    val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
+    val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        val listener = View.OnClickListener {
-            // todo
-        }
-        holder.apply {
-            bind(listener, item)
-            itemView.tag = item
+        holder.bind(item)
+        holder.itemView.setOnClickListener {
+            val postId = item.id
         }
     }
 
@@ -29,20 +29,18 @@ class FreePostAdapter(private val items: ArrayList<FreePosts>) : RecyclerView.Ad
         return ViewHolder(inflatedView)
     }
 
-    fun addPosts(newPosts: List<FreePosts>) {
+    fun addPosts(newPosts: List<PostList>) {
         items.addAll(newPosts)
         notifyDataSetChanged()
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        private var view: View = v
-        private val titleTextView: TextView = view.findViewById(R.id.view_free_list_title)
-        private val contentTextView: TextView = view.findViewById(R.id.view_free_list_content)
+        private val titleTextView: TextView = v.findViewById(R.id.view_free_list_title)
+        private val contentTextView: TextView = v.findViewById(R.id.view_free_list_content)
 
-        fun bind(listener: View.OnClickListener, item: FreePosts) {
-            titleTextView.text = item.view_free_list_title
-            contentTextView.text = item.view_free_list_content
-            view.setOnClickListener(listener)
+        fun bind(item: PostList) {
+            titleTextView.text = item.title
+            contentTextView.text = item.content
         }
     }
 }
