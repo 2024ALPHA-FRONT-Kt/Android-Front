@@ -11,7 +11,7 @@ import com.google.gson.Gson
 class ViewFreePostActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityViewFreePostBinding
-    private lateinit var adapter: FreePostAdapter
+    private lateinit var adapter: FreeCommentAdapter
 
     private val apiService = RetrofitClient.apiservice
     private val gson = Gson()
