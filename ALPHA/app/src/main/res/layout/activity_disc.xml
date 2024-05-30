@@ -125,10 +125,10 @@
             android:fontFamily="@font/nanumsquareroundbold"/>
 
         <TextView
-            android:id="@+id/disc_participate_text"
+            android:id="@+id/disc_users"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00000"
+            android:text="0000"
             android:textColor="#4F6BFC"
             android:fontFamily="@font/nanumsquareroundbold"
             android:layout_marginStart="5dp"/>

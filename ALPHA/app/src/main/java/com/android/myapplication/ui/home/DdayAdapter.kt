@@ -8,6 +8,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 
 class DdayAdapter(var pageNum: ArrayList<Int>) :
@@ -28,31 +30,65 @@ class DdayAdapter(var pageNum: ArrayList<Int>) :
     override fun getItemCount(): Int = pageNum.size
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        when(position){
+        when (position) {
             0 -> {
-                holder.ddaytitle.text = "9월 모의고사"
+                holder.ddaytitle.text = "수능"
                 holder.ddaytitle.setBackgroundResource(R.drawable.bg_main_dday_title_blue)
                 holder.ddayback.setBackgroundResource(R.drawable.bg_main_dday_blue)
                 holder.ddaynum1.setTextColor(Color.parseColor("#0057FF"))
                 holder.ddaynum2.setTextColor(Color.parseColor("#0057FF"))
                 holder.ddaynum3.setTextColor(Color.parseColor("#0057FF"))
+                // dday
+                val start = "2024-11-14"
+                val dday = DdayCalculate(start)
+                holder.ddaynum1.text = dday[0].toString()
+                holder.ddaynum2.text = dday[1].toString()
+                holder.ddaynum3.text = dday[2].toString()
+
             }
+
             1 -> {
-                holder.ddaytitle.text = "수능"
+                holder.ddaytitle.text = "6월 모의고사"
                 holder.ddaytitle.setBackgroundResource(R.drawable.bg_main_dday_title_red)
                 holder.ddayback.setBackgroundResource(R.drawable.bg_main_dday_red)
                 holder.ddaynum1.setTextColor(Color.parseColor("#FF4848"))
                 holder.ddaynum2.setTextColor(Color.parseColor("#FF4848"))
                 holder.ddaynum3.setTextColor(Color.parseColor("#FF4848"))
+                val start = "2024-06-04"
+                val dday = DdayCalculate(start)
+                holder.ddaynum1.text = dday[0].toString()
+                holder.ddaynum2.text = dday[1].toString()
+                holder.ddaynum3.text = dday[2].toString()
             }
+
             else -> {
-                holder.ddaytitle.text = "6월 모의고사"
+                holder.ddaytitle.text = "9월 모의고사"
                 holder.ddaytitle.setBackgroundResource(R.drawable.bg_main_dday_title_green)
                 holder.ddayback.setBackgroundResource(R.drawable.bg_main_dday_green)
                 holder.ddaynum1.setTextColor(Color.parseColor("#98F690"))
                 holder.ddaynum2.setTextColor(Color.parseColor("#98F690"))
                 holder.ddaynum3.setTextColor(Color.parseColor("#98F690"))
+                val start = "2024-09-04"
+                val dday = DdayCalculate(start)
+                holder.ddaynum1.text = dday[0].toString()
+                holder.ddaynum2.text = dday[1].toString()
+                holder.ddaynum3.text = dday[2].toString()
             }
         }
+    }
+
+    fun DdayCalculate(start: String): String {
+        val now = LocalDate.now()
+        val startDay = LocalDate.parse(start)
+        val dday = ChronoUnit.DAYS.between(now, startDay)
+        var readlDday = ""
+        if (dday < 10) {
+            readlDday = "00$dday"
+        } else if (dday < 100)
+            readlDday = "0$dday"
+        else {
+            readlDday = dday.toString()
+        }
+        return readlDday
     }
 }

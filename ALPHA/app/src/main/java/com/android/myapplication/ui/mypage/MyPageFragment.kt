@@ -36,7 +36,7 @@ class MyPageFragment : Fragment() {
         val gson = Gson()
 
         // token 가져오기
-        val globalAccessToken: String = App.prefs.getItem("accessToken","no Token")
+        val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
 
         // user정보 가져오기
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
@@ -47,37 +47,36 @@ class MyPageFragment : Fragment() {
                 Log.e("Response", responseData.toString())
                 val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
 
-                // userRole 저장
-                App.prefs.addItem("userRole",data["userRole"].toString().replace("\"", ""))
                 val name = data["name"].toString().replace("\"", "")
                 val school = data["univ"].toString().replace("\"", "")
                 val depart = data["department"].toString().replace("\"", "")
                 val point = data["point"].toString().replace("\"", "")
 
                 // 조건에 따른 text 변경
-                if (App.prefs.getItem("userRole","noUserRole") == "HIGH"){
+                if (App.prefs.getItem("userRole", "noUserRole") == "HIGH") {
                     binding.root.post {
                         binding.userName.text = name
                         binding.userSchool.text = school
-                        binding.userDepart.text = depart + "희망"
+                        binding.userDepart.text = depart + " 희망"
                         binding.userPoint.text = point
                     }
                 } else { // userRole = "UNIV"
                     binding.root.post {
                         binding.userName.text = name
                         binding.userSchool.text = school
-                        binding.userDepart.text = depart + "재학"
+                        binding.userDepart.text = depart + " 재학"
                         binding.userPoint.text = point
                     }
                 }
             } catch (e: Exception) {
-                if (e is retrofit2.HttpException){
-                    if (e.code() == 404){
+                if (e is retrofit2.HttpException) {
+                    if (e.code() == 404) {
                         val errorBody = e.response()?.errorBody()?.string()
                         val gson = Gson()
-                        val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
-                        Log.e("404에러",errorResponse.toString())
-                    }else {
+                        val errorResponse: ExceptionDto? =
+                            gson.fromJson(errorBody, ExceptionDto::class.java)
+                        Log.e("404에러", errorResponse.toString())
+                    } else {
                         Log.e("Error", e.message.toString())
                     }
                 } else {
@@ -87,13 +86,19 @@ class MyPageFragment : Fragment() {
         }
 
         // 회원정보 변경 이동
-        binding.setting.setOnClickListener{
+        binding.setting.setOnClickListener {
             activity.let {
                 val intent = Intent(context, EditActivity::class.java)
                 startActivity(intent)
             }
         }
 
+        binding.testResult.setOnClickListener {
+            activity.let {
+                val intent = Intent(context, ResActivity::class.java)
+                startActivity(intent)
+            }
+        }
         return root
     }
 

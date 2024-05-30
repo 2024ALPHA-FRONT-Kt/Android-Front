@@ -2,25 +2,49 @@ package com.android.myapplication.ui.disc
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.android.myapplication.R
+import com.android.myapplication.App
+import com.android.myapplication.MainActivity
+import com.android.myapplication.api.RetrofitClient
+import com.android.myapplication.databinding.ActivityDiscBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DiscActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDiscBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_disc)
         supportActionBar?.hide()
 
-        findViewById<Button>(R.id.disc_test_start_button).setOnClickListener {
-            val intent = Intent(this, DiscTestActivity::class.java)
-            startActivity(intent)
+        val apiService = RetrofitClient.apiservice
+        binding = ActivityDiscBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
+        val token = "Bearer ${globalAccessToken.replace("\"", "")}"
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val responseData = apiService.getDiscUsers(token)
+                val discUsers = responseData.data.toString()
+                withContext(Dispatchers.Main) {
+                    binding.discUsers.text = discUsers.toString().substring(0 until discUsers.toString().length-2)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
-        findViewById<ImageView>(R.id.disc_start_page_back).setOnClickListener {
-            val intent = // todo
-            startActivity(intent)
+        binding.discTestStartButton.setOnClickListener {
+            startActivity(Intent(this, DiscTestActivity::class.java))
+        }
+
+        binding.discStartPageBack.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 }
