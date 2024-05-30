@@ -25,6 +25,7 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityViewFreePostPlusBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
 
     }

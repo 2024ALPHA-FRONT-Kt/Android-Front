@@ -1,5 +1,6 @@
 package com.android.myapplication.ui.free_community
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,11 +29,17 @@ class FreePostListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFreePostListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         adapter = FreePostAdapter(arrayListOf())
 
         binding.freeListView.layoutManager = LinearLayoutManager(this)
         binding.freeListView.adapter = adapter
+
+        binding.freePostsListWritingButton.setOnClickListener {
+            val intent = Intent(this, WriteFreePostActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.freeListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
