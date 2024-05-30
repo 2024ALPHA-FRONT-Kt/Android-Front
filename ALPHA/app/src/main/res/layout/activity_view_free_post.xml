@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context=".ui.free_community.ViewFreePostActivity">
 
     <ImageView
         android:id="@+id/view_free_post_back_button"
@@ -57,7 +59,7 @@
             android:orientation="vertical" >
 
             <FrameLayout
-                android:id="@+id/viewfree_community_list_banner_group"
+                android:id="@+id/view_free_community_list_banner_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -104,7 +106,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewfree_community_list_banner_group"
+                app:layout_constraintTop_toBottomOf="@+id/view_free_community_list_banner_group"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp">
 
@@ -292,25 +294,185 @@
                         android:layout_marginBottom="5dp" />
                 </FrameLayout>
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/free_post_comment_plus_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="댓글 더보기"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:background="@drawable/free_post_comment_plus_button"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/free_post_comment_sch_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="국민대학교"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textColor="#4F6BFC" />
+
+                    <TextView
+                        android:id="@+id/free_post_comment_uid_1"
+                        android:layout_marginStart="3dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="userid1"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textColor="#373737" />
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/free_post_entering_comment">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/free_comment_view"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/free_post_comment_content_1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:listitem="@layout/item_free_post_comments"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        android:text="댓글 내용... 1"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textSize="13sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"/>
 
+                    <ImageView
+                        android:id="@+id/view_free_post_comment_menu_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_free_post_comment_menu"
+                        android:layout_gravity="bottom"/>
                 </LinearLayout>
 
+                <View
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="#ACACAC" />
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/free_post_comment_sch_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="국민대학교"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textColor="#4F6BFC" />
+
+                    <TextView
+                        android:id="@+id/free_post_comment_uid_2"
+                        android:layout_marginStart="3dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="userid2"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textColor="#373737" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:id="@+id/free_post_comment_content_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="댓글 내용... 2"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textSize="13sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/view_free_post_comment_menu_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_free_post_comment_menu"
+                        android:layout_gravity="bottom"
+                        tools:ignore="DuplicateIds" />
+                </LinearLayout>
+
+                <View
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="#ACACAC" />
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/free_post_comment_sch_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="국민대학교"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textColor="#4F6BFC" />
+
+                    <TextView
+                        android:id="@+id/free_post_comment_uid_3"
+                        android:layout_marginStart="3dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="userid3"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textColor="#373737" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/free_post_comment_content_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="댓글 내용... 3"
+                        android:fontFamily="@font/nanumsquareroundlarge"
+                        android:textSize="13sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/view_free_post_comment_menu_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_free_post_comment_menu"
+                        android:layout_gravity="bottom"
+                        tools:ignore="DuplicateIds" />
+                </LinearLayout>
+
+                <View
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="#ACACAC"
+                    android:layout_marginBottom="70dp"/>
             </LinearLayout>
 
         </LinearLayout>

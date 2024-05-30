@@ -2,6 +2,8 @@ package com.android.myapplication.api
 
 import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ResponseObject
+import com.android.myapplication.ui.free_community.data_class.EditingFree
+import com.android.myapplication.ui.free_community.data_class.PostingFree
 import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowledge
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
@@ -84,4 +86,40 @@ interface ApiService {
         @Header("Authorization") token: String
     ): ResponseObject
 
+    @GET("/posts")
+    suspend fun freeLists(
+        @Header("Authorization") authorization: String,
+        @Query("postType") postType: String,
+        @Query("page") page: Int
+    ) : ResponseObject
+
+    @POST("/post")
+    suspend fun postingFreePost(
+        @Header("Authorization") authorization: String,
+        @Body freePost: PostingFree
+    ): ResponseObject
+
+    @DELETE("/post")
+    suspend fun deleteFree(
+        @Header("Authorization") authorization: String,
+        @Query("id") id: String
+    ) : ResponseObject
+
+    @PATCH("/post")
+    suspend fun editFree(
+        @Header("Authorization") authorization: String,
+        @Body editFree: EditingFree
+    ) : ResponseObject
+
+    @GET("/post")
+    suspend fun freePostDetail(
+        @Header("Authorization") authorization: String,
+        @Query("id") id: String
+    ) : ResponseObject
+
+    @GET("/hot-post")
+    suspend fun loadHotFreePost(
+        @Header("Authorization") authorization: String,
+        @Query("postType") postType: String
+    ) : ResponseObject
 }
