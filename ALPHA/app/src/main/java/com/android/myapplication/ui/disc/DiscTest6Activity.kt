@@ -104,19 +104,40 @@ class DiscTest6Activity : AppCompatActivity() {
                 binding.discQ11A4, binding.discQ12A4, binding.discQ13A4 -> discScore.CScore += value
             }
 
-            if (editText in listOf(binding.discQ11A1, binding.discQ11A2, binding.discQ11A3, binding.discQ11A4)) {
+            if (editText in listOf(
+                    binding.discQ11A1,
+                    binding.discQ11A2,
+                    binding.discQ11A3,
+                    binding.discQ11A4
+                )
+            ) {
                 if (!q11Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG)
+                        .show()
                     return false
                 }
-            } else if (editText in listOf(binding.discQ12A1, binding.discQ12A2, binding.discQ12A3, binding.discQ12A4)) {
+            } else if (editText in listOf(
+                    binding.discQ12A1,
+                    binding.discQ12A2,
+                    binding.discQ12A3,
+                    binding.discQ12A4
+                )
+            ) {
                 if (!q12Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG)
+                        .show()
                     return false
                 }
-            } else if (editText in listOf(binding.discQ13A1, binding.discQ13A2, binding.discQ13A3, binding.discQ13A4)) {
+            } else if (editText in listOf(
+                    binding.discQ13A1,
+                    binding.discQ13A2,
+                    binding.discQ13A3,
+                    binding.discQ13A4
+                )
+            ) {
                 if (!q13Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG)
+                        .show()
                     return false
                 }
             }

@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
 import android.os.Environment
+import android.util.JsonReader
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -14,6 +15,7 @@ import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityDiscResultBinding
+import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.ui.disc.data_class.DiscScore
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.google.gson.Gson
@@ -24,9 +26,11 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.io.StringReader
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+
 
 class DiscResultActivity : AppCompatActivity() {
 
@@ -94,7 +98,6 @@ class DiscResultActivity : AppCompatActivity() {
                     binding.discJob.text = discJob
                     binding.discSameUsers.text = sameUsers.substring(12 until sameUsers.length-2)
                 }
-
             } catch (e: Exception) {
                 Log.e("Error", e.message.toString())
             }

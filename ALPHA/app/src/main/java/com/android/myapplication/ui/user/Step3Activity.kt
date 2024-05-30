@@ -2,13 +2,8 @@ package com.android.myapplication.ui.user
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.android.myapplication.MainActivity
 import com.android.myapplication.R
-import com.android.myapplication.databinding.ActivityEditBinding
 import com.android.myapplication.databinding.ActivityStep3Binding
 
 class Step3Activity : AppCompatActivity() {

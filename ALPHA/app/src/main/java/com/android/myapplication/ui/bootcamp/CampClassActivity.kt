@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.R
 import com.android.myapplication.databinding.ActivityCampClassBinding
-import com.android.myapplication.databinding.ActivityStep2Univ1Binding
 
 class CampClassActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCampClassBinding

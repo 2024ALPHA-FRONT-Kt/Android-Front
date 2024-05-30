@@ -30,7 +30,7 @@ class DdayAdapter(var pageNum: ArrayList<Int>) :
     override fun getItemCount(): Int = pageNum.size
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        when(position){
+        when (position) {
             0 -> {
                 holder.ddaytitle.text = "수능"
                 holder.ddaytitle.setBackgroundResource(R.drawable.bg_main_dday_title_blue)
@@ -46,6 +46,7 @@ class DdayAdapter(var pageNum: ArrayList<Int>) :
                 holder.ddaynum3.text = dday[2].toString()
 
             }
+
             1 -> {
                 holder.ddaytitle.text = "6월 모의고사"
                 holder.ddaytitle.setBackgroundResource(R.drawable.bg_main_dday_title_red)
@@ -59,6 +60,7 @@ class DdayAdapter(var pageNum: ArrayList<Int>) :
                 holder.ddaynum2.text = dday[1].toString()
                 holder.ddaynum3.text = dday[2].toString()
             }
+
             else -> {
                 holder.ddaytitle.text = "9월 모의고사"
                 holder.ddaytitle.setBackgroundResource(R.drawable.bg_main_dday_title_green)
@@ -74,12 +76,13 @@ class DdayAdapter(var pageNum: ArrayList<Int>) :
             }
         }
     }
-    fun DdayCalculate(start : String) : String {
+
+    fun DdayCalculate(start: String): String {
         val now = LocalDate.now()
         val startDay = LocalDate.parse(start)
-        val dday = ChronoUnit.DAYS.between(now,startDay)
+        val dday = ChronoUnit.DAYS.between(now, startDay)
         var readlDday = ""
-        if (dday < 10){
+        if (dday < 10) {
             readlDday = "00$dday"
         } else if (dday < 100)
             readlDday = "0$dday"

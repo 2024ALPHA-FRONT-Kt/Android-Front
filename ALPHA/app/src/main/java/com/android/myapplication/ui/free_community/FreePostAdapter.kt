@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
 import com.android.myapplication.ui.free_community.FreePosts
+import com.android.myapplication.ui.knowledge_community.KnowledgePosts
 
 class FreePostAdapter(private val items: ArrayList<FreePosts>) : RecyclerView.Adapter<FreePostAdapter.ViewHolder>() {
 
@@ -26,6 +27,11 @@ class FreePostAdapter(private val items: ArrayList<FreePosts>) : RecyclerView.Ad
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.item_free_posts, parent, false)
         return ViewHolder(inflatedView)
+    }
+
+    fun addPosts(newPosts: List<FreePosts>) {
+        items.addAll(newPosts)
+        notifyDataSetChanged()
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {

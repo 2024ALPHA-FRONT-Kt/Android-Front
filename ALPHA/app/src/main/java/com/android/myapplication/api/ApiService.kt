@@ -4,6 +4,8 @@ import com.android.myapplication.dto.EditProfile
 import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.dto.SignInProfile
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
+import com.android.myapplication.ui.free_community.data_class.EditingFree
+import com.android.myapplication.ui.free_community.data_class.PostingFree
 import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowledge
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
 import com.android.myapplication.ui.knowledge_community.data_class.postingKComment
@@ -19,16 +21,22 @@ import retrofit2.http.Query
 // API 인터페이스 정의
 interface ApiService {
     @GET("/login")
-    suspend fun login(@Query("loginId") loginId: String, @Query("password") password: String): ResponseObject
+    suspend fun login(
+        @Query("loginId") loginId: String,
+        @Query("password") password: String
+    ): ResponseObject
 
     @POST("/user")
-    suspend fun signIn(@Body data: SignInProfile) : ResponseObject
+    suspend fun signIn(@Body data: SignInProfile): ResponseObject
 
     @GET("/user")
     suspend fun myPage(@Header("Authorization") Authorization: String): ResponseObject
-  
+
     @PUT("/user")
-    suspend fun editProfile(@Header("Authorization") Authorization: String,@Body data: EditProfile): ResponseObject
+    suspend fun editProfile(
+        @Header("Authorization") Authorization: String,
+        @Body data: EditProfile
+    ): ResponseObject
 
     @GET("/posts")
     suspend fun knowLedgeLists(
@@ -67,9 +75,22 @@ interface ApiService {
         @Body discTestResult: DiscTestResult
     ): ResponseObject
 
+    @GET("/DISC")
+    suspend fun getDiscTestResult(
+        @Header("Authorization") token: String
+    ): ResponseObject
+
+
     @GET("/DISC-headcount")
     suspend fun getDiscUsers(
         @Header("Authorization") token: String
+    ): ResponseObject
+
+    @GET("/posts")
+    suspend fun freeLists(
+        @Header("Authorization") authorization: String,
+        @Query("postType") postType: String,
+        @Query("page") page: Int
     ) : ResponseObject
 
     @POST("/comment")
@@ -78,4 +99,33 @@ interface ApiService {
         @Body postKComment: postingKComment
     ) : ResponseObject
 
+    @POST("/post")
+    suspend fun postingFreePost(
+        @Header("Authorization") authorization: String,
+        @Body freePost: PostingFree
+    ): ResponseObject
+
+    @DELETE("/post")
+    suspend fun deleteFree(
+        @Header("Authorization") authorization: String,
+        @Query("id") id: String
+    ) : ResponseObject
+
+    @PATCH("/post")
+    suspend fun editFree(
+        @Header("Authorization") authorization: String,
+        @Body editFree: EditingFree
+    ) : ResponseObject
+
+    @GET("/post")
+    suspend fun freePostDetail(
+        @Header("Authorization") authorization: String,
+        @Query("id") id: String
+    ) : ResponseObject
+
+    @GET("/hot-post")
+    suspend fun loadHotFreePost(
+        @Header("Authorization") authorization: String,
+        @Query("postType") postType: String
+    ) : ResponseObject
 }
