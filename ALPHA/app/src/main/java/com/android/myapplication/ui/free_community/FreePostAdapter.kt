@@ -10,7 +10,7 @@ import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.ui.free_community.data_class.PostList
 
-class FreePostsAdapter(private val items: MutableList<PostList>) : RecyclerView.Adapter<FreePostsAdapter.ViewHolder>() {
+class FreePostAdapter(private val items: MutableList<PostList>) : RecyclerView.Adapter<FreePostAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = items.size
     val apiService = RetrofitClient.apiservice

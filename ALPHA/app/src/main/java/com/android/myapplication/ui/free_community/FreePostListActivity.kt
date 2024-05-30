@@ -55,7 +55,7 @@ class FreePostListActivity : AppCompatActivity() {
             }
 
             binding.root.post{
-                recyclerView.adapter = FreePostsAdapter(mList)
+                recyclerView.adapter = FreePostAdapter(mList)
             }
         }
     }
