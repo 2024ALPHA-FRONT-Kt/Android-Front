@@ -1,7 +1,6 @@
 package com.android.myapplication.ui.home
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
 import com.android.myapplication.ui.bootcamp.CampActivity
 import com.android.myapplication.ui.disc.DiscActivity
+import com.android.myapplication.ui.free_community.FreePostListActivity
 import com.android.myapplication.ui.knowledge_community.KnowledgePostListActivity
 
 class CardAdapter(var cardImage: ArrayList<Int>) :
@@ -49,12 +49,12 @@ class CardAdapter(var cardImage: ArrayList<Int>) :
 
                 val free = mDialogView.findViewById<TextView>(R.id.free)
                 free.setOnClickListener {
-                    val intent = Intent(holder.itemView.context, CampActivity::class.java)
+                    val intent = Intent(holder.itemView.context, FreePostListActivity::class.java)
                     ContextCompat.startActivity(holder.itemView.context, intent, null)
                 }
                 val know = mDialogView.findViewById<TextView>(R.id.know)
                 know.setOnClickListener {
-                    val intent = Intent(holder.itemView.context,  KnowledgePostListActivity::class.java)
+                    val intent = Intent(holder.itemView.context, KnowledgePostListActivity::class.java)
                     ContextCompat.startActivity(holder.itemView.context, intent, null)
                 }
             }
