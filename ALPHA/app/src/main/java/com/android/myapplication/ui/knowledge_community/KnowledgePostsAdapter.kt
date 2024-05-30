@@ -24,7 +24,7 @@ class KnowledgePostsAdapter(private val items: MutableList<PostList>) : Recycler
         holder.bind(item)
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, ViewKnowledgePostWithAnswerActivity::class.java).apply {
+            val intent = Intent(context, ViewKnowledgePostWithAnswerActivity::class.java).apply {// todo 답변 있는지 없는지 확인하는 로직 필요
                 putExtra("itemId", item.id) // 아이템 ID를 전달
                 putExtra("itemTitle", item.title)
                 putExtra("itemContent", item.content)
