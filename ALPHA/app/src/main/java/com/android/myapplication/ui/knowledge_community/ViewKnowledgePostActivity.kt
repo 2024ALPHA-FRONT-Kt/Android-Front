@@ -11,6 +11,7 @@ import com.android.myapplication.App
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewKnowledgePostBinding
+import com.android.myapplication.ui.knowledge_community.data_class.ResponseCommentDto
 import com.android.myapplication.ui.knowledge_community.data_class.ViewingKnowledge
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -44,13 +45,31 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
 
         val isFromWriteActivity = intent.getBooleanExtra("isFromWriteActivity", false)
         if (isFromWriteActivity) {
-            val title = intent.getStringExtra("title")
-            val body = intent.getStringExtra("body")
-            val id = intent.getStringExtra("id").toString().split("@")[0]
-            binding.viewKnowledgePostUserId.text = id
-            binding.viewKnowledgePostTitle.text = title.toString()
-            binding.viewKnowledgePostContent.text = body.toString()
-        } else {
+            GlobalScope.launch(Dispatchers.IO) {
+                val getPostId = intent.getStringExtra("getPostId").toString()
+                try {
+                    val responseData = apiService.knowledgePostDetail(token, getPostId)
+                    Log.d("dmddo", responseData.toString())
+                    val jsonObject =
+                        gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                    val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
+                    val userEmail = data.email.split("@")[0]
+                    Log.d("dmddo", data.toString())
+
+                    withContext(Dispatchers.Main) {
+                        binding.viewKnowledgePostTitle.text = data.title
+                        binding.viewKnowledgePostContent.text = data.content
+                        binding.viewKnowledgePostUserId.text = "${data.univ} $userEmail"
+                        binding.knowledgePostViewersCount.text = data.views.toString()
+
+                        binding.knowledgePostViewersCount.text = data.views.toString()
+
+                        Log.d("dmddo", "UI 업데이트 완료")
+                    }
+                } catch (e: Exception) {
+                    Log.e("ViewKnowledgePostWithAnswerActivity", e.toString())
+                }
+            }
             fetchKnowledgePostDetail()
         }
 
