@@ -36,12 +36,18 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        binding.viewKnowledgePostBackButton.setOnClickListener {
+            intent = Intent(this, KnowledgePostListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         val isFromWriteActivity = intent.getBooleanExtra("isFromWriteActivity", false)
         if (isFromWriteActivity) {
             val title = intent.getStringExtra("title")
             val body = intent.getStringExtra("body")
-            val id = intent.getStringExtra("id")
-            binding.viewKnowledgePostUserId.text = id.toString()
+            val id = intent.getStringExtra("id").toString().split("@")[0]
+            binding.viewKnowledgePostUserId.text = id
             binding.viewKnowledgePostTitle.text = title.toString()
             binding.viewKnowledgePostContent.text = body.toString()
         } else {
@@ -67,6 +73,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     binding.viewKnowledgePostUserId.text = "${data.univ} $userEmail"
                     binding.viewKnowledgePostTitle.text = data.title
                     binding.viewKnowledgePostContent.text = data.content
+                    binding.knowledgePostViewersCount.text = data.views.toString()
                 }
             } catch (e: Exception) {
                 Log.e("ViewKnowledgePostActivity", e.toString())

@@ -1,5 +1,6 @@
 package com.android.myapplication.ui.knowledge_community
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,12 @@ class ViewKnowledgePostWithAnswerActivity : AppCompatActivity() {
         binding = ActivityViewKnowledgePostWithAnswerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        binding.writeKnowledgePostBackButton.setOnClickListener {
+            intent = Intent(this, KnowledgePostListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val itemId = intent.getStringExtra("itemId")
         if (itemId != null) {
