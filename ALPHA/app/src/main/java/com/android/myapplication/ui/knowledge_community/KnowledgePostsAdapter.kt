@@ -1,5 +1,6 @@
 package com.android.myapplication.ui.knowledge_community
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,18 +23,21 @@ class KnowledgePostsAdapter(private val items: MutableList<PostList>) : Recycler
         val item = items[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            val postId = item.id
+            val context = holder.itemView.context
+            val intent = Intent(context, ViewKnowledgePostWithAnswerActivity::class.java).apply {
+                putExtra("itemId", item.id) // 아이템 ID를 전달
+                putExtra("itemTitle", item.title)
+                putExtra("itemContent", item.content)
+                putExtra("isFromList", true)
+            }
+            context.startActivity(intent)
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.item_knowledge_posts, parent, false)
         return ViewHolder(inflatedView)
-    }
-
-    fun addPosts(newPosts: List<PostList>) {
-        items.addAll(newPosts)
-        notifyDataSetChanged()
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {

@@ -24,6 +24,7 @@ class KnowledgePostListActivity : AppCompatActivity() {
     private val gson = Gson()
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
+    private val id: String = App.prefs.getItem("userId", "noID")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

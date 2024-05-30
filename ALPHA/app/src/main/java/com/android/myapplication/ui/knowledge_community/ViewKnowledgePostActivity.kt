@@ -104,7 +104,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                             startActivity(intent)
                         }
                     } catch (e: Exception) {
-                        Log.e("ViewKnowledgePostActivity", e.toString())
+                        Log.e("menuerror1", e.toString())
                     }
                 }
                 true
