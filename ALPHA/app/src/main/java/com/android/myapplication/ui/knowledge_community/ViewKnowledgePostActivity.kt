@@ -28,13 +28,26 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     private val id: String = App.prefs.getItem("userId", "noID")
 
+    private lateinit var postId: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityViewKnowledgePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        fetchKnowledgePostDetail()
+        val isFromWriteActivity = intent.getBooleanExtra("isFromWriteActivity", false)
+        if (isFromWriteActivity) {
+            val title = intent.getStringExtra("title")
+            val body = intent.getStringExtra("body")
+            val id = intent.getStringExtra("id")
+            binding.viewKnowledgePostUserId.text = id.toString()
+            binding.viewKnowledgePostTitle.text = title.toString()
+            binding.viewKnowledgePostContent.text = body.toString()
+        } else {
+            fetchKnowledgePostDetail()
+        }
+
         binding.viewKnowledgePostMenu.setOnClickListener {
             popup(binding.viewKnowledgePostMenu)
         }
@@ -43,7 +56,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
     private fun fetchKnowledgePostDetail() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val responseData = apiService.knowledgePostDetail(token, "556ba748-d8b4-4258-8333-4497697a1a67")
+                val responseData = apiService.knowledgePostDetail(token, postId)
                 Log.d("dmddo", responseData.toString())
                 val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                 val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
@@ -60,6 +73,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun popup(v: View) {
         val popup = PopupMenu(this, v)
@@ -85,6 +99,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                             val intent = Intent(this@ViewKnowledgePostActivity, WriteKnowledgePostActivity::class.java).apply {
                                 putExtra("editTitleDraft", editTitleDraft)
                                 putExtra("editContentDraft", editContentDraft)
+                                putExtra("isFromWriteActivity", true)
                             }
                             startActivity(intent)
                         }

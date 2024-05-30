@@ -13,7 +13,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.json.JSONObject.NULL
+import kotlinx.coroutines.withContext
 
 class WriteKnowledgePostActivity : AppCompatActivity() {
 
@@ -46,7 +46,7 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                 }
                 else -> {
                     val postingKnowledge = PostingKnowledge(
-                        id = null,
+                        id = id,
                         title = title,
                         content = body,
                         image = null,
@@ -56,7 +56,16 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                         try {
                             val responseData = apiService.postingKnowledgePost(token, postingKnowledge)
                             Log.d("fhrmzot", responseData.toString())
-
+                            withContext(Dispatchers.Main) {
+                                val intent = Intent(this@WriteKnowledgePostActivity, ViewKnowledgePostActivity::class.java).apply {
+                                    putExtra("title", title)
+                                    putExtra("body", body)
+                                    putExtra("id", id)
+                                    putExtra("isFromWriteActivity", true)
+                                }
+                                startActivity(intent)
+                                finish()
+                            }
                         } catch (e: Exception) {
                             Log.d("error", e.toString())
                         }
@@ -68,7 +77,7 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
         binding.writingKnowledgePostCancel.setOnClickListener {
             val intent = Intent(this, KnowledgePostListActivity::class.java)
             startActivity(intent)
-
+            finish() // 현재 액티비티를 종료
         }
     }
 }
