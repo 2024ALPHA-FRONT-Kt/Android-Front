@@ -10,10 +10,11 @@ import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityWriteKnowledgePostBinding
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.json.JSONObject.NULL
+import kotlinx.coroutines.withContext
 
 class WriteKnowledgePostActivity : AppCompatActivity() {
 
@@ -46,7 +47,6 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                 }
                 else -> {
                     val postingKnowledge = PostingKnowledge(
-                        id = null,
                         title = title,
                         content = body,
                         image = null,
@@ -55,8 +55,18 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                     GlobalScope.launch(Dispatchers.IO) {
                         try {
                             val responseData = apiService.postingKnowledgePost(token, postingKnowledge)
+                            val responseJson = gson.toJson(responseData)
+                            val jsonObject = gson.fromJson(responseJson, JsonObject::class.java)
+                            val getPostId = jsonObject.get("data").asString
                             Log.d("fhrmzot", responseData.toString())
-
+                            withContext(Dispatchers.Main) {
+                                val intent = Intent(this@WriteKnowledgePostActivity, ViewKnowledgePostActivity::class.java).apply {
+                                    putExtra("getPostId", getPostId.toString())
+                                    putExtra("isFromWriteActivity", true)
+                                }
+                                startActivity(intent)
+                                finish()
+                            }
                         } catch (e: Exception) {
                             Log.d("error", e.toString())
                         }
@@ -68,7 +78,7 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
         binding.writingKnowledgePostCancel.setOnClickListener {
             val intent = Intent(this, KnowledgePostListActivity::class.java)
             startActivity(intent)
-
+            finish() // 현재 액티비티를 종료
         }
     }
 }
