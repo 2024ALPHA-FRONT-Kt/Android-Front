@@ -60,7 +60,8 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                         Log.d("akwdk", "responsData: $responsData")
                         withContext(Dispatchers.Main) {
                             val intent = Intent(this@ViewKnowledgePostActivity, ViewKnowledgePostWithAnswerActivity::class.java)
-                            
+                            intent.putExtra("postId", id.toString())
+                            intent.putExtra("isFromAnswering", true)
                             startActivity(intent)
                             finish()
                         }

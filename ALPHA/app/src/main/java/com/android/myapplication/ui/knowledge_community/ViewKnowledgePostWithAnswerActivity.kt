@@ -31,6 +31,44 @@ class ViewKnowledgePostWithAnswerActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        val isFromWriting = intent.getBooleanExtra("isFromWriting", false)
+        val wPostId = intent.getStringExtra("postId").toString()
+        if (isFromWriting) {
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val responseData = apiService.knowledgePostDetail(token, wPostId)
+                    Log.d("QNdkd", responseData.toString())
+                    val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                    val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
+                    val userEmail = data.email.split("@")[0]
+                    Log.d("dmddo", data.toString())
+
+                    withContext(Dispatchers.Main) {
+                        binding.viewKnowledgePostWithTitle.text = data.title
+                        binding.viewKnowledgePostWithContent.text = data.content
+                        binding.viewKnowledgePostWithUserId.text = "${data.univ} $userEmail"
+                        binding.knowledgePostViewersCount.text = data.views.toString()
+
+                        val comment = if (data.responseCommentDto.isNotEmpty()) {
+                            data.responseCommentDto[0]
+                        } else {
+                            ResponseCommentDto("User", "University", "@", "선배님들의 답변을 기다려 보아요!")
+                        }
+
+                        Log.d("fnflf", "Comment: $comment")
+
+                        binding.viewKnowledgePostWithSchOfAnswer.text = comment.univ
+                        binding.viewKnowledgePostWithDptOfAnswer.text = comment.email
+                        binding.viewKnowledgePostWithAnswerContent.text = comment.content
+
+                        Log.d("aespatl", "UI 업데이트 완료")
+                    }
+                } catch (e: Exception) {
+                    Log.e("ViewKnowledgePostWithAnswerActivity", e.toString())
+                }
+            }
+        }
+
         binding.writeKnowledgePostBackButton.setOnClickListener {
             intent = Intent(this, KnowledgePostListActivity::class.java)
             startActivity(intent)
