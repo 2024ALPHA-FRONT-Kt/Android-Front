@@ -21,8 +21,6 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
     private val gson = Gson()
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
-    private val id: String = App.prefs.getItem("userId", "noID")
-    private val postId = "1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,30 +28,23 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        freePlus()
-    }
-
-    private fun freePlus() {
         GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val responseData = apiService.freePostDetail(token, postId)
-                Log.d("dmddo", responseData.toString())
-                val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                val data = gson.fromJson(jsonObject, ViewingFree::class.java)
-                val userEmail = data.email.split("@")[0]
-                Log.d("dmddo", data.toString())
-
-                withContext(Dispatchers.Main) {
-                    binding.viewFreePostUserSch.text = data.univ
-                    binding.viewFreePostUserId.text = userEmail
-                    binding.viewFreePostTitle.text = data.title
-                    binding.freePostReadingContent.text = data.content
-                    binding.freePostViewersCount.text = data.views.toString()
-                    binding.freePostRecommend.text = data.like.toString()
-                    binding.freePostComment.text = data.commentNumber.toString()
-                }
-            } catch (e: Exception) {
-                Log.e("ViewFreePlus", e.toString())
+            val fromViewPostId = intent.getStringExtra("fromViewPostId").toString()
+            val responseData = apiService.freePostDetail(token, fromViewPostId)
+            Log.e("From Free View Post", responseData.toString())
+            val jsonObject =
+                gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+            val data = gson.fromJson(jsonObject, ViewingFree::class.java)
+            val uId = data.email.split("@")[0]
+            withContext(Dispatchers.Main) {
+                binding.viewFreePostTitle.text = data.title
+                binding.viewFreePostUserSch.text = data.univ
+                binding.viewFreePostUserId.text = uId
+                binding.freePostViewersCount.text = data.views.toString()
+                binding.freePostReadingContent.text = data.content
+                binding.freePostRecommend.text = data.likeNumber.toString()
+                binding.freePostComment.text = data.commentNumber.toString()
+                //todo 댓글 여러 개 불러오기 adapter도 써야 할 듯?
             }
         }
     }
