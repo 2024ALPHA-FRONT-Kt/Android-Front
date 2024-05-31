@@ -61,7 +61,7 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                             Log.d("fhrmzot", responseData.toString())
                             withContext(Dispatchers.Main) {
                                 val intent = Intent(this@WriteKnowledgePostActivity, ViewKnowledgePostActivity::class.java).apply {
-                                    putExtra("getPostId", getPostId.toString())
+                                    putExtra("itemId", getPostId.toString())
                                     putExtra("isFromWriteActivity", true)
                                 }
                                 startActivity(intent)

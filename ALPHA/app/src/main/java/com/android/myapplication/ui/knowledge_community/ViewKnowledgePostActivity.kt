@@ -44,7 +44,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
+        binding.viewKnowledgePostAnswerEnterButton.setOnClickListener { // 답변하기
             val id = intent.getStringExtra("itemId").toString()
             val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
             val postingKComment = postingKComment(
