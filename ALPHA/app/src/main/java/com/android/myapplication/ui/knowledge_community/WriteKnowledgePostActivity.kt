@@ -62,7 +62,7 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                             withContext(Dispatchers.Main) {
                                 val intent = Intent(this@WriteKnowledgePostActivity, ViewKnowledgePostActivity::class.java).apply {
                                     putExtra("itemId", getPostId.toString())
-                                    putExtra("isFromWriteActivity", true)
+                                    putExtra("isFromWriteAc", true)
                                 }
                                 startActivity(intent)
                                 finish()

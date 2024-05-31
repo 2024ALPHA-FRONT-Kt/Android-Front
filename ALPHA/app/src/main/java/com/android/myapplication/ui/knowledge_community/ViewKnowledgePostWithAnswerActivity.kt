@@ -31,11 +31,12 @@ class ViewKnowledgePostWithAnswerActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val isFromWriteActivity = intent.getBooleanExtra("isFromWriteActivity", false)
-        if (isFromWriteActivity) {
+        val isFromAnswering = intent.getBooleanExtra("isFromAnswering", false)
+        val fromViewPostAnswerPostId = intent.getStringExtra("postId").toString()
+        if (isFromAnswering) {
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-                    val responseData = apiService.knowledgePostDetail(token, "dmd")
+                    val responseData = apiService.knowledgePostDetail(token, fromViewPostAnswerPostId)
                     Log.d("QNdkd", responseData.toString())
                     val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
