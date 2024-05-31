@@ -28,7 +28,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
     private val gson = Gson()
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
-    private val id: String = App.prefs.getItem("userId", "noID")
+    private val userId: String = App.prefs.getItem("userId", "noID")
 
     private lateinit var postId: String
 
@@ -48,21 +48,24 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
             val id = intent.getStringExtra("itemId").toString()
             val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
             val postingKComment = postingKComment(
-                id = id,
+                postId = id,
                 content = content
             )
-            Log.d("akwdk", postingKComment.toString())
+            Log.d("akwdk", "postingKComment: $postingKComment")
 
             if (content.isNotBlank()) {
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
                         val responsData = apiService.postingKComment(token, postingKComment)
-                        val intent = Intent(this@ViewKnowledgePostActivity, ViewKnowledgePostWithAnswerActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                        Log.d("abcd", responsData.toString())
+                        Log.d("akwdk", "responsData: $responsData")
+                        withContext(Dispatchers.Main) {
+                            val intent = Intent(this@ViewKnowledgePostActivity, ViewKnowledgePostWithAnswerActivity::class.java)
+                            
+                            startActivity(intent)
+                            finish()
+                        }
                     } catch (e: Exception) {
-                        Log.d("error", e.toString())
+                        Log.e("error", "Error posting comment", e)
                     }
                 }
             } else {
@@ -74,15 +77,15 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
         if (isFromWriteActivity) {
             GlobalScope.launch(Dispatchers.IO) {
                 val getPostId = intent.getStringExtra("itemId").toString()
-                Log.d("dmdkdmdkdk", getPostId)
+                Log.d("dmdkdmdkdk", "getPostId: $getPostId")
                 try {
                     val responseData = apiService.knowledgePostDetail(token, getPostId)
-                    Log.d("dmddo", responseData.toString())
+                    Log.d("dmddo", "responseData: $responseData")
                     val jsonObject =
                         gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
                     val userEmail = data.email.split("@")[0]
-                    Log.d("dmddo", data.toString())
+                    Log.d("dmddo", "ViewingKnowledge: $data")
 
                     withContext(Dispatchers.Main) {
                         binding.viewKnowledgePostTitle.text = data.title
@@ -93,7 +96,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                         Log.d("dmddo", "UI 업데이트 완료")
                     }
                 } catch (e: Exception) {
-                    Log.e("ViewKnowledgePostWithAnswerActivity", e.toString())
+                    Log.e("ViewKnowledgePostWithAnswerActivity", "Error fetching post detail", e)
                 }
             }
             fetchKnowledgePostDetail()
@@ -108,11 +111,11 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val responseData = apiService.knowledgePostDetail(token, postId)
-                Log.d("dmddo", responseData.toString())
+                Log.d("dmddo", "responseData: $responseData")
                 val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                 val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
                 val userEmail = data.email.split("@")[0]
-                Log.d("dmddo", data.toString())
+                Log.d("dmddo", "ViewingKnowledge: $data")
 
                 withContext(Dispatchers.Main) {
                     binding.viewKnowledgePostUserId.text = "${data.univ} $userEmail"
@@ -121,7 +124,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     binding.knowledgePostViewersCount.text = data.views.toString()
                 }
             } catch (e: Exception) {
-                Log.e("ViewKnowledgePostActivity", e.toString())
+                Log.e("ViewKnowledgePostActivity", "Error fetching post detail", e)
             }
         }
     }
@@ -156,7 +159,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                             startActivity(intent)
                         }
                     } catch (e: Exception) {
-                        Log.e("menuerror1", e.toString())
+                        Log.e("menuerror1", "Error fetching post detail", e)
                     }
                 }
                 true
