@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewFreePostBinding
+import com.android.myapplication.ui.free_community.data_class.PostingComment
 import com.android.myapplication.ui.free_community.data_class.ViewingFree
 import com.android.myapplication.ui.knowledge_community.ViewFreePostPlusActivity
+import com.android.myapplication.ui.knowledge_community.ViewKnowledgePostWithAnswerActivity
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
@@ -32,61 +34,74 @@ class ViewFreePostActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val isFromFreeList = intent.getBooleanExtra("isFromFreeList", false)
-        if (isFromFreeList) {
-            GlobalScope.launch(Dispatchers.IO) {
-                val postId = intent.getStringExtra("fromListPostId").toString()
-                val responseData = apiService.freePostDetail(token, postId)
-                Log.e("From Free List View Post", responseData.toString())
-                val jsonObject =
-                    gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                val data = gson.fromJson(jsonObject, ViewingFree::class.java)
-                val uId = data.email.split("@")[0]
-                withContext(Dispatchers.Main) {
-                    binding.viewFreePostTitle.text = data.title
-                    binding.viewFreePostUserSch.text = data.univ
-                    binding.viewFreePostUserId.text = uId
-                    binding.freePostViewersCount.text = data.views.toString()
-                    binding.freePostReadingContent.text = data.content
-                    binding.freePostRecommend.text = data.likeNumber.toString()
-                    binding.freePostComment.text = data.commentNumber.toString()
-                }
+        GlobalScope.launch(Dispatchers.IO) {
+            postId = if (isFromFreeList) {
+                intent.getStringExtra("fromListPostId").toString()
+            } else {
+                intent.getStringExtra("fromWriteFreePostId").toString()
             }
-        } else {
-            GlobalScope.launch(Dispatchers.IO) {
-                val postId = intent.getStringExtra("fromWriteFreePostId").toString()
-                val responseData = apiService.freePostDetail(token, postId)
-                Log.e("From Free Write Post", responseData.toString())
-                val jsonObject =
-                    gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                val data = gson.fromJson(jsonObject, ViewingFree::class.java)
-                val uId = data.email.split("@")[0]
-                withContext(Dispatchers.Main) {
-                    binding.viewFreePostTitle.text = data.title
-                    binding.viewFreePostUserSch.text = data.univ
-                    binding.viewFreePostUserId.text = uId
-                    binding.freePostViewersCount.text = data.views.toString()
-                    binding.freePostReadingContent.text = data.content
-                    binding.freePostRecommend.text = data.likeNumber.toString()
-                    binding.freePostComment.text = data.commentNumber.toString()
-                }
+
+            val responseData = apiService.freePostDetail(token, postId)
+            Log.e(
+                if (isFromFreeList) "From Free List View Post" else "From Free Write Post",
+                responseData.toString()
+            )
+            val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+            val data = gson.fromJson(jsonObject, ViewingFree::class.java)
+            val uId = data.email.split("@")[0]
+
+            withContext(Dispatchers.Main) {
+                binding.viewFreePostTitle.text = data.title
+                binding.viewFreePostUserSch.text = data.univ
+                binding.viewFreePostUserId.text = uId
+                binding.freePostViewersCount.text = data.views.toString()
+                binding.freePostReadingContent.text = data.content
+                binding.freePostRecommend.text = data.likeNumber.toString()
+                binding.freePostComment.text = data.commentNumber.toString()
             }
         }
 
         binding.freePostCommentPlusButton.setOnClickListener {
-            intent = Intent(this, ViewFreePostPlusActivity::class.java)
+            val intent = Intent(this, ViewFreePostPlusActivity::class.java)
             intent.putExtra("fromViewPostId", postId)
             startActivity(intent)
             finish()
         }
 
         binding.viewFreePostBackButton.setOnClickListener {
-            intent = Intent(this, FreePostListActivity::class.java)
+            val intent = Intent(this, FreePostListActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        binding.viewFreePostMenu.setOnClickListener {
-            // todo
+        binding.freePostCommentEnter.setOnClickListener {
+            val content = binding.freePostEnteringComment.text.toString()
+            val postingFComment = PostingComment(
+                postId = postId,
+                content = content
+            )
+            if (content.isNotBlank()) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        val responsData = apiService.postingFComment(token, postingFComment)
+                        withContext(Dispatchers.Main) {
+                            val intent = Intent(
+                                this@ViewFreePostActivity,
+                                ViewFreePostPlusActivity::class.java
+                            )
+                            intent.putExtra("isFromViewFreePostID", postId)
+                            intent.putExtra("isFromViewFree", true)
+                            startActivity(intent)
+                            finish()
+                        }
+                    } catch (e: Exception) {
+                        Log.e("error", "Error posting comment", e)
+                    }
+                }
+                binding.viewFreePostMenu.setOnClickListener {
+                    // todo
+                }
+            }
         }
     }
 }

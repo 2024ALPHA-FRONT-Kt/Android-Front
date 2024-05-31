@@ -5,10 +5,11 @@ import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.dto.SignInProfile
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.android.myapplication.ui.free_community.data_class.EditingFree
+import com.android.myapplication.ui.free_community.data_class.PostingComment
 import com.android.myapplication.ui.free_community.data_class.PostingFree
 import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowledge
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
-import com.android.myapplication.ui.knowledge_community.data_class.postingKComment
+import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -96,7 +97,7 @@ interface ApiService {
     @POST("/comment")
     suspend fun postingKComment(
         @Header("Authorization") token: String,
-        @Body postKComment: postingKComment
+        @Body postKComment: PostingKComment
     ) : ResponseObject
 
     @POST("/post")
@@ -127,5 +128,11 @@ interface ApiService {
     suspend fun loadHotFreePost(
         @Header("Authorization") authorization: String,
         @Query("postType") postType: String
+    ) : ResponseObject
+
+    @POST("/comment")
+    suspend fun postingFComment(
+        @Header("Authorization") token: String,
+        @Body postKComment: PostingComment
     ) : ResponseObject
 }

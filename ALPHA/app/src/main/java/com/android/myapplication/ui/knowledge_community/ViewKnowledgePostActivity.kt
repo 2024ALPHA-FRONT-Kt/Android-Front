@@ -13,7 +13,7 @@ import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewKnowledgePostBinding
 import com.android.myapplication.ui.knowledge_community.data_class.ViewingKnowledge
-import com.android.myapplication.ui.knowledge_community.data_class.postingKComment
+import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +47,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
         binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
             val id = intent.getStringExtra("itemId").toString()
             val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
-            val postingKComment = postingKComment(
+            val postingKComment = PostingKComment(
                 postId = id,
                 content = content
             )
@@ -131,9 +131,8 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 }
             }
             binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
-                val id = intent.getStringExtra("itemId").toString()
                 val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
-                val postingKComment = postingKComment(
+                val postingKComment = PostingKComment(
                     postId = fromWritePostId,
                     content = content
                 )
