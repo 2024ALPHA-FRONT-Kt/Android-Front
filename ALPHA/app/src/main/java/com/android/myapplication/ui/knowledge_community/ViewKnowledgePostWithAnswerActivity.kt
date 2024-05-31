@@ -36,9 +36,11 @@ class ViewKnowledgePostWithAnswerActivity : AppCompatActivity() {
         if (isFromAnswering) {
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-                    val responseData = apiService.knowledgePostDetail(token, fromViewPostAnswerPostId)
+                    val responseData =
+                        apiService.knowledgePostDetail(token, fromViewPostAnswerPostId)
                     Log.d("QNdkd", responseData.toString())
-                    val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                    val jsonObject =
+                        gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
                     val userEmail = data.email.split("@")[0]
                     Log.d("dmddo", data.toString())
@@ -76,7 +78,8 @@ class ViewKnowledgePostWithAnswerActivity : AppCompatActivity() {
                 try {
                     val responseData = apiService.knowledgePostDetail(token, fromListPostId)
                     Log.d("QNdkd", responseData.toString())
-                    val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                    val jsonObject =
+                        gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
                     val userEmail = data.email.split("@")[0]
                     Log.d("dmddo", data.toString())

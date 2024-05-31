@@ -47,15 +47,15 @@ class KnowledgePostListActivity : AppCompatActivity() {
 
             val mList: MutableList<PostList> = mutableListOf()
 
-            for (i in ddd){
+            for (i in ddd) {
                 val postObject = i.asJsonObject
                 val id = postObject.get("id").asString
                 val content = postObject.get("content").asString
                 val title = postObject.get("title").asString
-                mList.add(PostList(id,content,title))
+                mList.add(PostList(id, content, title))
             }
 
-            binding.root.post{
+            binding.root.post {
                 recyclerView.adapter = KnowledgePostsAdapter(mList)
             }
 

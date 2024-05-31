@@ -39,12 +39,15 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                 title.isBlank() && body.isNotBlank() -> {
                     Toast.makeText(this, "제목을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
+
                 title.isNotBlank() && body.isBlank() -> {
                     Toast.makeText(this, "내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
+
                 title.isBlank() && body.isBlank() -> {
                     Toast.makeText(this, "제목과 내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
+
                 else -> {
                     val postingKnowledge = PostingKnowledge(
                         title = title,

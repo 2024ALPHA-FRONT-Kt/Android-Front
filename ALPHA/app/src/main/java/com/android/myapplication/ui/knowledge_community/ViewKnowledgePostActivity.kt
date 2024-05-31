@@ -183,14 +183,21 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
             R.id.k_plus_q_menu_3 -> {
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
-                        val responseData = apiService.knowledgePostDetail(token, "556ba748-d8b4-4258-8333-4497697a1a67")
-                        val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                        val responseData = apiService.knowledgePostDetail(
+                            token,
+                            "556ba748-d8b4-4258-8333-4497697a1a67"
+                        )
+                        val jsonObject =
+                            gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                         val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
                         val editTitleDraft = data.title
                         val editContentDraft = data.content
 
                         withContext(Dispatchers.Main) {
-                            val intent = Intent(this@ViewKnowledgePostActivity, WriteKnowledgePostActivity::class.java).apply {
+                            val intent = Intent(
+                                this@ViewKnowledgePostActivity,
+                                WriteKnowledgePostActivity::class.java
+                            ).apply {
                                 putExtra("editTitleDraft", editTitleDraft)
                                 putExtra("editContentDraft", editContentDraft)
                                 putExtra("isFromWriteActivity", true)
@@ -203,6 +210,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 }
                 true
             }
+
             else -> false
         }
     }
