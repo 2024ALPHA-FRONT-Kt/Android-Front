@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -15,18 +14,18 @@
             android:id="@+id/free_post_comment_sch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:fontFamily="@font/nanumsquareroundlarge"
             android:textColor="#4F6BFC"
-            android:fontFamily="@font/nanumsquareroundlarge"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/free_post_comment_user_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
-            android:textSize="12sp"
+            android:fontFamily="@font/nanumsquareroundlarge"
             android:textColor="#373737"
-            android:fontFamily="@font/nanumsquareroundlarge" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -40,23 +39,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="13sp"
             android:layout_weight="1"
             android:fontFamily="@font/nanumsquareroundlarge"
-            android:maxLines="3" />
+            android:maxLines="3"
+            android:textSize="13sp" />
 
         <ImageView
             android:id="@+id/free_post_comment_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_free_post_comment_menu"
-            android:layout_gravity="bottom"/>
+            android:layout_gravity="bottom"
+            android:src="@drawable/ic_free_post_comment_menu" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:background="#ACACAC"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="15dp"
+        android:background="#ACACAC" />
 </LinearLayout>

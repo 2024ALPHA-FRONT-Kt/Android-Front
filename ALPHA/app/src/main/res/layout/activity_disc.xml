@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/disc_start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/disc_start"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.disc.DiscActivity">
 
     <LinearLayout
@@ -19,10 +19,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/disc_start_page_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_back"
-            android:id="@+id/disc_start_page_back"/>
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/disc_test_page_test_start_text"
@@ -30,8 +30,8 @@
             android:layout_height="40dp"
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:paddingTop="13dp"
-            android:textColor="@color/black"
             android:text="컨텐츠"
+            android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -79,8 +79,8 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/nanumsquareroundbold"
         android:text="#DISC-T #학과추천"
-        android:textSize="13sp"
         android:textColor="#000000"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
         app:layout_constraintTop_toBottomOf="@+id/disc_title_text" />
 
@@ -91,8 +91,8 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/nanumsquareroundbold"
-        android:textColor="#898989"
         android:text="신뢰도 높은 행동 유형 테스트인 DISC-T를 통해\n나의 행동 유형을 파악하고 나에게 적합한 과를 찾아보자! "
+        android:textColor="#898989"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
         app:layout_constraintTop_toBottomOf="@+id/disc_little_hashtag_text" />
@@ -111,35 +111,35 @@
         android:id="@+id/disc_participate_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="@+id/disc_recten_img"
         app:layout_constraintEnd_toEndOf="@+id/disc_recten_img"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"
-        app:layout_constraintTop_toBottomOf="@+id/disc_computer_img"
-        android:gravity="center_vertical">
+        app:layout_constraintTop_toBottomOf="@+id/disc_computer_img">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#3B3B3B"
+            android:fontFamily="@font/nanumsquareroundbold"
             android:text="현재"
-            android:fontFamily="@font/nanumsquareroundbold"/>
+            android:textColor="#3B3B3B" />
 
         <TextView
             android:id="@+id/disc_users"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0000"
-            android:textColor="#4F6BFC"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:layout_marginStart="5dp"/>
+            android:text="0000"
+            android:textColor="#4F6BFC" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="명이 참여했어요."
-            android:textColor="#3B3B3B"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:layout_marginStart="5dp"/>
+            android:text="명이 참여했어요."
+            android:textColor="#3B3B3B" />
 
     </LinearLayout>
 
@@ -147,11 +147,11 @@
         android:id="@+id/disc_test_start_button"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/disc_next_page_round_button"
-        android:text="테스트 하러 가기"
-        android:fontFamily="@font/nanumsquareroundextrabold"
-        android:textColor="@color/white"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/disc_next_page_round_button"
+        android:fontFamily="@font/nanumsquareroundextrabold"
+        android:text="테스트 하러 가기"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/disc_recten_img"
         app:layout_constraintEnd_toEndOf="@+id/disc_recten_img"
         app:layout_constraintStart_toStartOf="@+id/disc_recten_img"

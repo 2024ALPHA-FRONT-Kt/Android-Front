@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,30 +20,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
             android:text="자유"
             android:textColor="#4F6BFC"
-            android:textSize="40sp"
-            android:fontFamily="@font/nanumsquareroundextrabold"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp" />
+            android:textSize="40sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/nanumsquareroundextrabold"
             android:text="게시판"
             android:textColor="@color/black"
-            android:textSize="30sp"
-            android:fontFamily="@font/nanumsquareroundextrabold"
-            android:layout_marginTop="70dp"
-            android:layout_marginStart="40dp" />
+            android:textSize="30sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="70dp"
             android:layout_gravity="end"
-            android:layout_marginEnd="20dp">
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -53,14 +52,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/free_posts_list_writing_button"
-                android:layout_marginStart="15dp"
                 android:layout_width="50dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="15dp"
                 android:background="@drawable/view_free_list_posting_button"
-                android:text="글쓰기"
                 android:fontFamily="@font/nanumsquareroundbold"
+                android:text="글쓰기"
                 android:textColor="@color/white"
-                android:textSize="10sp"/>
+                android:textSize="10sp" />
         </LinearLayout>
 
         <FrameLayout
@@ -83,23 +82,23 @@
                 android:id="@+id/free_community_banner_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1차 수시 모집"
+                android:layout_gravity="center_vertical|center_horizontal"
                 android:fontFamily="@font/nanumsquareroundbold"
-                android:textSize="20sp"
+                android:text="1차 수시 모집"
                 android:textColor="@color/white"
-                android:layout_gravity="center_vertical|center_horizontal" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/free_community_banner_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2023.09.18 ~ 2023.10.13"
-                android:fontFamily="@font/nanumsquareroundbold"
-                android:textSize="8sp"
                 android:layout_gravity="bottom|right"
                 android:layout_marginEnd="35dp"
                 android:layout_marginBottom="4dp"
-                android:textColor="@color/white"/>
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:text="2023.09.18 ~ 2023.10.13"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
         </FrameLayout>
     </FrameLayout>
 
@@ -120,8 +119,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/ic_free_hot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
@@ -172,13 +171,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic_free_hot"
-        android:layout_marginTop="150dp"> <!-- 임시방편 -->
+        app:layout_constraintTop_toBottomOf="@+id/ic_free_hot"> <!-- 임시방편 -->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/free_list_view"

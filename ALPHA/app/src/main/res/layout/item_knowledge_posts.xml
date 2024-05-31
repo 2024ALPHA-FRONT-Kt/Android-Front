@@ -7,30 +7,30 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1.5px"
-        android:background="#ACACAC"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        android:background="#ACACAC" />
 
     <LinearLayout
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquareroundextrabold"
             android:text="Q. "
-            android:textSize="15sp"
             android:textColor="#636BB8"
-            android:fontFamily="@font/nanumsquareroundextrabold" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/view_knowledge_posts_title"
-            android:layout_marginStart="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
             android:fontFamily="@font/nanumsquareroundbold"
             android:textSize="15sp" />
     </LinearLayout>
@@ -39,18 +39,18 @@
         android:id="@+id/view_knowledge_post_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/nanumsquareroundlarge"
-        android:textStyle="bold"
-        android:maxLines="3" />
+        android:maxLines="3"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/knowledge_answering_button"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_knowledge_answer_posting_button"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_knowledge_answer_posting_button" />
 
 </LinearLayout>
