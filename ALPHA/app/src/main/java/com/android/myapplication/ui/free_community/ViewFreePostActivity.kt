@@ -10,7 +10,6 @@ import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewFreePostBinding
 import com.android.myapplication.ui.free_community.data_class.PostingComment
 import com.android.myapplication.ui.free_community.data_class.ViewingFree
-import com.android.myapplication.ui.knowledge_community.ViewFreePostPlusActivity
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers

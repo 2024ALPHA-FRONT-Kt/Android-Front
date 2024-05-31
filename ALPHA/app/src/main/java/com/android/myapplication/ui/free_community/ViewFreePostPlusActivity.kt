@@ -1,4 +1,4 @@
-package com.android.myapplication.ui.knowledge_community
+package com.android.myapplication.ui.free_community
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewFreePostPlusBinding
-import com.android.myapplication.ui.free_community.FreeCommentAdapter
-import com.android.myapplication.ui.free_community.FreePostListActivity
 import com.android.myapplication.ui.free_community.data_class.CommentList
 import com.android.myapplication.ui.free_community.data_class.PostingComment
 import com.android.myapplication.ui.free_community.data_class.ViewingFree
@@ -49,26 +47,25 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
 
             for (commentJson in responseComments) {
                 val commentObject = commentJson.asJsonObject
-                val userId = commentObject.get("userId").asString
                 val univ = commentObject.get("univ").asString
                 val email = commentObject.get("email").asString
                 val content = commentObject.get("content").asString
-                commentLists.add(CommentList(userId, univ, email, content))
-            }
-            binding.root.post {
-                recyclerView.adapter = FreeCommentAdapter(commentLists)
+                commentLists.add(CommentList(email, postId, univ, content))
             }
 
-            val data = gson.fromJson(jsonObject, ViewingFree::class.java)
-            val uId = data.email.split("@")[0]
             withContext(Dispatchers.Main) {
-                binding.viewFreePostTitle.text = data.title
-                binding.viewFreePostUserSch.text = data.univ
-                binding.viewFreePostUserId.text = uId
-                binding.freePostViewersCount.text = data.views.toString()
-                binding.freePostReadingContent.text = data.content
-                binding.freePostRecommend.text = data.likeNumber.toString()
-                binding.freePostComment.text = data.commentNumber.toString()
+                binding.root.post {
+                    recyclerView.adapter = FreeCommentAdapter(commentLists)
+                    val data = gson.fromJson(jsonObject, ViewingFree::class.java)
+                    val uId = data.email.split("@")[0]
+                    binding.viewFreePostTitle.text = data.title
+                    binding.viewFreePostUserSch.text = data.univ
+                    binding.viewFreePostUserId.text = uId
+                    binding.freePostViewersCount.text = data.views.toString()
+                    binding.freePostReadingContent.text = data.content
+                    binding.freePostRecommend.text = data.likeNumber.toString()
+                    binding.freePostComment.text = data.commentNumber.toString()
+                }
             }
         }
 
@@ -87,7 +84,7 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
             if (content.isNotBlank()) {
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
-                        val responsData = apiService.postingFComment(token, postingFComment)
+                        val responseData = apiService.postingFComment(token, postingFComment)
                         withContext(Dispatchers.Main) {
                             val intent = Intent(
                                 this@ViewFreePostPlusActivity,

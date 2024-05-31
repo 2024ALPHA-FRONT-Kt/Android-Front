@@ -35,10 +35,9 @@ class FreeCommentAdapter(private val items: MutableList<CommentList>) :
         private val univTextView: TextView = v.findViewById(R.id.free_post_comment_sch)
         private val idTextView: TextView = v.findViewById(R.id.free_post_comment_user_id)
         private val contentTextView: TextView = v.findViewById(R.id.free_post_comment_content)
-
         fun bind(item: CommentList) {
             univTextView.text = item.univ
-            idTextView.text = item.userId
+            idTextView.text = item.email.split("@")[0]
             contentTextView.text = item.content
         }
     }
