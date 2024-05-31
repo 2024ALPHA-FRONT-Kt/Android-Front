@@ -1,11 +1,13 @@
 package com.android.myapplication.ui.knowledge_community
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewFreePostPlusBinding
+import com.android.myapplication.ui.free_community.FreePostListActivity
 import com.android.myapplication.ui.free_community.data_class.ViewingFree
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -46,6 +48,12 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
                 binding.freePostComment.text = data.commentNumber.toString()
                 //todo 댓글 여러 개 불러오기 adapter도 써야 할 듯?
             }
+        }
+
+        binding.viewFreePostBackButton.setOnClickListener {
+            intent = Intent(this, FreePostListActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

@@ -75,6 +75,14 @@ class ViewFreePostActivity : AppCompatActivity() {
         binding.freePostCommentPlusButton.setOnClickListener {
             intent = Intent(this, ViewFreePostPlusActivity::class.java)
             intent.putExtra("fromViewPostId", postId)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.viewFreePostBackButton.setOnClickListener {
+            intent = Intent(this, FreePostListActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         binding.viewFreePostMenu.setOnClickListener {
