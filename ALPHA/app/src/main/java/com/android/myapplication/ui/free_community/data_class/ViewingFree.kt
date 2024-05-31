@@ -11,7 +11,12 @@ data class ViewingFree(
     val likeNumber: Int,
     val views: Int,
     val commentNumber: Int,
-    val comUniv: String,
-    val comEmail: String,
-    val comContent: String
+    val responseCommentDto: List<ResponseCommentDto>
+)
+
+data class ResponseCommentDto(
+    val userId: String,
+    val univ: String,
+    val email: String,
+    val content: String
 )
