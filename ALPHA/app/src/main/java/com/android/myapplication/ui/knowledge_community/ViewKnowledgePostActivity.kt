@@ -73,7 +73,8 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
         val isFromWriteActivity = intent.getBooleanExtra("isFromWriteActivity", false)
         if (isFromWriteActivity) {
             GlobalScope.launch(Dispatchers.IO) {
-                val getPostId = intent.getStringExtra("getPostId").toString()
+                val getPostId = intent.getStringExtra("itemId").toString()
+                Log.d("dmdkdmdkdk", getPostId)
                 try {
                     val responseData = apiService.knowledgePostDetail(token, getPostId)
                     Log.d("dmddo", responseData.toString())
