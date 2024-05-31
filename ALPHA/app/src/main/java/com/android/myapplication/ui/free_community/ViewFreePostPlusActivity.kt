@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewFreePostPlusBinding
+import com.android.myapplication.ui.free_community.FreeCommentAdapter
 import com.android.myapplication.ui.free_community.FreePostListActivity
+import com.android.myapplication.ui.free_community.data_class.CommentList
 import com.android.myapplication.ui.free_community.data_class.ViewingFree
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -30,12 +33,30 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        val recyclerView = binding.freeCommentView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
         GlobalScope.launch(Dispatchers.IO) {
             val fromViewPostId = intent.getStringExtra("fromViewPostId").toString()
             val responseData = apiService.freePostDetail(token, fromViewPostId)
             Log.e("From Free View Post", responseData.toString())
             val jsonObject =
                 gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+            val commentLists: MutableList<CommentList> = mutableListOf()
+            val responseComments = jsonObject.getAsJsonArray("responseCommentDto")
+
+            for (commentJson in responseComments) {
+                val commentObject = commentJson.asJsonObject
+                val userId = commentObject.get("userId").asString
+                val univ = commentObject.get("univ").asString
+                val email = commentObject.get("email").asString
+                val content = commentObject.get("content").asString
+                commentLists.add(CommentList(userId, univ, email, content))
+            }
+            binding.root.post {
+                recyclerView.adapter = FreeCommentAdapter(commentLists)
+            }
+
             val data = gson.fromJson(jsonObject, ViewingFree::class.java)
             val uId = data.email.split("@")[0]
             withContext(Dispatchers.Main) {
@@ -46,7 +67,6 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
                 binding.freePostReadingContent.text = data.content
                 binding.freePostRecommend.text = data.likeNumber.toString()
                 binding.freePostComment.text = data.commentNumber.toString()
-                //todo 댓글 여러 개 불러오기 adapter도 써야 할 듯?
             }
         }
 

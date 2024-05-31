@@ -42,11 +42,11 @@ class FreePostListActivity : AppCompatActivity() {
             val postType = "FREE" // 고정값
             val responseData = apiService.freeLists(token, postType, page)
             Log.d("dmd!!", responseData.data.toString())
-            val ddd = gson.fromJson(responseData.data.toString(), JsonArray::class.java)
+            val datas = gson.fromJson(responseData.data.toString(), JsonArray::class.java)
 
             val mList: MutableList<PostList> = mutableListOf()
 
-            for (i in ddd) {
+            for (i in datas) {
                 val postObject = i.asJsonObject
                 val id = postObject.get("id").asString
                 val content = postObject.get("content").asString
