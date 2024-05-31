@@ -90,13 +90,13 @@ class ViewFreePostActivity : AppCompatActivity() {
             if (content.isNotBlank()) {
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
-                        val responsData = apiService.postingFComment(token, postingFComment)
+                        val responseData = apiService.postingFComment(token, postingFComment)
                         withContext(Dispatchers.Main) {
                             val intent = Intent(
                                 this@ViewFreePostActivity,
                                 ViewFreePostPlusActivity::class.java
                             )
-                            intent.putExtra("isFromViewFreePostID", postId)
+                            intent.putExtra("fromViewPostId", postId)
                             intent.putExtra("isFromViewFree", true)
                             startActivity(intent)
                             finish()
@@ -107,6 +107,7 @@ class ViewFreePostActivity : AppCompatActivity() {
                 }
             }
         }
+
 
         binding.viewFreePostMenu.setOnClickListener {
             // todo

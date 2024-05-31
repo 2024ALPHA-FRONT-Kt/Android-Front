@@ -36,8 +36,38 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
         val recyclerView = binding.freeCommentView
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        postId = intent.getStringExtra("fromViewPostId").toString()
+        loadPostDetails()
+
+        binding.viewFreePostBackButton.setOnClickListener {
+            val intent = Intent(this, FreePostListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.freePostCommentEnter.setOnClickListener {
+            val content = binding.freePostEnteringComment.text.toString()
+            val postingFComment = PostingComment(
+                postId = postId,
+                content = content
+            )
+            if (content.isNotBlank()) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        val responseData = apiService.postingFComment(token, postingFComment)
+                        withContext(Dispatchers.Main) {
+                            loadPostDetails()
+                        }
+                    } catch (e: Exception) {
+                        Log.e("error", "Error posting comment", e)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loadPostDetails() {
         GlobalScope.launch(Dispatchers.IO) {
-            val postId = intent.getStringExtra("fromViewPostId").toString()
             val responseData = apiService.freePostDetail(token, postId)
             Log.e("From Free View Post", responseData.toString())
             val jsonObject =
@@ -55,7 +85,7 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
 
             withContext(Dispatchers.Main) {
                 binding.root.post {
-                    recyclerView.adapter = FreeCommentAdapter(commentLists)
+                    binding.freeCommentView.adapter = FreeCommentAdapter(commentLists)
                     val data = gson.fromJson(jsonObject, ViewingFree::class.java)
                     val uId = data.email.split("@")[0]
                     binding.viewFreePostTitle.text = data.title
@@ -65,39 +95,6 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
                     binding.freePostReadingContent.text = data.content
                     binding.freePostRecommend.text = data.likeNumber.toString()
                     binding.freePostComment.text = data.commentNumber.toString()
-                }
-            }
-        }
-
-        binding.viewFreePostBackButton.setOnClickListener {
-            intent = Intent(this, FreePostListActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        binding.freePostCommentEnter.setOnClickListener {
-            val content = binding.freePostEnteringComment.text.toString()
-            val postingFComment = PostingComment(
-                postId = postId,
-                content = content
-            )
-            if (content.isNotBlank()) {
-                GlobalScope.launch(Dispatchers.IO) {
-                    try {
-                        val responseData = apiService.postingFComment(token, postingFComment)
-                        withContext(Dispatchers.Main) {
-                            val intent = Intent(
-                                this@ViewFreePostPlusActivity,
-                                ViewFreePostPlusActivity::class.java
-                            )
-                            intent.putExtra("isFromViewFreePostID", postId)
-                            intent.putExtra("isFromViewFree", true)
-                            startActivity(intent)
-                            finish()
-                        }
-                    } catch (e: Exception) {
-                        Log.e("error", "Error posting comment", e)
-                    }
                 }
             }
         }
