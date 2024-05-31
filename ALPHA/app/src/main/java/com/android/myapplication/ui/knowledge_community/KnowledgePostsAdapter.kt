@@ -43,13 +43,16 @@ class KnowledgePostsAdapter(private val items: MutableList<PostList>) : Recycler
                     withContext(Dispatchers.Main) {
                         Log.d("whyrano", "123456789")
                         val intent = if (data.responseCommentDto.isNotEmpty()) {
-                            Intent(context, ViewKnowledgePostWithAnswerActivity::class.java)
+                            Intent(context, ViewKnowledgePostWithAnswerActivity::class.java).apply {
+                                putExtra("itemId", item.id)
+                                putExtra("isFromListAnswer", true)
+                            }
                         } else {
                             Intent(context, ViewKnowledgePostActivity::class.java).apply {
                                 putExtra("itemId", item.id)
                                 putExtra("itemTitle", item.title)
                                 putExtra("itemContent", item.content)
-                                putExtra("isFromWriteActivity", true)
+                                putExtra("isFromKList", true)
                             }
                         }
                         Log.d("whyrano", intent.toString())

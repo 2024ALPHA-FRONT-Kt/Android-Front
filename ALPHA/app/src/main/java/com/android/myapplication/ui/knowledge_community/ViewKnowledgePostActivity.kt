@@ -74,8 +74,8 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
             }
         }
 
-        val isFromWriteActivity = intent.getBooleanExtra("isFromWriteActivity", false)
-        if (isFromWriteActivity) {
+        val isFromKList = intent.getBooleanExtra("isFromKList", false)
+        if (isFromKList) {
             GlobalScope.launch(Dispatchers.IO) {
                 val getPostId = intent.getStringExtra("itemId").toString()
                 Log.d("dmdkdmdkdk", "getPostId: $getPostId")
