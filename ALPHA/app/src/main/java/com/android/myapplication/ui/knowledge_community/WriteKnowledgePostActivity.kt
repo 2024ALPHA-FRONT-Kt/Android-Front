@@ -54,14 +54,19 @@ class WriteKnowledgePostActivity : AppCompatActivity() {
                     )
                     GlobalScope.launch(Dispatchers.IO) {
                         try {
-                            val responseData = apiService.postingKnowledgePost(token, postingKnowledge)
+                            val responseData =
+                                apiService.postingKnowledgePost(token, postingKnowledge)
                             val responseJson = gson.toJson(responseData)
                             val jsonObject = gson.fromJson(responseJson, JsonObject::class.java)
                             val getPostId = jsonObject.get("data").asString
                             Log.d("fhrmzot", responseData.toString())
+                            Log.d("intentData", "itemId: $getPostId, isFromWriteAc: true")
                             withContext(Dispatchers.Main) {
-                                val intent = Intent(this@WriteKnowledgePostActivity, ViewKnowledgePostActivity::class.java).apply {
-                                    putExtra("itemId", getPostId.toString())
+                                val intent = Intent(
+                                    this@WriteKnowledgePostActivity,
+                                    ViewKnowledgePostActivity::class.java
+                                ).apply {
+                                    putExtra("itemIdWrite", getPostId.toString())
                                     putExtra("isFromWriteAc", true)
                                 }
                                 startActivity(intent)

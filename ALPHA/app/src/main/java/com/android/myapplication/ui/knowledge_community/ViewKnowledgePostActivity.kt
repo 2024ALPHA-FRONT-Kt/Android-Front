@@ -103,39 +103,33 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     Log.e("ViewKnowledgePostWithAnswerActivity", "Error fetching post detail", e)
                 }
             }
+        } else {
+            GlobalScope.launch(Dispatchers.IO) {
+                val fromWritePostId = intent.getStringExtra("itemIdWrite").toString()
+                Log.d("dmdkdmdkdk", "getPostId: $fromWritePostId")
+                try {
+                    val responseData =
+                        apiService.knowledgePostDetail(token, fromWritePostId)
+                    Log.d("dmddowfwefwfewfw", "responseData: $responseData")
+                    val jsonObject =
+                        gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                    val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
+                    val userEmail = data.email.split("@")[0]
+                    Log.d("dmddo", "ViewingKnowledge: $data")
 
-            val isFromWriteAc = intent.getBooleanExtra("isFromWriteAc", false)
-            if (isFromWriteAc) {
-                val fromWritePostId = intent.getStringExtra("itemId").toString()
-                Log.d("dslfkfqeiqo", "dladjlfkqieojwoifeffe")
-                GlobalScope.launch(Dispatchers.IO) {
-                    Log.d("dmdkdmdkdk", "getPostId: $fromWritePostId")
-                    try {
-                        val responseData = apiService.knowledgePostDetail(token, fromWritePostId)
-                        Log.d("dmddowfwefwfewfw", "responseData: $responseData")
-                        val jsonObject =
-                            gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                        val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
-                        val userEmail = data.email.split("@")[0]
-                        Log.d("dmddo", "ViewingKnowledge: $data")
+                    withContext(Dispatchers.Main) {
+                        binding.viewKnowledgePostTitle.text = data.title
+                        binding.viewKnowledgePostContent.text = data.content
+                        binding.viewKnowledgePostUserId.text = "${data.univ} $userEmail"
+                        binding.knowledgePostViewersCount.text = data.views.toString()
 
-                        withContext(Dispatchers.Main) {
-                            binding.viewKnowledgePostTitle.text = data.title
-                            binding.viewKnowledgePostContent.text = data.content
-                            binding.viewKnowledgePostUserId.text = "${data.univ} $userEmail"
-                            binding.knowledgePostViewersCount.text = data.views.toString()
-
-                            Log.d("dmddo", "UI 업데이트 완료")
-                        }
-                    } catch (e: Exception) {
-                        Log.e("eadsfeqeerreqrror", e.toString())
-                        e.printStackTrace() // 예외 스택 트레이스 출력
+                        Log.d("dmddo", "UI 업데이트 완료")
                     }
+                } catch (e: Exception) {
+                    Log.e("eadsfeqeerreqrror", e.toString())
+                    e.printStackTrace()
                 }
-            } else {
-                Log.d("isFromWriteAc", "isFromWriteAc is false")
             }
-
         }
 
         binding.viewKnowledgePostMenu.setOnClickListener {
