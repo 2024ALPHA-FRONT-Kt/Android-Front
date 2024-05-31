@@ -1,6 +1,7 @@
 package com.android.myapplication.ui.knowledge_community
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,18 +38,24 @@ class KnowledgePostsAdapter(private val items: MutableList<PostList>) : Recycler
                     val responseData = apiService.knowledgePostDetail(token, item.id)
                     val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
+                    Log.d("whyrano", "12345")
 
                     withContext(Dispatchers.Main) {
+                        Log.d("whyrano", "123456789")
                         val intent = if (data.responseCommentDto.isNotEmpty()) {
-                            Intent(context, ViewKnowledgePostWithAnswerActivity::class.java)
+                            Intent(context, ViewKnowledgePostWithAnswerActivity::class.java).apply {
+                                putExtra("itemId", item.id)
+                                putExtra("isFromListAnswer", true)
+                            }
                         } else {
                             Intent(context, ViewKnowledgePostActivity::class.java).apply {
                                 putExtra("itemId", item.id)
                                 putExtra("itemTitle", item.title)
                                 putExtra("itemContent", item.content)
-                                putExtra("isFromList", true)
+                                putExtra("isFromKList", true)
                             }
                         }
+                        Log.d("whyrano", intent.toString())
                         context.startActivity(intent)
                     }
                 } catch (e: Exception) {

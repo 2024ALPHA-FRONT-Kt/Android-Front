@@ -32,9 +32,6 @@
             android:name=".ui.knowledge_community.EditKnowledgeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.free_community.PostListActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.knowledge_community.WriteKnowledgePostActivity"
             android:exported="false" />
         <activity
