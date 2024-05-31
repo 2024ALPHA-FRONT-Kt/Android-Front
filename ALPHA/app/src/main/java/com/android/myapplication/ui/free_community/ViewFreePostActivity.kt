@@ -98,10 +98,11 @@ class ViewFreePostActivity : AppCompatActivity() {
                         Log.e("error", "Error posting comment", e)
                     }
                 }
-                binding.viewFreePostMenu.setOnClickListener {
-                    // todo
-                }
             }
+        }
+
+        binding.viewFreePostMenu.setOnClickListener {
+            // todo
         }
     }
 }

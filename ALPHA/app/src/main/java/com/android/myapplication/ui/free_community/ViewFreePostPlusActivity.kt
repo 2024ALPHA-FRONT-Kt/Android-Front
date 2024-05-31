@@ -11,6 +11,7 @@ import com.android.myapplication.databinding.ActivityViewFreePostPlusBinding
 import com.android.myapplication.ui.free_community.FreeCommentAdapter
 import com.android.myapplication.ui.free_community.FreePostListActivity
 import com.android.myapplication.ui.free_community.data_class.CommentList
+import com.android.myapplication.ui.free_community.data_class.PostingComment
 import com.android.myapplication.ui.free_community.data_class.ViewingFree
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -26,6 +27,7 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
     private val gson = Gson()
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
+    private lateinit var postId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +39,8 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         GlobalScope.launch(Dispatchers.IO) {
-            val fromViewPostId = intent.getStringExtra("fromViewPostId").toString()
-            val responseData = apiService.freePostDetail(token, fromViewPostId)
+            val postId = intent.getStringExtra("fromViewPostId").toString()
+            val responseData = apiService.freePostDetail(token, postId)
             Log.e("From Free View Post", responseData.toString())
             val jsonObject =
                 gson.fromJson(responseData.data.toString(), JsonObject::class.java)
@@ -74,6 +76,33 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
             intent = Intent(this, FreePostListActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        binding.freePostCommentEnter.setOnClickListener {
+            val content = binding.freePostEnteringComment.text.toString()
+            val postingFComment = PostingComment(
+                postId = postId,
+                content = content
+            )
+            if (content.isNotBlank()) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        val responsData = apiService.postingFComment(token, postingFComment)
+                        withContext(Dispatchers.Main) {
+                            val intent = Intent(
+                                this@ViewFreePostPlusActivity,
+                                ViewFreePostPlusActivity::class.java
+                            )
+                            intent.putExtra("isFromViewFreePostID", postId)
+                            intent.putExtra("isFromViewFree", true)
+                            startActivity(intent)
+                            finish()
+                        }
+                    } catch (e: Exception) {
+                        Log.e("error", "Error posting comment", e)
+                    }
+                }
+            }
         }
     }
 }
