@@ -11,15 +11,12 @@ import com.android.myapplication.databinding.ActivityViewFreePostBinding
 import com.android.myapplication.ui.free_community.data_class.PostingComment
 import com.android.myapplication.ui.free_community.data_class.ViewingFree
 import com.android.myapplication.ui.knowledge_community.ViewFreePostPlusActivity
-import com.android.myapplication.ui.knowledge_community.ViewKnowledgePostActivity
-import com.android.myapplication.ui.knowledge_community.ViewKnowledgePostWithAnswerActivity
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.system.exitProcess
 
 class ViewFreePostActivity : AppCompatActivity() {
 
