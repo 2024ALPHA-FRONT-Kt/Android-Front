@@ -21,7 +21,6 @@ class ViewFreePostActivity : AppCompatActivity() {
     private val gson = Gson()
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
-    private val id: String = App.prefs.getItem("userId", "noID")
 
     private lateinit var postId: String
 

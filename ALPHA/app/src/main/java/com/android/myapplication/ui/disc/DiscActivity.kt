@@ -32,7 +32,8 @@ class DiscActivity : AppCompatActivity() {
                 val responseData = apiService.getDiscUsers(token)
                 val discUsers = responseData.data.toString()
                 withContext(Dispatchers.Main) {
-                    binding.discUsers.text = discUsers.toString().substring(0 until discUsers.toString().length-2)
+                    binding.discUsers.text =
+                        discUsers.toString().substring(0 until discUsers.toString().length - 2)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

@@ -96,14 +96,28 @@ class DiscTest5Activity : AppCompatActivity() {
                 binding.discQ9A4, binding.discQ10A4 -> discScore.CScore += value
             }
 
-            if (editText in listOf(binding.discQ9A1, binding.discQ9A2, binding.discQ9A3, binding.discQ9A4)) {
+            if (editText in listOf(
+                    binding.discQ9A1,
+                    binding.discQ9A2,
+                    binding.discQ9A3,
+                    binding.discQ9A4
+                )
+            ) {
                 if (!q9Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG)
+                        .show()
                     return false
                 }
-            } else if (editText in listOf(binding.discQ10A1, binding.discQ10A2, binding.discQ10A3, binding.discQ10A4)) {
+            } else if (editText in listOf(
+                    binding.discQ10A1,
+                    binding.discQ10A2,
+                    binding.discQ10A3,
+                    binding.discQ10A4
+                )
+            ) {
                 if (!q10Values.remove(value)) {
-                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "각 문항 당 1~4 범위 내 숫자를 한 번씩만 입력해 주세요!", Toast.LENGTH_LONG)
+                        .show()
                     return false
                 }
             }

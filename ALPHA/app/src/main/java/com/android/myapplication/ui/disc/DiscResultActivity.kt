@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
 import android.os.Environment
-import android.util.JsonReader
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -15,18 +14,15 @@ import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityDiscResultBinding
-import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.ui.disc.data_class.DiscScore
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-import java.io.StringReader
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -96,7 +92,7 @@ class DiscResultActivity : AppCompatActivity() {
                     binding.discPros.text = discPros
                     binding.discEx.text = discEx
                     binding.discJob.text = discJob
-                    binding.discSameUsers.text = sameUsers.substring(12 until sameUsers.length-2)
+                    binding.discSameUsers.text = sameUsers.substring(12 until sameUsers.length - 2)
                 }
             } catch (e: Exception) {
                 Log.e("Error", e.message.toString())
@@ -138,22 +134,23 @@ class DiscResultActivity : AppCompatActivity() {
         }
         startActivity(Intent.createChooser(shareIntent, "DISC 테스트 결과 공유하기"))
     }
-        private fun parseStringToMap(input: String): Map<String, String> {
-            val cleanedInput = input.trim().removeSurrounding("{", "}")
 
-            val entries = cleanedInput.split("(?<=\\w)(,\\s)(?=\\w+=)".toRegex())
+    private fun parseStringToMap(input: String): Map<String, String> {
+        val cleanedInput = input.trim().removeSurrounding("{", "}")
 
-            val map = mutableMapOf<String, String>()
-            for (entry in entries) {
-                val keyValue = entry.split("=", limit = 2)
-                if (keyValue.size == 2) {
-                    val key = keyValue[0].trim()
-                    val value = keyValue[1].trim()
-                    map[key] = value
-                }
+        val entries = cleanedInput.split("(?<=\\w)(,\\s)(?=\\w+=)".toRegex())
+
+        val map = mutableMapOf<String, String>()
+        for (entry in entries) {
+            val keyValue = entry.split("=", limit = 2)
+            if (keyValue.size == 2) {
+                val key = keyValue[0].trim()
+                val value = keyValue[1].trim()
+                map[key] = value
             }
-
-            return map
         }
+
+        return map
+    }
 
 }
