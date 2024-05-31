@@ -9,7 +9,6 @@ import com.android.myapplication.App
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.ui.free_community.data_class.CommentList
-import com.android.myapplication.ui.free_community.data_class.PostList
 
 class FreeCommentAdapter(private val items: MutableList<CommentList>) : RecyclerView.Adapter<FreeCommentAdapter.ViewHolder>() {
 

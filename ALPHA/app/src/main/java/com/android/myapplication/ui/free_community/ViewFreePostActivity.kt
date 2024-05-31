@@ -51,6 +51,25 @@ class ViewFreePostActivity : AppCompatActivity() {
                     binding.freePostComment.text = data.commentNumber.toString()
                 }
             }
+        } else {
+            GlobalScope.launch(Dispatchers.IO) {
+                val fromWriteFreePostId = intent.getStringExtra("fromWriteFreePostId").toString()
+                val responseData = apiService.freePostDetail(token, fromWriteFreePostId)
+                Log.e("From Free Write Post", responseData.toString())
+                val jsonObject =
+                    gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                val data = gson.fromJson(jsonObject, ViewingFree::class.java)
+                val uId = data.email.split("@")[0]
+                withContext(Dispatchers.Main) {
+                    binding.viewFreePostTitle.text = data.title
+                    binding.viewFreePostUserSch.text = data.univ
+                    binding.viewFreePostUserId.text = uId
+                    binding.freePostViewersCount.text = data.views.toString()
+                    binding.freePostReadingContent.text = data.content
+                    binding.freePostRecommend.text = data.likeNumber.toString()
+                    binding.freePostComment.text = data.commentNumber.toString()
+                }
+            }
         }
 
         binding.viewFreePostMenu.setOnClickListener {

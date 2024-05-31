@@ -10,9 +10,11 @@ import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityWriteFreePostBinding
 import com.android.myapplication.ui.free_community.data_class.PostingFree
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject.NULL
 
 class WriteFreePostActivity : AppCompatActivity() {
@@ -22,7 +24,6 @@ class WriteFreePostActivity : AppCompatActivity() {
     private val gson = Gson()
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
-    private val id: String = App.prefs.getItem("userId", "noID")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,22 +32,24 @@ class WriteFreePostActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.freePostUpload.setOnClickListener {
-            val title = binding.enteringFreePostTitle .text.toString()
+            val title = binding.enteringFreePostTitle.text.toString()
             val body = binding.enteringFreePostBody.text.toString()
 
             when {
                 title.isBlank() && body.isNotBlank() -> {
                     Toast.makeText(this, "제목을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
+
                 title.isNotBlank() && body.isBlank() -> {
                     Toast.makeText(this, "내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
+
                 title.isBlank() && body.isBlank() -> {
                     Toast.makeText(this, "제목과 내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
+
                 else -> {
                     val postingFree = PostingFree(
-                        id = id,
                         title = title,
                         content = body,
                         image = NULL,
@@ -55,6 +58,20 @@ class WriteFreePostActivity : AppCompatActivity() {
                     GlobalScope.launch(Dispatchers.IO) {
                         try {
                             val responseData = apiService.postingFreePost(token, postingFree)
+                            val responseJson = gson.toJson(responseData)
+                            val jsonObject = gson.fromJson(responseJson, JsonObject::class.java)
+                            val getPostId = jsonObject.get("data").asString
+                            withContext(Dispatchers.Main) {
+                                val intent = Intent(
+                                    this@WriteFreePostActivity,
+                                    ViewFreePostActivity::class.java
+                                ).apply {
+                                    putExtra("fromWriteFreePostId", getPostId.toString())
+                                    putExtra("isFromWriteFreeAc", true)
+                                }
+                                startActivity(intent)
+                                finish()
+                            }
                         } catch (e: Exception) {
                             Log.d("error", e.toString())
                         }
