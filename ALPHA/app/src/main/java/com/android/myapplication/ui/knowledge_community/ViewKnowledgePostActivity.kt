@@ -44,7 +44,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.viewKnowledgePostAnswerEnterButton.setOnClickListener { // 답변하기
+        binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
             val id = intent.getStringExtra("itemId").toString()
             val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
             val postingKComment = postingKComment(
@@ -104,8 +104,8 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 }
             }
         } else {
+            val fromWritePostId = intent.getStringExtra("itemIdWrite").toString()
             GlobalScope.launch(Dispatchers.IO) {
-                val fromWritePostId = intent.getStringExtra("itemIdWrite").toString()
                 Log.d("dmdkdmdkdk", "getPostId: $fromWritePostId")
                 try {
                     val responseData =
@@ -128,6 +128,38 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     Log.e("eadsfeqeerreqrror", e.toString())
                     e.printStackTrace()
+                }
+            }
+            binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
+                val id = intent.getStringExtra("itemId").toString()
+                val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
+                val postingKComment = postingKComment(
+                    postId = fromWritePostId,
+                    content = content
+                )
+                Log.d("akwdk", "postingKComment: $postingKComment")
+
+                if (content.isNotBlank()) {
+                    GlobalScope.launch(Dispatchers.IO) {
+                        try {
+                            val responsData = apiService.postingKComment(token, postingKComment)
+                            Log.d("akwdk", "responsData: $responsData")
+                            withContext(Dispatchers.Main) {
+                                val intent = Intent(
+                                    this@ViewKnowledgePostActivity,
+                                    ViewKnowledgePostWithAnswerActivity::class.java
+                                )
+                                intent.putExtra("postId", fromWritePostId)
+                                intent.putExtra("isFromAnswering", true)
+                                startActivity(intent)
+                                finish()
+                            }
+                        } catch (e: Exception) {
+                            Log.e("error", "Error posting comment", e)
+                        }
+                    }
+                } else {
+                    Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
