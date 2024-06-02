@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.myapplication.App
+import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewFreePostPlusBinding
 import com.android.myapplication.ui.free_community.data_class.CommentList
@@ -26,6 +27,10 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     private lateinit var postId: String
+
+    private val recommending = R.drawable.ic_free_post_recommend
+    private val cancelRecommend = R.drawable.ic_free_recommend_after
+    private var isOriginalImage = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

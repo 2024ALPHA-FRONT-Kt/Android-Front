@@ -135,4 +135,16 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body postKComment: PostingComment
     ) : ResponseObject
+
+    @POST("post-like")
+    suspend fun clickLike(
+        @Header("Authorization") authorization: String,
+        @Query("postId") postId: String
+    ) : ResponseObject
+
+    @DELETE("post-like")
+    suspend fun cancleLike(
+        @Header("Authorization") authorization: String,
+        @Query("postId") postId: String
+    ) : ResponseObject
 }

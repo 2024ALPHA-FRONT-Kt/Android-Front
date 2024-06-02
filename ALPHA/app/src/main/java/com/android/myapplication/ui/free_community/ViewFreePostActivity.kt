@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
+import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewFreePostBinding
 import com.android.myapplication.ui.free_community.data_class.PostingComment
@@ -15,6 +16,7 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
 
 class ViewFreePostActivity : AppCompatActivity() {
@@ -26,6 +28,10 @@ class ViewFreePostActivity : AppCompatActivity() {
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     private lateinit var postId: String
     private var existResponseComment: Boolean = false
+
+    private val cancelRecommending = R.drawable.ic_free_post_recommend
+    private val recommending = R.drawable.ic_free_recommend_after
+    private var isLike: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +56,7 @@ class ViewFreePostActivity : AppCompatActivity() {
             val data = gson.fromJson(jsonObject, ViewingFree::class.java)
             val uId = data.email.split("@")[0]
             existResponseComment = data.responseCommentDto.size > 0
+            isLike = data.like
 
             withContext(Dispatchers.Main) {
                 binding.viewFreePostTitle.text = data.title
@@ -59,6 +66,12 @@ class ViewFreePostActivity : AppCompatActivity() {
                 binding.freePostReadingContent.text = data.content
                 binding.freePostRecommend.text = data.likeNumber.toString()
                 binding.freePostComment.text = data.commentNumber.toString()
+                if (data.like) {
+                    binding.freeLike.setImageResource(recommending)
+                }
+                else {
+                    binding.freeLike.setImageResource(cancelRecommending)
+                }
             }
         }
 
@@ -107,6 +120,29 @@ class ViewFreePostActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.freeLike.setOnClickListener {
+            if (isLike) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        val responseData = apiService.clickLike(token, postId)
+                        binding.freeLike.setImageResource(cancelRecommending)
+                    } catch (e: Exception) {
+                        Log.e("error", "Error entering like", e)
+                    }
+                }
+            } else {
+                GlobalScope.launch(Dispatchers.IO) {
+                    try {
+                        val responseData = apiService.cancleLike(token, postId)
+                        binding.freeLike.setImageResource(recommending)
+                    } catch (e: Exception) {
+                        Log.e("error", "Error delete like", e)
+                    }
+                }
+            }
+        }
+
 
 
         binding.viewFreePostMenu.setOnClickListener {
