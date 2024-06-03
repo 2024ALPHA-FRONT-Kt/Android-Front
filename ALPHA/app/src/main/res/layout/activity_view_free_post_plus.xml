@@ -193,7 +193,7 @@
             android:layout_marginTop="15dp"
             android:paddingStart="2.5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
             android:text="본문내용\n본문내용\n본문내용\n본문내용\n본문내용\n본문내용\n본문내용"
             android:fontFamily="@font/nanumsquareroundlarge"
             android:lineSpacingExtra="5sp"
@@ -208,8 +208,9 @@
             android:layout_marginTop="20dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/free_like"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_free_post_recommend"
                 android:layout_gravity="center_vertical"/>
 
@@ -222,14 +223,14 @@
                 android:textStyle="bold"
                 android:text="00"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="4dp"/>
+                android:layout_marginStart="5dp"/>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_free_post_comment"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="7dp"/>
+                android:layout_marginStart="8dp"/>
 
             <TextView
                 android:id="@+id/free_post_comment"
@@ -240,7 +241,7 @@
                 android:textStyle="bold"
                 android:text="00"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="4dp"/>
+                android:layout_marginStart="5dp"/>
         </LinearLayout>
 
         <View

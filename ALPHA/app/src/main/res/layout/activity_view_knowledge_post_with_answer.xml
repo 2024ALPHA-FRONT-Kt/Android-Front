@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,10 +16,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:id="@+id/view_knowledge_post_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +34,9 @@
             android:textSize="33sp" />
 
         <TextView
-            android:layout_marginStart="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/nanumsquareroundextrabold"
             android:text="게시판"
             android:textSize="22sp" />
@@ -197,9 +196,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
             android:gravity="center_vertical"
-            android:layout_marginTop="5dp">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -209,36 +208,36 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="선배님의 답변"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/nanumsquareroundextrabold"
-                android:layout_marginStart="10dp" />
+                android:text="선배님의 답변" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/view_knowledge_post_with_sch_of_answer"
-                android:layout_marginTop="7.5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#4F6BFC"
+                android:layout_marginTop="7.5dp"
+                android:fontFamily="@font/nanumsquareroundbold"
                 android:text="국민대학교"
-                android:fontFamily="@font/nanumsquareroundbold" />
+                android:textColor="#4F6BFC"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/view_knowledge_post_with_dpt_of_answer"
-                android:layout_marginTop="7.5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#4F6BFC"
-                android:text="에스파학과"
                 android:layout_marginStart="7dp"
-                android:fontFamily="@font/nanumsquareroundbold" />
+                android:layout_marginTop="7.5dp"
+                android:fontFamily="@font/nanumsquareroundbold"
+                android:text="에스파학과"
+                android:textColor="#4F6BFC"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

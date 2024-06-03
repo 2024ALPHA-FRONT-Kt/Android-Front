@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/disc_t_page_3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.disc.DiscTest3Activity"
-    android:id="@+id/disc_t_page_3">
+    tools:context=".ui.disc.DiscTest3Activity">
 
     <LinearLayout
         android:id="@+id/disc_test_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:gravity="top"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -31,11 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:gravity="center"
             android:fontFamily="@font/nanumsquareroundextrabold"
+            android:gravity="center"
             android:text="테스트 시작"
-            android:textSize="20sp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <ProgressBar
@@ -43,12 +42,12 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:max="80"
+        android:progress="30"
+        android:progressTint="#4F6BFC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/disc_test_top"
-        android:progress="30"
-        android:max="80"
-        android:progressTint="#4F6BFC"/>
+        app:layout_constraintTop_toBottomOf="@+id/disc_test_top" />
 
 
     <LinearLayout
@@ -69,11 +68,11 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumsquareroundbold"
             android:text="5. 나는 타인의 말을 들을 때 _해"
+            android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text"
-            android:textColor="#000000" />
+            app:layout_constraintTop_toBottomOf="@+id/disc_explanation_text" />
 
         <LinearLayout
             android:id="@+id/disc_group_5"
@@ -95,23 +94,23 @@
                     android:layout_marginTop="3dp"
                     android:background="@drawable/disc_choice_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="종종 참을성이 없어"
                     android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="종종 참을성이 없어"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/disc_q5_a1"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center"
-                    android:textAlignment="center"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
+                    android:background="@drawable/disc_edit_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:textAlignment="center" />
 
             </FrameLayout>
 
@@ -125,22 +124,22 @@
                     android:layout_marginTop="3dp"
                     android:background="@drawable/disc_choice_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="주의가 산만하기도 해... ㅎ"
                     android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="주의가 산만하기도 해... ㅎ"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/disc_q5_a2"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center"
-                    android:textAlignment="center"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/nanumsquareroundbold"/>
+                    android:background="@drawable/disc_edit_text_box"
+                    android:fontFamily="@font/nanumsquareroundbold"
+                    android:textAlignment="center" />
 
             </FrameLayout>
 
@@ -154,23 +153,23 @@
                     android:layout_marginTop="3dp"
                     android:background="@drawable/disc_choice_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="그냥 말 없이 경청해"
                     android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="그냥 말 없이 경청해"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/disc_q5_a3"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center"
-                    android:textAlignment="center"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
+                    android:background="@drawable/disc_edit_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:textAlignment="center" />
 
             </FrameLayout>
 
@@ -184,23 +183,23 @@
                     android:layout_marginTop="3dp"
                     android:background="@drawable/disc_choice_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="상대방의 말을 분석하며 들어"
                     android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="상대방의 말을 분석하며 들어"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/disc_q5_a4"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center"
-                    android:textAlignment="center"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
+                    android:background="@drawable/disc_edit_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:textAlignment="center" />
 
             </FrameLayout>
 
@@ -213,12 +212,12 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/nanumsquareroundbold"
             android:text="6. 나는 타인과 _에 대해\n이야기하는 것을 좋아해"
+            android:textAlignment="center"
+            android:textColor="#000000"
             android:textSize="19sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/disc_test_top"
-            app:layout_constraintTop_toBottomOf="@+id/disc_group_5"
-            android:textColor="#000000"
-            android:textAlignment="center"/>
+            app:layout_constraintTop_toBottomOf="@+id/disc_group_5" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -239,23 +238,23 @@
                     android:layout_marginTop="3dp"
                     android:background="@drawable/disc_choice_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="내 업적들! 위대한 나를 보라"
                     android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="내 업적들! 위대한 나를 보라"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/disc_q6_a1"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center"
-                    android:textAlignment="center"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
+                    android:background="@drawable/disc_edit_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:textAlignment="center" />
 
             </FrameLayout>
 
@@ -269,23 +268,23 @@
                     android:layout_marginTop="3dp"
                     android:background="@drawable/disc_choice_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="나 자신과 다른 사람들"
                     android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="나 자신과 다른 사람들"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/disc_q6_a2"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center"
-                    android:textAlignment="center"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
+                    android:background="@drawable/disc_edit_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:textAlignment="center" />
 
             </FrameLayout>
 
@@ -299,23 +298,23 @@
                     android:layout_marginTop="3dp"
                     android:background="@drawable/disc_choice_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="가족"
                     android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="가족"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/disc_q6_a3"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center"
-                    android:textAlignment="center"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
+                    android:background="@drawable/disc_edit_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:textAlignment="center" />
 
             </FrameLayout>
 
@@ -329,23 +328,23 @@
                     android:layout_marginTop="3dp"
                     android:background="@drawable/disc_choice_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/black"
-                    android:text="흥미로운 사건"
                     android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="흥미로운 사건"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/disc_q6_a4"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
-                    android:background="@drawable/disc_edit_text_box"
                     android:layout_gravity="right|center"
-                    android:textAlignment="center"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
+                    android:background="@drawable/disc_edit_text_box"
                     android:fontFamily="@font/nanumsquareroundbold"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:textAlignment="center" />
             </FrameLayout>
 
         </LinearLayout>
@@ -356,25 +355,25 @@
         android:id="@+id/disc_speech_bubble_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="-10dp"
+        android:layout_marginBottom="70dp"
         android:src="@drawable/ic_disc_speech_bubble_1"
         app:layout_constraintBottom_toTopOf="@+id/disc_next_page_3"
-        app:layout_constraintEnd_toStartOf="@+id/disc_character"
-        android:layout_marginBottom="70dp"
-        android:layout_marginEnd="-10dp"/>
+        app:layout_constraintEnd_toStartOf="@+id/disc_character" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
         android:fontFamily="@font/nanumsquareroundbold"
         android:gravity="center"
-        android:layout_marginBottom="14dp"
         android:text="어떤 생각 하고 있어?"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/disc_speech_bubble_1"
         app:layout_constraintEnd_toEndOf="@+id/disc_speech_bubble_1"
         app:layout_constraintStart_toStartOf="@+id/disc_speech_bubble_1"
-        app:layout_constraintTop_toTopOf="@+id/disc_speech_bubble_1"/>
+        app:layout_constraintTop_toTopOf="@+id/disc_speech_bubble_1" />
 
     <ImageView
         android:id="@+id/disc_character"

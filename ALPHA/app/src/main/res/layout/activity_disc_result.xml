@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AFC8F8"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#AFC8F8">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
         <RelativeLayout
             android:id="@+id/saving_result_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/disc_result_big_speech_bubble"
@@ -30,121 +29,121 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@+id/disc_result_big_speech_bubble"
-                android:layout_alignBottom="@+id/disc_result_big_speech_bubble"
-                android:layout_alignEnd="@+id/disc_result_big_speech_bubble"
                 android:layout_alignStart="@+id/disc_result_big_speech_bubble"
+                android:layout_alignTop="@+id/disc_result_big_speech_bubble"
+                android:layout_alignEnd="@+id/disc_result_big_speech_bubble"
+                android:layout_alignBottom="@+id/disc_result_big_speech_bubble"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/disc_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="115dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/nanumsquareroundextrabold"
                     android:text="유형"
-                    android:textSize="30sp"
-                    android:layout_marginTop="115dp"
-                    android:layout_gravity="center_horizontal"
                     android:textColor="#000000"
-                    android:layout_weight="1"/>
+                    android:textSize="30sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
                     android:layout_weight="1"
-                    android:layout_marginTop="15dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/nanumsquareroundextrabold"
+                        android:gravity="start"
                         android:text="장점"
-                        android:textSize="17.5sp"
-                        android:layout_weight="1"
-                        android:gravity="start"
-                        android:layout_marginStart="25dp"
                         android:textColor="#000000"
-                        android:layout_marginTop="30dp"/>
+                        android:textSize="17.5sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquareroundextrabold"
-                        android:text="추천 직업"
-                        android:textSize="17.5sp"
-                        android:layout_weight="1"
-                        android:gravity="start"
                         android:layout_marginStart="25dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanumsquareroundextrabold"
+                        android:gravity="start"
+                        android:text="추천 직업"
                         android:textColor="#000000"
-                        android:layout_marginTop="30dp"/>
+                        android:textSize="17.5sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="10">
+                    android:layout_weight="10"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/disc_pros"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquareroundbold"
-                        android:text="장점 내용"
-                        android:textSize="14sp"
+                        android:layout_marginStart="25dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/nanumsquareroundbold"
                         android:gravity="start"
+                        android:text="장점 내용"
                         android:textColor="#000000"
-                        android:layout_marginStart="25dp"/>
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/disc_job"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquareroundbold"
-                        android:text="추천 직업 내용"
-                        android:textSize="14sp"
-                        android:layout_weight="1"
-                        android:gravity="start"
-                        android:textColor="#000000"
                         android:layout_marginStart="10dp"
-                        android:paddingEnd="10dp"/>
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanumsquareroundbold"
+                        android:gravity="start"
+                        android:paddingEnd="10dp"
+                        android:text="추천 직업 내용"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_marginBottom="200dp"
                     android:gravity="start"
-                    android:layout_marginBottom="200dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/nanumsquareroundextrabold"
                         android:text="특징"
-                        android:textSize="17.5sp"
-                        android:layout_marginStart="25dp"
                         android:textColor="#000000"
-                        android:layout_marginTop="30dp"
-                        android:layout_weight="1"/>
+                        android:textSize="17.5sp" />
 
                     <TextView
                         android:id="@+id/disc_ex"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquareroundbold"
-                        android:text="특징 내용"
-                        android:textSize="14sp"
-                        android:letterSpacing="0.03"
-                        android:textColor="#000000"
                         android:layout_marginStart="25dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="60"
-                        android:paddingEnd="30dp"/>
+                        android:fontFamily="@font/nanumsquareroundbold"
+                        android:letterSpacing="0.03"
+                        android:paddingEnd="30dp"
+                        android:text="특징 내용"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -154,7 +153,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/disc_result_speech_bubbles"
@@ -163,22 +162,22 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="65dp"
                 android:layout_marginEnd="15dp"
-                android:textColor="#000000"
-                android:src="@drawable/ic_disc_test_result_speech_bubbles" />
+                android:src="@drawable/ic_disc_test_result_speech_bubbles"
+                android:textColor="#000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/disc_result_speech_bubbles"
-                android:layout_alignEnd="@id/disc_result_speech_bubbles"
                 android:layout_alignTop="@id/disc_result_speech_bubbles"
+                android:layout_alignEnd="@id/disc_result_speech_bubbles"
                 android:layout_alignBottom="@id/disc_result_speech_bubbles"
-                android:gravity="center"
                 android:layout_marginStart="35dp"
-                android:textColor="#000000"
                 android:fontFamily="@font/nanumsquareroundbold"
+                android:gravity="center"
                 android:text="우리가 너의 행동 유형을\n분석해 봤으니 잘 읽어 봐!"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 android:textSize="13sp" />
 
         </RelativeLayout>
@@ -207,27 +206,27 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@+id/disc_result_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="60dp">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/disc_same_users"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="13sp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:textColor="#000000" />
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="명과 결과가 같아요!"
-            android:textSize="13sp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:textColor="#000000" />
+            android:text="명과 결과가 같아요!"
+            android:textColor="#000000"
+            android:textSize="13sp" />
 
     </LinearLayout>
 
@@ -245,11 +244,11 @@
             android:id="@+id/disc_result_page_complete_button"
             android:layout_width="150dp"
             android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/disc_complete_button"
             android:elevation="20dp"
             android:fontFamily="@font/nanumsquareroundbold"
-            android:layout_marginEnd="10dp"
             android:text="완료!"
             android:textColor="#081F5C"
             android:textSize="17sp" />
@@ -258,9 +257,9 @@
             android:id="@+id/disc_result_page_share_button"
             android:layout_width="150dp"
             android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/disc_share_button"
-            android:layout_marginStart="10dp"
             android:elevation="20dp"
             android:fontFamily="@font/nanumsquareroundbold"
             android:text="결과 공유하기"

@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityFreePostListBinding
+import com.android.myapplication.ui.free_community.data_class.FreeHot
 import com.android.myapplication.ui.free_community.data_class.PostList
 import com.google.gson.Gson
 import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FreePostListActivity : AppCompatActivity() {
 
@@ -38,23 +41,45 @@ class FreePostListActivity : AppCompatActivity() {
         }
 
         GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val responseData = apiService.loadHotFreePost(token, "FREE")
+                val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+
+                val hotTitle = data["title"].toString().replace("\"", "")
+                val hotNumber = data["likeNumber"].toString().replace("\"", "").substring(0 until data["likeNumber"].toString().length - 2)
+
+                withContext(Dispatchers.Main) {
+                    // UI 요소에 값을 할당
+                    binding.freeHotTitle.text = hotTitle
+                    // likeNumber를 Double로 변환하여 할당
+                    binding.freeHotRecommends.text = hotNumber
+                }
+            } catch (e: Exception) {
+                Log.e("a", e.toString())
+            }
+        }
+
+
+
+
+        GlobalScope.launch(Dispatchers.IO) {
             val page = 0
             val postType = "FREE" // 고정값
             val responseData = apiService.freeLists(token, postType, page)
             Log.d("dmd!!", responseData.data.toString())
-            val ddd = gson.fromJson(responseData.data.toString(), JsonArray::class.java)
+            val datas = gson.fromJson(responseData.data.toString(), JsonArray::class.java)
 
             val mList: MutableList<PostList> = mutableListOf()
 
-            for (i in ddd){
+            for (i in datas) {
                 val postObject = i.asJsonObject
                 val id = postObject.get("id").asString
                 val content = postObject.get("content").asString
                 val title = postObject.get("title").asString
-                mList.add(PostList(id,content,title))
+                mList.add(PostList(id, content, title))
             }
 
-            binding.root.post{
+            binding.root.post {
                 recyclerView.adapter = FreePostAdapter(mList)
             }
         }

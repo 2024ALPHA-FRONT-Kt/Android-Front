@@ -5,10 +5,12 @@ import com.android.myapplication.dto.ResponseObject
 import com.android.myapplication.dto.SignInProfile
 import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.android.myapplication.ui.free_community.data_class.EditingFree
+import com.android.myapplication.ui.free_community.data_class.PostingComment
 import com.android.myapplication.ui.free_community.data_class.PostingFree
 import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowledge
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
+import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -97,7 +99,7 @@ interface ApiService {
     suspend fun postingKComment(
         @Header("Authorization") token: String,
         @Body postKComment: PostingKComment
-    ): ResponseObject
+    ) : ResponseObject
 
     @POST("/post")
     suspend fun postingFreePost(
@@ -127,7 +129,25 @@ interface ApiService {
     suspend fun loadHotFreePost(
         @Header("Authorization") authorization: String,
         @Query("postType") postType: String
-    ): ResponseObject
+    ) : ResponseObject
+
+    @POST("/comment")
+    suspend fun postingFComment(
+        @Header("Authorization") token: String,
+        @Body postKComment: PostingComment
+    ) : ResponseObject
+
+    @POST("post-like")
+    suspend fun clickLike(
+        @Header("Authorization") authorization: String,
+        @Query("postId") postId: String
+    ) : ResponseObject
+
+    @DELETE("post-like")
+    suspend fun cancleLike(
+        @Header("Authorization") authorization: String,
+        @Query("postId") postId: String
+    ) : ResponseObject
 
     @PATCH("/user/report")
     suspend fun report(
