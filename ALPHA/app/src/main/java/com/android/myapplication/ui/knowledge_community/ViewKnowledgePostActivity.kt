@@ -3,8 +3,6 @@ package com.android.myapplication.ui.knowledge_community
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -225,98 +223,33 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+            binding.viewKnowledgePostMenu.setOnClickListener {
+                val popupMenu = PopupMenu(this@ViewKnowledgePostActivity, it)
+                popupMenu.menuInflater.inflate(R.menu.community_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.menu_1 -> {
+                            Toast.makeText(applicationContext, "신고되었습니다.", Toast.LENGTH_SHORT)
+                                .show()
+                            true
+                        }
 
-        binding.viewKnowledgePostMenu.setOnClickListener {
-            popup(binding.viewKnowledgePostMenu)
-        }
+                        R.id.menu_2 -> {
+                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                                .show()
+                            true
+                        }
 
-        binding.viewKnowledgePostMenu.setOnClickListener {
-            Log.d("PopupTest", "Menu button clicked")
-            popup(binding.viewKnowledgePostMenu)
-        }
-    }
+                        R.id.menu_3 -> {
+                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                                .show()
+                            true
+                        }
 
-    private fun popup(v: View) {
-        val popup = PopupMenu(this, v)
-        popup.menuInflater.inflate(R.menu.communitiy_menu, popup.menu)
-
-        if (emailOfPost != userId) {
-            popup.menu.findItem(R.id.menu_2).isVisible = false
-            popup.menu.findItem(R.id.menu_3).isVisible = false
-        }
-
-        popup.setOnMenuItemClickListener { item ->
-            clickMenu(item)
-        }
-        popup.show()
-    }
-
-    private fun clickMenu(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            R.id.menu_1 -> {
-                reportUser()
-                true
-            }
-
-            R.id.menu_2 -> {
-                deleteThis()
-                true
-            }
-
-            R.id.menu_3 -> {
-                editThis()
-                true
-            }
-
-            else -> false
-        }
-    }
-
-    private fun reportUser() {
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val response = apiService.report(token, emailOfPost)
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@ViewKnowledgePostActivity, "신고되었습니다.", Toast.LENGTH_SHORT)
-                        .show()
+                        else -> false
+                    }
                 }
-                Log.e("ReportSuccess", response.toString())
-            } catch (e: Exception) {
-                Log.e("ReportError", "Error reporting user", e)
-            }
-        }
-    }
-
-    private fun deleteThis() {
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val responseData = apiService.deleteKnowledge(token, targetPostId)
-                Toast.makeText(this@ViewKnowledgePostActivity, "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT)
-                    .show()
-                val intent = Intent(
-                    this@ViewKnowledgePostActivity,
-                    KnowledgePostListActivity::class.java
-                )
-                startActivity(intent)
-            } catch (e: Exception) {
-                Log.e("DeleteError", e.toString())
-            }
-        }
-    }
-
-    private fun editThis() {
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val intent =
-                    Intent(this@ViewKnowledgePostActivity, WriteKnowledgePostActivity::class.java)
-                intent.putExtra("title", targetTitle)
-                intent.putExtra("content", targetContent)
-                intent.putExtra("postId", targetPostId)
-                intent.putExtra("fromEdit", true)
-                startActivity(intent)
-            } catch (e: Exception) {
-                Log.e("editError", e.toString())
+                popupMenu.show()
             }
         }
     }
