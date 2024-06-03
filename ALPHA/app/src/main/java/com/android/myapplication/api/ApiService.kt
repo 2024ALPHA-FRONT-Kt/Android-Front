@@ -7,8 +7,8 @@ import com.android.myapplication.ui.disc.data_class.DiscTestResult
 import com.android.myapplication.ui.free_community.data_class.EditingFree
 import com.android.myapplication.ui.free_community.data_class.PostingFree
 import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowledge
+import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
-import com.android.myapplication.ui.knowledge_community.data_class.postingKComment
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -43,32 +43,32 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Query("postType") postType: String,
         @Query("page") page: Int
-    ) : ResponseObject
+    ): ResponseObject
 
     @POST("/post")
     suspend fun postingKnowledgePost(
         @Header("Authorization") authorization: String,
         @Body knowledgePost: PostingKnowledge
-    ) : ResponseObject
+    ): ResponseObject
 
     @DELETE("/post")
     suspend fun deleteKnowledge(
         @Header("Authorization") authorization: String,
         @Query("id") id: String
-    ) : ResponseObject
+    ): ResponseObject
 
     @PATCH("/post")
     suspend fun editKnowledge(
         @Header("Authorization") authorization: String,
         @Body editKnowledge: EditingKnowledge
-    ) : ResponseObject
+    ): ResponseObject
 
     @GET("/post")
     suspend fun knowledgePostDetail(
         @Header("Authorization") authorization: String,
         @Query("id") id: String
     ): ResponseObject
-      
+
     @POST("/DISC")
     suspend fun postDiscTestResult(
         @Header("Authorization") token: String,
@@ -91,13 +91,13 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Query("postType") postType: String,
         @Query("page") page: Int
-    ) : ResponseObject
+    ): ResponseObject
 
     @POST("/comment")
     suspend fun postingKComment(
         @Header("Authorization") token: String,
-        @Body postKComment: postingKComment
-    ) : ResponseObject
+        @Body postKComment: PostingKComment
+    ): ResponseObject
 
     @POST("/post")
     suspend fun postingFreePost(
@@ -109,23 +109,29 @@ interface ApiService {
     suspend fun deleteFree(
         @Header("Authorization") authorization: String,
         @Query("id") id: String
-    ) : ResponseObject
+    ): ResponseObject
 
     @PATCH("/post")
     suspend fun editFree(
         @Header("Authorization") authorization: String,
         @Body editFree: EditingFree
-    ) : ResponseObject
+    ): ResponseObject
 
     @GET("/post")
     suspend fun freePostDetail(
         @Header("Authorization") authorization: String,
         @Query("id") id: String
-    ) : ResponseObject
+    ): ResponseObject
 
     @GET("/hot-post")
     suspend fun loadHotFreePost(
         @Header("Authorization") authorization: String,
         @Query("postType") postType: String
-    ) : ResponseObject
+    ): ResponseObject
+
+    @PATCH("/user/report")
+    suspend fun report(
+        @Header("Authorization") authorization: String,
+        @Query("id") id: String
+    ): ResponseObject
 }

@@ -29,6 +29,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     private val userId: String = App.prefs.getItem("userId", "noID")
+    private lateinit var idOfPost: String
 
     private lateinit var postId: String
 
@@ -90,6 +91,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
                     val userEmail = data.email.split("@")[0]
                     Log.d("dmddo", "ViewingKnowledge: $data")
+                    idOfPost = data.userId
 
                     withContext(Dispatchers.Main) {
                         binding.viewKnowledgePostTitle.text = data.title
@@ -171,7 +173,13 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
 
     private fun popup(v: View) {
         val popup = PopupMenu(this, v)
-        popup.menuInflater.inflate(R.menu.k_plus_q_menu, popup.menu)
+        popup.menuInflater.inflate(R.menu.communitiy_menu, popup.menu)
+
+        if (idOfPost != userId) {
+            popup.menu.findItem(R.id.menu_2).isVisible = false
+            popup.menu.findItem(R.id.menu_3).isVisible = false
+        }
+
         popup.setOnMenuItemClickListener { item ->
             clickMenu(item)
         }
@@ -180,38 +188,30 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
 
     private fun clickMenu(item: MenuItem?): Boolean {
         return when (item?.itemId) {
-            R.id.k_plus_q_menu_3 -> {
-                GlobalScope.launch(Dispatchers.IO) {
-                    try {
-                        val responseData = apiService.knowledgePostDetail(
-                            token,
-                            "556ba748-d8b4-4258-8333-4497697a1a67"
-                        )
-                        val jsonObject =
-                            gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                        val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
-                        val editTitleDraft = data.title
-                        val editContentDraft = data.content
-
-                        withContext(Dispatchers.Main) {
-                            val intent = Intent(
-                                this@ViewKnowledgePostActivity,
-                                WriteKnowledgePostActivity::class.java
-                            ).apply {
-                                putExtra("editTitleDraft", editTitleDraft)
-                                putExtra("editContentDraft", editContentDraft)
-                                putExtra("isFromWriteActivity", true)
-                            }
-                            startActivity(intent)
-                        }
-                    } catch (e: Exception) {
-                        Log.e("menuerror1", "Error fetching post detail", e)
-                    }
-                }
+            R.id.menu_1 -> {
+                reportUser()
                 true
             }
-
+            R.id.menu_2 -> {
+                true
+            }
+            R.id.menu_3 -> {
+                true
+            }
             else -> false
+        }
+    }
+
+    private fun reportUser() {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiService.report(token, idOfPost)
+                Toast.makeText(this@ViewKnowledgePostActivity, "신고되었습니다.", Toast.LENGTH_SHORT)
+                    .show()
+                Log.e("dlsdikjfsldf", response.toString())
+            } catch (e: Exception) {
+                Log.e("error", "Error reporting user", e)
+            }
         }
     }
 }
