@@ -28,9 +28,10 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     private lateinit var postId: String
 
-    private val recommending = R.drawable.ic_free_post_recommend
-    private val cancelRecommend = R.drawable.ic_free_recommend_after
-    private var isOriginalImage = true
+    private val cancelRecommending = R.drawable.ic_free_post_recommend
+    private val recommending = R.drawable.ic_free_recommend_after
+    private var isLike: Boolean = false
+    private var likeNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +78,7 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
             Log.e("From Free View Post", responseData.toString())
             val jsonObject =
                 gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+            val data = gson.fromJson(jsonObject, ViewingFree::class.java)
             val commentLists: MutableList<CommentList> = mutableListOf()
             val responseComments = jsonObject.getAsJsonArray("responseCommentDto")
 
@@ -87,6 +89,10 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
                 val content = commentObject.get("content").asString
                 commentLists.add(CommentList(email, postId, univ, content))
             }
+
+            isLike = data.like
+            likeNumber = data.likeNumber
+
 
             withContext(Dispatchers.Main) {
                 binding.root.post {
@@ -100,6 +106,37 @@ class ViewFreePostPlusActivity : AppCompatActivity() {
                     binding.freePostReadingContent.text = data.content
                     binding.freePostRecommend.text = data.likeNumber.toString()
                     binding.freePostComment.text = data.commentNumber.toString()
+                    if (data.like) {
+                        binding.freeLike.setImageResource(recommending)
+                    } else {
+                        binding.freeLike.setImageResource(cancelRecommending)
+                    }
+                }
+            }
+        }
+
+        binding.freeLike.setOnClickListener {
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    if (isLike) {
+                        val responseData = apiService.cancleLike(token, postId)
+                        withContext(Dispatchers.Main) {
+                            binding.freeLike.setImageResource(cancelRecommending)
+                            isLike = false
+                            likeNumber -= 1
+                            binding.freePostRecommend.text = likeNumber.toString()
+                        }
+                    } else {
+                        val responseData = apiService.clickLike(token, postId)
+                        withContext(Dispatchers.Main) {
+                            binding.freeLike.setImageResource(recommending)
+                            isLike = true
+                            likeNumber += 1
+                            binding.freePostRecommend.text = likeNumber.toString()
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("error", "Error toggling like", e)
                 }
             }
         }

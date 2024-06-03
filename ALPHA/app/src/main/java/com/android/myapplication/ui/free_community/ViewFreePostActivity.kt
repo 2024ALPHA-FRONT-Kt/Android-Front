@@ -16,7 +16,6 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
 
 class ViewFreePostActivity : AppCompatActivity() {
@@ -32,6 +31,7 @@ class ViewFreePostActivity : AppCompatActivity() {
     private val cancelRecommending = R.drawable.ic_free_post_recommend
     private val recommending = R.drawable.ic_free_recommend_after
     private var isLike: Boolean = false
+    private var likeNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +57,7 @@ class ViewFreePostActivity : AppCompatActivity() {
             val uId = data.email.split("@")[0]
             existResponseComment = data.responseCommentDto.size > 0
             isLike = data.like
+            likeNumber = data.likeNumber
 
             withContext(Dispatchers.Main) {
                 binding.viewFreePostTitle.text = data.title
@@ -64,12 +65,11 @@ class ViewFreePostActivity : AppCompatActivity() {
                 binding.viewFreePostUserId.text = uId
                 binding.freePostViewersCount.text = data.views.toString()
                 binding.freePostReadingContent.text = data.content
-                binding.freePostRecommend.text = data.likeNumber.toString()
+                binding.freePostRecommend.text = likeNumber.toString()
                 binding.freePostComment.text = data.commentNumber.toString()
                 if (data.like) {
                     binding.freeLike.setImageResource(recommending)
-                }
-                else {
+                } else {
                     binding.freeLike.setImageResource(cancelRecommending)
                 }
             }
@@ -86,7 +86,6 @@ class ViewFreePostActivity : AppCompatActivity() {
                 Toast.makeText(this, "불러올 수 있는 댓글이 없습니다.", Toast.LENGTH_SHORT).show()
             }
         }
-
 
         binding.viewFreePostBackButton.setOnClickListener {
             val intent = Intent(this, FreePostListActivity::class.java)
@@ -122,31 +121,34 @@ class ViewFreePostActivity : AppCompatActivity() {
         }
 
         binding.freeLike.setOnClickListener {
-            if (isLike) {
-                GlobalScope.launch(Dispatchers.IO) {
-                    try {
-                        val responseData = apiService.clickLike(token, postId)
-                        binding.freeLike.setImageResource(cancelRecommending)
-                    } catch (e: Exception) {
-                        Log.e("error", "Error entering like", e)
-                    }
-                }
-            } else {
-                GlobalScope.launch(Dispatchers.IO) {
-                    try {
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    if (isLike) {
                         val responseData = apiService.cancleLike(token, postId)
-                        binding.freeLike.setImageResource(recommending)
-                    } catch (e: Exception) {
-                        Log.e("error", "Error delete like", e)
+                        withContext(Dispatchers.Main) {
+                            binding.freeLike.setImageResource(cancelRecommending)
+                            isLike = false
+                            likeNumber -= 1
+                            binding.freePostRecommend.text = likeNumber.toString()
+                        }
+                    } else {
+                        val responseData = apiService.clickLike(token, postId)
+                        withContext(Dispatchers.Main) {
+                            binding.freeLike.setImageResource(recommending)
+                            isLike = true
+                            likeNumber += 1
+                            binding.freePostRecommend.text = likeNumber.toString()
+                        }
                     }
+                } catch (e: Exception) {
+                    Log.e("error", "Error toggling like", e)
                 }
             }
         }
-
-
 
         binding.viewFreePostMenu.setOnClickListener {
             // todo
         }
     }
 }
+
