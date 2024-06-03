@@ -132,6 +132,7 @@
             android:background="@drawable/free_hot_bar" />
 
         <TextView
+            android:id="@+id/free_hot_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -157,10 +158,11 @@
             android:src="@drawable/ic_free_hot_rec" />
 
         <TextView
+            android:id="@+id/free_hot_recommends"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="15dp"
             android:fontFamily="@font/nanumsquareroundbold"
             android:text="00"
             android:textColor="#5969FF"
