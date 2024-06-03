@@ -3,8 +3,11 @@ package com.android.myapplication.ui.knowledge_community
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
+import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewKnowledgePostWithAnswerBinding
 import com.android.myapplication.ui.knowledge_community.data_class.ResponseCommentDto
@@ -121,6 +124,35 @@ class ViewKnowledgePostWithAnswerActivity : AppCompatActivity() {
             fetchKnowledgePostDetail(itemId)
         } else {
             Log.e("Item", "아이템 없음")
+        }
+
+        binding.viewKnowledgePostMenu.setOnClickListener {
+            val popupMenu = PopupMenu(this@ViewKnowledgePostWithAnswerActivity, it)
+            popupMenu.menuInflater.inflate(R.menu.community_menu, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_1 -> {
+                        Toast.makeText(applicationContext, "신고되었습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                        true
+                    }
+
+                    R.id.menu_2 -> {
+                        Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                            .show()
+                        true
+                    }
+
+                    R.id.menu_3 -> {
+                        Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                            .show()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            popupMenu.show()
         }
     }
 
