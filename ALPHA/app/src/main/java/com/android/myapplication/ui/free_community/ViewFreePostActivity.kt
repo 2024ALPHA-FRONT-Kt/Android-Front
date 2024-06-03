@@ -3,6 +3,7 @@ package com.android.myapplication.ui.free_community
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.App
@@ -147,8 +148,32 @@ class ViewFreePostActivity : AppCompatActivity() {
         }
 
         binding.viewFreePostMenu.setOnClickListener {
-            // todo
+            val popupMenu = PopupMenu(this@ViewFreePostActivity, it)
+            popupMenu.menuInflater.inflate(R.menu.community_menu, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_1 -> {
+                        Toast.makeText(applicationContext, "신고되었습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                        true
+                    }
+
+                    R.id.menu_2 -> {
+                        Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                            .show()
+                        true
+                    }
+
+                    R.id.menu_3 -> {
+                        Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                            .show()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            popupMenu.show()
         }
     }
 }
-

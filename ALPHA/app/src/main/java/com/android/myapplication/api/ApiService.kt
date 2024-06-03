@@ -10,7 +10,6 @@ import com.android.myapplication.ui.free_community.data_class.PostingFree
 import com.android.myapplication.ui.knowledge_community.data_class.EditingKnowledge
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKnowledge
-import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
