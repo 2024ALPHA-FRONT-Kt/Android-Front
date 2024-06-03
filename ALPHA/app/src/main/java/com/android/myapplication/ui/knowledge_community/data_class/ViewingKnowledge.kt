@@ -1,6 +1,7 @@
 package com.android.myapplication.ui.knowledge_community.data_class
 
 data class ViewingKnowledge(
+    val userId: String,
     val postId: String,
     val email: String,
     val univ: String,

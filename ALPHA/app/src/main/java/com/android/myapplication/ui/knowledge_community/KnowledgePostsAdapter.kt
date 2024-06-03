@@ -20,7 +20,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class KnowledgePostsAdapter(private val items: MutableList<PostList>) : RecyclerView.Adapter<KnowledgePostsAdapter.ViewHolder>() {
+class KnowledgePostsAdapter(private val items: MutableList<PostList>) :
+    RecyclerView.Adapter<KnowledgePostsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = items.size
     private val apiService = RetrofitClient.apiservice
@@ -36,7 +37,8 @@ class KnowledgePostsAdapter(private val items: MutableList<PostList>) : Recycler
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     val responseData = apiService.knowledgePostDetail(token, item.id)
-                    val jsonObject = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                    val jsonObject =
+                        gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
                     Log.d("whyrano", "12345")
 
@@ -61,7 +63,8 @@ class KnowledgePostsAdapter(private val items: MutableList<PostList>) : Recycler
                 } catch (e: Exception) {
                     e.printStackTrace()
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(context, "게시글을 불러오는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "게시글을 불러오는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
@@ -69,7 +72,8 @@ class KnowledgePostsAdapter(private val items: MutableList<PostList>) : Recycler
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.item_knowledge_posts, parent, false)
+        val inflatedView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_knowledge_posts, parent, false)
         return ViewHolder(inflatedView)
     }
 

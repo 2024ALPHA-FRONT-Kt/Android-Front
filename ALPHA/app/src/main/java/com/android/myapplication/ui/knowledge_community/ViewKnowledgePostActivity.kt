@@ -3,8 +3,6 @@ package com.android.myapplication.ui.knowledge_community
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +10,7 @@ import com.android.myapplication.App
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityViewKnowledgePostBinding
+import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import com.android.myapplication.ui.knowledge_community.data_class.ViewingKnowledge
 import com.android.myapplication.ui.knowledge_community.data_class.PostingKComment
 import com.google.gson.Gson
@@ -29,8 +28,11 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     private val userId: String = App.prefs.getItem("userId", "noID")
+    private lateinit var emailOfPost: String
+    private lateinit var targetPostId: String
+    private lateinit var targetTitle: String
+    private lateinit var targetContent: String
 
-    private lateinit var postId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +78,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
             }
         }
-
+        val fromEditWrite = intent.getBooleanExtra("fromEditWrite", false)
         val isFromKList = intent.getBooleanExtra("isFromKList", false)
         if (isFromKList) {
             GlobalScope.launch(Dispatchers.IO) {
@@ -88,6 +90,10 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     val jsonObject =
                         gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
+                    emailOfPost = data.email
+                    targetPostId = data.postId
+                    targetTitle = data.title
+                    targetContent = data.content
                     val userEmail = data.email.split("@")[0]
                     Log.d("dmddo", "ViewingKnowledge: $data")
 
@@ -103,6 +109,58 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     Log.e("ViewKnowledgePostWithAnswerActivity", "Error fetching post detail", e)
                 }
             }
+        } else if (fromEditWrite) {
+            val editPostId = intent.getStringExtra("editPostId").toString()
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val responseData =
+                        apiService.knowledgePostDetail(token, editPostId)
+                    val jsonObject =
+                        gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                    val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
+                    val userEmail = data.email.split("@")[0]
+                    withContext(Dispatchers.Main) {
+                        binding.viewKnowledgePostTitle.text = data.title
+                        binding.viewKnowledgePostContent.text = data.content
+                        binding.viewKnowledgePostUserId.text = "${data.univ} $userEmail"
+                        binding.knowledgePostViewersCount.text = data.views.toString()
+                    }
+                } catch (e: Exception) {
+                    Log.e("asf", e.toString())
+                }
+            }
+            binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
+                val id = intent.getStringExtra("itemId").toString()
+                val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
+                val postingKComment = PostingKComment(
+                    postId = id,
+                    content = content
+                )
+                Log.d("akwdk", "postingKComment: $postingKComment")
+
+                if (content.isNotBlank()) {
+                    GlobalScope.launch(Dispatchers.IO) {
+                        try {
+                            val responsData = apiService.postingKComment(token, postingKComment)
+                            Log.d("akwdk", "responsData: $responsData")
+                            withContext(Dispatchers.Main) {
+                                val intent = Intent(
+                                    this@ViewKnowledgePostActivity,
+                                    ViewKnowledgePostWithAnswerActivity::class.java
+                                )
+                                intent.putExtra("postId", editPostId)
+                                intent.putExtra("isFromAnswering", true)
+                                startActivity(intent)
+                                finish()
+                            }
+                        } catch (e: Exception) {
+                            Log.e("error", "Error posting comment", e)
+                        }
+                    }
+                } else {
+                    Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+                }
+            }
         } else {
             val fromWritePostId = intent.getStringExtra("itemIdWrite").toString()
             GlobalScope.launch(Dispatchers.IO) {
@@ -114,6 +172,10 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     val jsonObject =
                         gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                     val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
+                    emailOfPost = data.email
+                    targetPostId = data.postId
+                    targetTitle = data.title
+                    targetContent = data.content
                     val userEmail = data.email.split("@")[0]
                     Log.d("dmddo", "ViewingKnowledge: $data")
 
@@ -133,7 +195,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
             binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
                 val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
                 val postingKComment = PostingKComment(
-                    postId = fromWritePostId,
+                    postId = id,
                     content = content
                 )
                 Log.d("akwdk", "postingKComment: $postingKComment")
@@ -161,56 +223,34 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                     Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
-
-        binding.viewKnowledgePostMenu.setOnClickListener {
-            popup(binding.viewKnowledgePostMenu)
-        }
-    }
-
-    private fun popup(v: View) {
-        val popup = PopupMenu(this, v)
-        popup.menuInflater.inflate(R.menu.k_plus_q_menu, popup.menu)
-        popup.setOnMenuItemClickListener { item ->
-            clickMenu(item)
-        }
-        popup.show()
-    }
-
-    private fun clickMenu(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            R.id.k_plus_q_menu_3 -> {
-                GlobalScope.launch(Dispatchers.IO) {
-                    try {
-                        val responseData = apiService.knowledgePostDetail(
-                            token,
-                            "556ba748-d8b4-4258-8333-4497697a1a67"
-                        )
-                        val jsonObject =
-                            gson.fromJson(responseData.data.toString(), JsonObject::class.java)
-                        val data = gson.fromJson(jsonObject, ViewingKnowledge::class.java)
-                        val editTitleDraft = data.title
-                        val editContentDraft = data.content
-
-                        withContext(Dispatchers.Main) {
-                            val intent = Intent(
-                                this@ViewKnowledgePostActivity,
-                                WriteKnowledgePostActivity::class.java
-                            ).apply {
-                                putExtra("editTitleDraft", editTitleDraft)
-                                putExtra("editContentDraft", editContentDraft)
-                                putExtra("isFromWriteActivity", true)
-                            }
-                            startActivity(intent)
+            binding.viewKnowledgePostMenu.setOnClickListener {
+                val popupMenu = PopupMenu(this@ViewKnowledgePostActivity, it)
+                popupMenu.menuInflater.inflate(R.menu.community_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.menu_1 -> {
+                            Toast.makeText(applicationContext, "신고되었습니다.", Toast.LENGTH_SHORT)
+                                .show()
+                            true
                         }
-                    } catch (e: Exception) {
-                        Log.e("menuerror1", "Error fetching post detail", e)
+
+                        R.id.menu_2 -> {
+                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                                .show()
+                            true
+                        }
+
+                        R.id.menu_3 -> {
+                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                                .show()
+                            true
+                        }
+
+                        else -> false
                     }
                 }
-                true
+                popupMenu.show()
             }
-
-            else -> false
         }
     }
 }
