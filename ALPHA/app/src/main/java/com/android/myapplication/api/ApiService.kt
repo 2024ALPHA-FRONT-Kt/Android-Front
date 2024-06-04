@@ -42,7 +42,7 @@ interface ApiService {
     @GET("/user/validation")
     suspend fun validation(
         @Header("Authorization") Authorization: String,
-        @Body data: String
+        @Query("loginId") loginId: String
     ): ResponseObject
 
 

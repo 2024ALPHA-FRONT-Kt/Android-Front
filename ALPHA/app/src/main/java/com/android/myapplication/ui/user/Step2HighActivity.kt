@@ -13,6 +13,7 @@ import com.android.myapplication.databinding.ActivityStep2HighBinding
 import com.android.myapplication.dto.ExceptionDto
 import com.android.myapplication.dto.SignInProfile
 import com.google.gson.Gson
+import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -60,7 +61,7 @@ class Step2HighActivity : AppCompatActivity() {
                     val token = "Bearer ${globalAccessToken.replace("\"", "")}"
                     val responseData = apiService.validation(token,userId)
                     Log.e("Response", responseData.toString())
-                    val data = gson.fromJson(responseData.data.toString(), JsonObject::class.java)
+                    val data = gson.fromJson(responseData.data.toString(), JsonElement::class.java)
                     if (data.toString() == "true"){
                         binding.btnDuplication.isEnabled = false
                         binding.btnDuplication.setTextColor(Color.parseColor("#D9D9D9"))
