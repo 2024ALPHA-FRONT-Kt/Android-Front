@@ -87,10 +87,10 @@
                 android:layout_marginBottom="15dp"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="25dp"
-                    android:src="@drawable/img_photo"/>
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/img_tab2_photo"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                             android:textColor="#555555"
                             android:fontFamily="@font/nanumsquareroundextrabold"
                             android:textSize="12sp"
-                            android:text="매주 수요일 19:00 - 20:00"/>
+                            android:text="매주 수요일 19:00 - 21:00"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -183,9 +183,9 @@
                 android:layout_marginBottom="15dp"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="25dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="20dp"
                     android:src="@drawable/img_photo"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -194,11 +194,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="8dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/nanumsquareroundextrabold"
                         android:textSize="12sp"
-                        android:text="국민대학교 체대생과 함께하는\n바이오 메카닉" />
+                        android:text="마케팅은 왜 해야할까?" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
                         android:textColor="#555555"
                         android:fontFamily="@font/nanumsquareroundextrabold"
                         android:textSize="12sp"
-                        android:text="강사 이선준"/>
+                        android:text="강사 이동민"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
@@ -221,7 +221,7 @@
                             android:textColor="#555555"
                             android:fontFamily="@font/nanumsquareroundextrabold"
                             android:textSize="12sp"
-                            android:text="매주 수요일 19:00 - 20:00"/>
+                            android:text="매주 화요일 18:00 - 20:00"/>
                     </LinearLayout>
                 </LinearLayout>
 

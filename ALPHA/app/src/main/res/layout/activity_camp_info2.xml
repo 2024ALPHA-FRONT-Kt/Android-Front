@@ -32,7 +32,7 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:fontFamily="@font/nanumsquareroundextrabold"
-                android:text="국민대학교 체대생과"/>
+                android:text="마케팅은 왜 해야할까?"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,15 +41,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="#FF5E5E"
                     android:textSize="24sp"
                     android:fontFamily="@font/nanumsquareroundextrabold"
-                    android:text="함께하는 숲 걷기"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:src="@drawable/img_camp_class_tag"/>
+                    android:text="[마감된 강의입니다.]"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
