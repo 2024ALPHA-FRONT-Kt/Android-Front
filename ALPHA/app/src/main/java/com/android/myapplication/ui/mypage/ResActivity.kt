@@ -50,10 +50,43 @@ class ResActivity : AppCompatActivity() {
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
 
         binding.resultPageShareButton.setOnClickListener {
-            val screenshot = takeScreenshotOfView(binding.savingResultImg)
-            val imageFile = saveScreenshot(screenshot)
-            shareImage(imageFile)
+            val viewToSave: View = binding.savingResultImg
+
+            val bitmap =
+                Bitmap.createBitmap(viewToSave.width, viewToSave.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            viewToSave.draw(canvas)
+
+            val timeStamp: String =
+                SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+            val fileName = "Disc_Result_$timeStamp.jpg"
+            val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+
+            val imageFile = File.createTempFile(fileName, ".jpg", storageDir)
+
+            val outputStream: OutputStream = FileOutputStream(imageFile)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+            Toast.makeText(this, "저장 완료!", Toast.LENGTH_SHORT).show()
+
+            val imageUri = FileProvider.getUriForFile(
+                this,
+                "com.android.myapplication.fileprovider",
+                imageFile
+            )
+
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_STREAM, imageUri)
+                type = "image/jpeg"
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+
+            startActivity(Intent.createChooser(shareIntent, "이미지 공유하기"))
         }
+
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
