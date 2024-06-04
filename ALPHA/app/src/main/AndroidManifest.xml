@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ui.user.LogInActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.free_community.WriteFreePostActivity"
             android:exported="false" />
         <activity
@@ -27,9 +30,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.free_community.FreePostListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.knowledge_community.EditKnowledgeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.knowledge_community.WriteKnowledgePostActivity"
@@ -121,7 +121,7 @@
             android:name=".ui.disc.DiscTest7Activity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.LogInActivity"
+            android:name=".SplashViewActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
