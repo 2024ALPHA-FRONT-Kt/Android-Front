@@ -39,6 +39,14 @@ interface ApiService {
         @Body data: EditProfile
     ): ResponseObject
 
+    @GET("/user/validation")
+    suspend fun validation(
+        @Header("Authorization") Authorization: String,
+        @Body data: String
+    ): ResponseObject
+
+
+
     @GET("/posts")
     suspend fun knowLedgeLists(
         @Header("Authorization") authorization: String,
