@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.android.myapplication.App
 import com.android.myapplication.MainActivity
 import com.android.myapplication.R
@@ -37,11 +38,6 @@ class ResActivity : AppCompatActivity() {
         binding = ActivityResBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.pageBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-
         binding.resultPageCompleteButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -53,16 +49,15 @@ class ResActivity : AppCompatActivity() {
         val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
         val token = "Bearer ${globalAccessToken.replace("\"", "")}"
 
-        val shareButton: Button = binding.resultPageShareButton
-        shareButton.setOnClickListener {
-            val screenshot = takeScreenshot()
-            val imageUri = saveScreenshot(screenshot)
-            shareImage(imageUri)
+        binding.resultPageShareButton.setOnClickListener {
+            val screenshot = takeScreenshotOfView(binding.savingResultImg)
+            val imageFile = saveScreenshot(screenshot)
+            shareImage(imageFile)
         }
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val responseData = apiService.getDiscTestResult(token) // API 호출
+                val responseData = apiService.getDiscTestResult(token)
                 val input = responseData.data.toString()
                 Log.e("response", input)
                 val cleanedInput = input.trim().removeSurrounding("{", "}")
@@ -71,19 +66,19 @@ class ResActivity : AppCompatActivity() {
                 val discCode = parseStringToMap(discC)
                 Log.e("parse", discCode.toString())
 
+                val sameUsers = sp[0]
                 val discType = discCode["category"]
                 val discTypeEn = discCode["key"]
                 val discPros = discCode["pros"]
                 val discEx = discCode["ex"]
                 val discJob = discCode["job"]
-                val discProsJob = discCode["prosJob"]
 
                 binding.root.post {
                     binding.discType.text = "$discType - $discTypeEn"
                     binding.discPros.text = discPros
                     binding.discEx.text = discEx
                     binding.discJob.text = discJob
-                    binding.discPos.text = discProsJob
+                    binding.discSameUsers.text = sameUsers.substring(12 until sameUsers.length - 2)
                 }
 
             } catch (e: Exception) {
@@ -93,47 +88,45 @@ class ResActivity : AppCompatActivity() {
 
     }
 
-    private fun takeScreenshot(): Bitmap {
-        val rootView = window.decorView.findViewById<View>(android.R.id.content)
-        val screenshot =
-            Bitmap.createBitmap(rootView.width, rootView.height, Bitmap.Config.ARGB_8888)
+    private fun takeScreenshotOfView(view: View): Bitmap {
+        val screenshot = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(screenshot)
-        rootView.draw(canvas)
+        view.draw(canvas)
         return screenshot
     }
 
     private fun saveScreenshot(screenshot: Bitmap): File {
-        val imagesDir =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val imagesDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val imageFileName = "disc_result_$timestamp.jpg"
-        val image = File(imagesDir, imageFileName)
+        val imageFile = File(imagesDir, imageFileName)
         var outputStream: OutputStream? = null
         try {
-            outputStream = FileOutputStream(image)
+            outputStream = FileOutputStream(imageFile)
             screenshot.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-            Toast.makeText(this, "결과 화면이 저장되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "DISC-T 결과를 공유합니다!.", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            e.printStackTrace()
         } finally {
             outputStream?.close()
         }
-        return image
+        return imageFile
     }
-
-    private fun shareImage(imageUri: File) {
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.type = "image/*"
-        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri)
-        startActivity(Intent.createChooser(shareIntent, "결과 공유하기"))
+    private fun shareImage(imageFile: File) {
+        val imageUri = FileProvider.getUriForFile(this, "${packageName}.provider", imageFile)
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "image/*"
+            putExtra(Intent.EXTRA_STREAM, imageUri)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        startActivity(Intent.createChooser(shareIntent, "DISC 테스트 결과 공유하기"))
     }
 
     private fun parseStringToMap(input: String): Map<String, String> {
-        // 문자열 양 끝의 중괄호를 제거하고 공백을 제거합니다.
         val cleanedInput = input.trim().removeSurrounding("{", "}")
 
-        // 각 항목을 분리합니다.
         val entries = cleanedInput.split("(?<=\\w)(,\\s)(?=\\w+=)".toRegex())
 
-        // 항목을 key-value 쌍으로 분리하여 Map에 추가합니다.
         val map = mutableMapOf<String, String>()
         for (entry in entries) {
             val keyValue = entry.split("=", limit = 2)
