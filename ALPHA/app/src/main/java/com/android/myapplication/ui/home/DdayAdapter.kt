@@ -32,7 +32,7 @@ class DdayAdapter(var pageNum: ArrayList<Int>) :
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         when (position) {
             0 -> {
-                holder.ddaytitle.text = "수능"
+                holder.ddaytitle.text = "2024수능"
                 holder.ddaytitle.setBackgroundResource(R.drawable.bg_main_dday_title_blue)
                 holder.ddayback.setBackgroundResource(R.drawable.bg_main_dday_blue)
                 holder.ddaynum1.setTextColor(Color.parseColor("#0057FF"))
@@ -48,13 +48,13 @@ class DdayAdapter(var pageNum: ArrayList<Int>) :
             }
 
             1 -> {
-                holder.ddaytitle.text = "6월 모의고사"
+                holder.ddaytitle.text = "2025수능"
                 holder.ddaytitle.setBackgroundResource(R.drawable.bg_main_dday_title_red)
                 holder.ddayback.setBackgroundResource(R.drawable.bg_main_dday_red)
                 holder.ddaynum1.setTextColor(Color.parseColor("#FF4848"))
                 holder.ddaynum2.setTextColor(Color.parseColor("#FF4848"))
                 holder.ddaynum3.setTextColor(Color.parseColor("#FF4848"))
-                val start = "2024-06-04"
+                val start = "2025-11-13"
                 val dday = DdayCalculate(start)
                 holder.ddaynum1.text = dday[0].toString()
                 holder.ddaynum2.text = dday[1].toString()
