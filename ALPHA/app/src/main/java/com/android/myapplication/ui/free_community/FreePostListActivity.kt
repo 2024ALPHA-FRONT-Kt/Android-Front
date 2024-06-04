@@ -49,18 +49,13 @@ class FreePostListActivity : AppCompatActivity() {
                 val hotNumber = data["likeNumber"].toString().replace("\"", "").substring(0 until data["likeNumber"].toString().length - 2)
 
                 withContext(Dispatchers.Main) {
-                    // UI 요소에 값을 할당
                     binding.freeHotTitle.text = hotTitle
-                    // likeNumber를 Double로 변환하여 할당
                     binding.freeHotRecommends.text = hotNumber
                 }
             } catch (e: Exception) {
                 Log.e("a", e.toString())
             }
         }
-
-
-
 
         GlobalScope.launch(Dispatchers.IO) {
             val page = 0
