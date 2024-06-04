@@ -1,7 +1,6 @@
 package com.android.myapplication.ui.knowledge_community
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.PopupMenu
@@ -241,21 +240,13 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                         }
 
                         R.id.menu_2 -> {
-                            Toast.makeText(
-                                applicationContext,
-                                "기능 개발 중입니다. . .",
-                                Toast.LENGTH_SHORT
-                            )
+                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
                                 .show()
                             true
                         }
 
                         R.id.menu_3 -> {
-                            Toast.makeText(
-                                applicationContext,
-                                "기능 개발 중입니다. . .",
-                                Toast.LENGTH_SHORT
-                            )
+                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
                                 .show()
                             true
                         }
