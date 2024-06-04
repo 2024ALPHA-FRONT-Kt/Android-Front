@@ -201,22 +201,26 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 Log.d("akwdk", "postingKComment: $postingKComment")
 
                 if (content.isNotBlank()) {
-                    GlobalScope.launch(Dispatchers.IO) {
-                        try {
-                            val responsData = apiService.postingKComment(token, postingKComment)
-                            Log.d("akwdk", "responsData: $responsData")
-                            withContext(Dispatchers.Main) {
-                                val intent = Intent(
-                                    this@ViewKnowledgePostActivity,
-                                    ViewKnowledgePostWithAnswerActivity::class.java
-                                )
-                                intent.putExtra("postId", fromWritePostId)
-                                intent.putExtra("isFromAnswering", true)
-                                startActivity(intent)
-                                finish()
+                    if (App.prefs.getItem("userRole", "noUserRole") == "HIGH") {
+                        Toast.makeText(this, "대학생 회원만 답변이 가능합니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        GlobalScope.launch(Dispatchers.IO) {
+                            try {
+                                val responsData = apiService.postingKComment(token, postingKComment)
+                                Log.d("akwdk", "responsData: $responsData")
+                                withContext(Dispatchers.Main) {
+                                    val intent = Intent(
+                                        this@ViewKnowledgePostActivity,
+                                        ViewKnowledgePostWithAnswerActivity::class.java
+                                    )
+                                    intent.putExtra("postId", fromWritePostId)
+                                    intent.putExtra("isFromAnswering", true)
+                                    startActivity(intent)
+                                    finish()
+                                }
+                            } catch (e: Exception) {
+                                Log.e("error", "Error posting comment", e)
                             }
-                        } catch (e: Exception) {
-                            Log.e("error", "Error posting comment", e)
                         }
                     }
                 } else {
@@ -235,13 +239,21 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                         }
 
                         R.id.menu_2 -> {
-                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                applicationContext,
+                                "기능 개발 중입니다. . .",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                             true
                         }
 
                         R.id.menu_3 -> {
-                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                applicationContext,
+                                "기능 개발 중입니다. . .",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                             true
                         }

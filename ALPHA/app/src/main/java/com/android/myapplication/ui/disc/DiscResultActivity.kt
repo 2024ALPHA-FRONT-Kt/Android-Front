@@ -50,10 +50,43 @@ class DiscResultActivity : AppCompatActivity() {
         }
 
         binding.discResultPageShareButton.setOnClickListener {
-            val screenshot = takeScreenshotOfView(binding.savingResultImg)
-            val imageFile = saveScreenshot(screenshot)
-            shareImage(imageFile)
+            val viewToSave: View = binding.savingResultImg
+
+            val bitmap =
+                Bitmap.createBitmap(viewToSave.width, viewToSave.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            viewToSave.draw(canvas)
+
+            val timeStamp: String =
+                SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+            val fileName = "Disc_Result_$timeStamp.jpg"
+            val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+
+            val imageFile = File.createTempFile(fileName, ".jpg", storageDir)
+
+            val outputStream: OutputStream = FileOutputStream(imageFile)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+            Toast.makeText(this, "저장 완료!", Toast.LENGTH_SHORT).show()
+
+            val imageUri = FileProvider.getUriForFile(
+                this,
+                "com.android.myapplication.fileprovider",
+                imageFile
+            )
+
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_STREAM, imageUri)
+                type = "image/jpeg"
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+
+            startActivity(Intent.createChooser(shareIntent, "이미지 공유하기"))
         }
+
 
         val apiService = RetrofitClient.apiservice
         val gson = Gson()
@@ -100,41 +133,6 @@ class DiscResultActivity : AppCompatActivity() {
         }
     }
 
-    private fun takeScreenshotOfView(view: View): Bitmap {
-        val screenshot = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(screenshot)
-        view.draw(canvas)
-        return screenshot
-    }
-
-    private fun saveScreenshot(screenshot: Bitmap): File {
-        val imagesDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val imageFileName = "disc_result_$timestamp.jpg"
-        val imageFile = File(imagesDir, imageFileName)
-        var outputStream: OutputStream? = null
-        try {
-            outputStream = FileOutputStream(imageFile)
-            screenshot.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-            Toast.makeText(this, "DISC-T 결과를 공유합니다!.", Toast.LENGTH_SHORT).show()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            outputStream?.close()
-        }
-        return imageFile
-    }
-
-    private fun shareImage(imageFile: File) {
-        val imageUri = FileProvider.getUriForFile(this, "${packageName}.provider", imageFile)
-        val shareIntent = Intent(Intent.ACTION_SEND).apply {
-            type = "image/*"
-            putExtra(Intent.EXTRA_STREAM, imageUri)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        }
-        startActivity(Intent.createChooser(shareIntent, "DISC 테스트 결과 공유하기"))
-    }
-
     private fun parseStringToMap(input: String): Map<String, String> {
         val cleanedInput = input.trim().removeSurrounding("{", "}")
 
@@ -152,5 +150,4 @@ class DiscResultActivity : AppCompatActivity() {
 
         return map
     }
-
 }
