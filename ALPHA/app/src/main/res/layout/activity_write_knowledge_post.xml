@@ -53,6 +53,7 @@
             android:layout_height="25dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/post_complete_button"
+            android:backgroundTint="#6369F8"
             android:fontFamily="@font/nanumsquareroundbold"
             android:text="완료"
             android:textColor="@color/white"
