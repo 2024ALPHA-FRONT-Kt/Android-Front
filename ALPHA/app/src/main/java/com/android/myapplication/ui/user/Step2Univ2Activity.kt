@@ -1,16 +1,19 @@
 package com.android.myapplication.ui.user
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.myapplication.App
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityStep2Univ2Binding
 import com.android.myapplication.dto.ExceptionDto
 import com.android.myapplication.dto.SignInProfile
 import com.google.gson.Gson
+import com.google.gson.JsonElement
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -45,6 +48,66 @@ class Step2Univ2Activity : AppCompatActivity() {
             Log.e("성별임!!!!!", newGender)
         }
 
+        // 아이디 중복확인
+        binding.btnDuplication.setOnClickListener {
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    // token 가져오기
+                    val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
+                    // user정보 가져오기
+                    val userId = App.prefs.getItem("userId","noUserID")
+                    val token = "Bearer ${globalAccessToken.replace("\"", "")}"
+                    val responseData = apiService.validation(token,userId)
+                    Log.e("Response", responseData.toString())
+                    val data = gson.fromJson(responseData.data.toString(), JsonElement::class.java)
+                    if (data.toString() == "true"){
+                        binding.btnDuplication.isEnabled = false
+                        binding.btnDuplication.setTextColor(Color.parseColor("#D9D9D9"))
+                        runOnUiThread {
+                            Toast.makeText(
+                                applicationContext,
+                                "사용가능한 아이디입니다.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    if (e is retrofit2.HttpException) {
+                        if (e.code() == 400) {
+                            val errorBody = e.response()?.errorBody()?.string()
+                            val errorResponse: ExceptionDto? =
+                                gson.fromJson(errorBody, ExceptionDto::class.java)
+                            Log.e("400에러", errorResponse.toString())
+                            runOnUiThread {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "중복된 아이디 입니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            Log.e("Error", e.message.toString())
+                            runOnUiThread {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "다시 확인해 주세요",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    } else {
+                        Log.e("Error", e.message.toString())
+                        runOnUiThread {
+                            Toast.makeText(
+                                applicationContext,
+                                "다시 확인해 주세요",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+        }
         // 회원가입하기
         binding.btnNext.setOnClickListener {
 
@@ -90,6 +153,13 @@ class Step2Univ2Activity : AppCompatActivity() {
                             )
                         )
                         Log.e("Response", responseData.toString())
+                        runOnUiThread {
+                            Toast.makeText(
+                                applicationContext,
+                                "회원가입이 완료되었습니다.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                         intentLogin()
                     } catch (e: Exception) {
                         if (e is retrofit2.HttpException) {

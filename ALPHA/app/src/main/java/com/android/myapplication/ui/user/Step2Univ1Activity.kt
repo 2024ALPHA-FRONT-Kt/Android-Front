@@ -38,17 +38,18 @@ class Step2Univ1Activity : AppCompatActivity() {
 
         binding.univEmail.visibility = View.INVISIBLE
         binding.passkey.visibility = View.INVISIBLE
-        // 초기화
-        binding.btnClear.setOnClickListener {
-            GlobalScope.launch(Dispatchers.IO) {
-                try {
-                    val responseData = univService.clear(Clear(apiKey))
-                    Log.e("clear했음", responseData.toString())
-                } catch (e: Exception) {
-                    Log.e("Error", e.message.toString())
-                }
-            }
-        }
+
+//        // 초기화
+//        binding.btnClear.setOnClickListener {
+//            GlobalScope.launch(Dispatchers.IO) {
+//                try {
+//                    val responseData = univService.clear(Clear(apiKey))
+//                    Log.e("clear했음", responseData.toString())
+//                } catch (e: Exception) {
+//                    Log.e("Error", e.message.toString())
+//                }
+//            }
+//        }
         // 대학확인
         binding.btnGetUnivCheck.setOnClickListener {
             val newUniv = binding.newUnivU.text.toString()
