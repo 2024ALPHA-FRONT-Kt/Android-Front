@@ -27,6 +27,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     private val userId: String = App.prefs.getItem("userId", "noID")
+    private val userRole: String = App.prefs.getItem("userRole", "noUserRole")
     private lateinit var emailOfPost: String
     private lateinit var targetPostId: String
     private lateinit var targetTitle: String
@@ -200,10 +201,10 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 )
                 Log.d("akwdk", "postingKComment: $postingKComment")
 
-                if (content.isNotBlank()) {
-                    if (App.prefs.getItem("userRole", "noUserRole") == "HIGH") {
-                        Toast.makeText(this, "대학생 회원만 답변이 가능합니다.", Toast.LENGTH_SHORT).show()
-                    } else {
+                if (userRole == "HIGH") {
+                    Toast.makeText(this, "대학생 회원만 답변할 수 있습니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    if (content.isNotBlank()) {
                         GlobalScope.launch(Dispatchers.IO) {
                             try {
                                 val responsData = apiService.postingKComment(token, postingKComment)
@@ -222,9 +223,9 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                                 Log.e("error", "Error posting comment", e)
                             }
                         }
+                    } else {
+                        Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
                     }
-                } else {
-                    Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
             binding.viewKnowledgePostMenu.setOnClickListener {
@@ -239,21 +240,13 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                         }
 
                         R.id.menu_2 -> {
-                            Toast.makeText(
-                                applicationContext,
-                                "기능 개발 중입니다. . .",
-                                Toast.LENGTH_SHORT
-                            )
+                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
                                 .show()
                             true
                         }
 
                         R.id.menu_3 -> {
-                            Toast.makeText(
-                                applicationContext,
-                                "기능 개발 중입니다. . .",
-                                Toast.LENGTH_SHORT
-                            )
+                            Toast.makeText(applicationContext, "기능 개발 중입니다. . .", Toast.LENGTH_SHORT)
                                 .show()
                             true
                         }

@@ -106,9 +106,7 @@ class LogInActivity : AppCompatActivity() {
                         val data =
                             gson.fromJson(responseData.data.toString(), JsonObject::class.java)
                         val userId = data["loginId"].toString().replace("\"", "")
-                        val userRole = data["userRole"].toString().replace("\"", "")
                         App.prefs.addItem("userId", userId)
-                        App.prefs.addItem("userRole", userRole)
                     } catch (e: Exception) {
                         if (e is retrofit2.HttpException) {
                             if (e.code() == 404) {
