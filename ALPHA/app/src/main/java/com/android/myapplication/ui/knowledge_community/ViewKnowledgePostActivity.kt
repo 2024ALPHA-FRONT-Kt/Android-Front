@@ -27,6 +27,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
     private val globalAccessToken: String = App.prefs.getItem("accessToken", "no Token")
     private val token = "Bearer ${globalAccessToken.replace("\"", "")}"
     private val userId: String = App.prefs.getItem("userId", "noID")
+    private val userRole: String = App.prefs.getItem("userRole", "noUserRole")
     private lateinit var emailOfPost: String
     private lateinit var targetPostId: String
     private lateinit var targetTitle: String
@@ -192,6 +193,7 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 }
             }
             binding.viewKnowledgePostAnswerEnterButton.setOnClickListener {
+                val id = intent.getStringExtra("itemId").toString()
                 val content = binding.viewKnowledgePostEnteringAnswer.text.toString()
                 val postingKComment = PostingKComment(
                     postId = id,
@@ -199,27 +201,31 @@ class ViewKnowledgePostActivity : AppCompatActivity() {
                 )
                 Log.d("akwdk", "postingKComment: $postingKComment")
 
-                if (content.isNotBlank()) {
-                    GlobalScope.launch(Dispatchers.IO) {
-                        try {
-                            val responsData = apiService.postingKComment(token, postingKComment)
-                            Log.d("akwdk", "responsData: $responsData")
-                            withContext(Dispatchers.Main) {
-                                val intent = Intent(
-                                    this@ViewKnowledgePostActivity,
-                                    ViewKnowledgePostWithAnswerActivity::class.java
-                                )
-                                intent.putExtra("postId", fromWritePostId)
-                                intent.putExtra("isFromAnswering", true)
-                                startActivity(intent)
-                                finish()
-                            }
-                        } catch (e: Exception) {
-                            Log.e("error", "Error posting comment", e)
-                        }
-                    }
+                if (userRole == "HIGH") {
+                    Toast.makeText(this, "대학생 회원만 답변할 수 있습니다.", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+                    if (content.isNotBlank()) {
+                        GlobalScope.launch(Dispatchers.IO) {
+                            try {
+                                val responsData = apiService.postingKComment(token, postingKComment)
+                                Log.d("akwdk", "responsData: $responsData")
+                                withContext(Dispatchers.Main) {
+                                    val intent = Intent(
+                                        this@ViewKnowledgePostActivity,
+                                        ViewKnowledgePostWithAnswerActivity::class.java
+                                    )
+                                    intent.putExtra("postId", fromWritePostId)
+                                    intent.putExtra("isFromAnswering", true)
+                                    startActivity(intent)
+                                    finish()
+                                }
+                            } catch (e: Exception) {
+                                Log.e("error", "Error posting comment", e)
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, "답변 내용을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
             binding.viewKnowledgePostMenu.setOnClickListener {
