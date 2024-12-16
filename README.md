@@ -14,3 +14,7 @@
 - compileSDK : 34
 - minSDK : 31
 - targetSDK :34
+
+**시연영상**
+
+https://youtu.be/LyORieCKccM
